@@ -1,0 +1,23 @@
+doctype html
+html
+  head
+    
+    title
+      |
+      = full_title(yield(:title))
+    = csrf_meta_tags
+    = csp_meta_tag
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
+    = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+    meta[name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"]
+
+
+  body
+    /= render 'layouts/header'
+    /= yield :cover   
+    .container.main
+
+      /= render 'layouts/flash_messages'
+      = yield 
+    / /div#samplemodal class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"
+    /= render 'layouts/footer'
