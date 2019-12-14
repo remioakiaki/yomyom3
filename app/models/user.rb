@@ -1,6 +1,6 @@
 # # frozen_string_literal: true
 
-# class User < ApplicationRecord
+ class User < ApplicationRecord
 #   attr_accessor :remember_token
 #   has_many :microposts, dependent: :destroy
 #   has_many :active_relationships, class_name: 'Relationship',
@@ -12,7 +12,7 @@
 #   has_many :following, through: :active_relationships, source: :followed
 #   has_many :followers, through: :passive_relationships, source: :follower
    before_save { self.email = email.downcase }
-validates :name, presence: true, length: { maximum: 50 }
+   validates :name, presence: true, length: { maximum: 50 }
    VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i.freeze
    validates :email, presence: true, length: { maximum: 255 },
                      format: { with: VALID_EMAIL_REGEX },
@@ -122,7 +122,7 @@ validates :name, presence: true, length: { maximum: 50 }
 #   def picture_size
 #     errors.add(:image, 'should be less than 5MB') if picture.size > 5.megabytes
 #   end
-# end
+ end
 
 
 
