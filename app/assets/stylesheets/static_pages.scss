@@ -1,3 +1,114 @@
 // Place all the styles related to the StaticPages controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+//ヘッダー
+@media (min-width: 768px){
+  .dropdown-toggle{
+    padding-top: 15px;
+    padding-bottom: 15px;
+    
+  }
+}
+
+// .nav > li > a:hover, .nav > li {
+//   background-color: #8c2a2a;
+//   color:#CCC
+// }
+
+.dropdown-toggle{
+  background-color: #8c2a2a;
+  border: 0;
+  
+  color: #fff;
+}
+.dropdown-toggle:hover{
+  color: #CCC;
+}
+
+.dropdown-menu{
+  margin: 0 0;
+  background-color: #8c2a2a;
+}
+.dropdown-menu > li > a:hover, .dropdown-menu > li > a:focus{
+    color: #CCC;
+    background-color: #8c2a2a;
+}
+.dropdown-menu > li > a{
+  color: #fff
+}
+
+.comcol{
+  .col-xs-4.col-xs-offset-2{
+    padding:0px 0px;
+  }
+  
+}
+
+.maintitle{
+  background: image-url('main.jpg');
+  
+  border: 1px solid #CCC;
+
+  //padding-top: 37.531276063%;
+
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  //position: relative;
+  h1{
+    padding: 10%;
+    color:#fff;
+    text-shadow:1px 1px 0 #000, -1px -1px 0 #000,
+    -1px 1px 0 #000, 1px -1px 0 #000,
+    0px 1px 0 #000,  -1px 0 #000,
+    -1px 0 0 #000, 1px 0 0 #000;
+    //position: absolute;
+  }
+}
+/* header */
+.navbar{
+  background:#8c2a2a;
+
+  
+  a{
+    color:#fff;
+    text-decoration: none;
+  }
+}
+.navbar-toggle.collapsed{
+  border-color: rgba(255, 255, 255, 0.79);
+  
+
+}
+.navbar-toggle{
+  .icon-bar{
+   background-color:#fff;
+  }
+}
+.navbar-right{
+  li > a:hover{
+    background-color: #8c2a2a;
+    color: #CCC;
+  }
+}
+
+#logo {
+  //float: left;
+  margin:0px 10px;
+  font-size: 1.7em;
+  color: white;
+  
+  letter-spacing: -1px;
+  padding-top: 9px;
+  font-weight: bold;
+  &:hover {
+    color: white;
+    text-decoration: none;
+  }
+}
+.logo {
+  margin-top: 5px;
+  background-size: contain;
+  height: 40px;
+  width: 200px;
+}
