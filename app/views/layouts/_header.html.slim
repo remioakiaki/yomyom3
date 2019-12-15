@@ -13,7 +13,7 @@ nav.navbar
            | yomyom
       .collapse.navbar-collapse#navbar-content
         ul.nav.navbar-nav.navbar-right
-          - if logged_in?
+          /- if logged_in?
             li.nav-item
               
               .dropdown
@@ -29,7 +29,7 @@ nav.navbar
             li.nav-item = link_to "投稿検索",microposts_path
             li.nav-item = link_to "ランキング",ranking_books_path
 
-          - else
+          /- else
             li.nav-item = link_to "新規登録", signup_path 
             li.nav-item = link_to "ログイン", login_path
 
