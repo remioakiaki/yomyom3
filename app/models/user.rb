@@ -89,10 +89,10 @@
 #     BCrypt::Password.new(remember_digest).is_password?(remember_token)
 #   end
 
-#   # 永続ログインの解除
-#   def forget
-#     update_attribute(:remember_digest, nil)
-#   end
+   # 永続ログインの解除
+   def forget
+     #update_attribute(:remember_digest, nil)
+   end
 
 #   # ユーザーをフォローする
 #   def follow(other_user)

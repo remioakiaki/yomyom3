@@ -5,10 +5,10 @@ class UsersController < ApplicationController
 
   before_action :admin_user, only: :destroy
   before_action :correct_user, only: %i[edit update]
-  before_action :test_user, only: :update
+  #before_action :test_user, only: :update
   def show
     @user = User.find(params[:id])
-    @microposts = Micropost.where(user_id: params[:id]).includes(:book, :user)
+    #@microposts = Micropost.where(user_id: params[:id]).includes(:book, :user)
   end
 
   def new
@@ -21,7 +21,8 @@ class UsersController < ApplicationController
     if @user.save
       log_in @user
       flash[:success] = '登録成功'
-      redirect_to root_url
+      redirect_to user_path(@user)
+      #redirect_to root_url
     else
       render :new
     end
@@ -80,8 +81,10 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:name, :email, :password, :password_confirmation, :picture,
-                                 :unique_name, :address1, :address2, :zipcode, :introduce)
+    params.require(:user).permit(:name, :email, :password, :password_confirmation
+                               #, :picture,
+                                # :unique_name, :address1, :address2, :zipcode, :introduce
+                                )
   end
 
   def correct_user
