@@ -1,7 +1,7 @@
 # # frozen_string_literal: true
 
  class User < ApplicationRecord
-#   attr_accessor :remember_token
+   attr_accessor :remember_token
 #   has_many :microposts, dependent: :destroy
 #   has_many :active_relationships, class_name: 'Relationship',
 #                                   foreign_key: 'follower_id',
@@ -19,7 +19,7 @@
                      uniqueness: { case_sensitive: false }
    has_secure_password
    validates :password, presence: true, length: { minimum: 6 }, allow_nil: true
-#   validates :introduce, length: { maximum: 100 }
+   validates :introduce, length: { maximum: 100 }
 #   mount_uploader :picture, PictureUploader
 #   validate :picture_size
 
@@ -65,33 +65,32 @@
 #     likeposts.include?(micropost)
 #   end
 
-#   def self.digest(string)
-#     cost = if ActiveModel::SecurePassword.min_cost
-#              BCrypt::Engine::MIN_COST
-#            else
-#              BCrypt::Engine.cost
-#            end
-#     BCrypt::Password.create(string, cost: cost)
-#   end
+  def self.digest(string)
+    cost = if ActiveModel::SecurePassword.min_cost
+             BCrypt::Engine::MIN_COST
+           else
+             BCrypt::Engine.cost
+           end
+    BCrypt::Password.create(string, cost: cost)
+  end
 
-#   def self.new_token
-#     SecureRandom.urlsafe_base64
-#   end
+  def self.new_token
+    SecureRandom.urlsafe_base64
+  end
 
-#   def remember
-#     self.remember_token = User.new_token
-#     update_attribute(:remember_digest, User.digest(remember_token))
-#   end
+   def remember
+     self.remember_token = User.new_token
+     update_attribute(:remember_digest, User.digest(remember_token))
+   end
 
-#   def authenticated?(remember_token)
-#     return false if remember_digest.nil?
-
-#     BCrypt::Password.new(remember_digest).is_password?(remember_token)
-#   end
+  def authenticated?(remember_token)
+    return false if remember_digest.nil?
+    BCrypt::Password.new(remember_digest).is_password?(remember_token)
+  end
 
    # 永続ログインの解除
    def forget
-     #update_attribute(:remember_digest, nil)
+     update_attribute(:remember_digest, nil)
    end
 
 #   # ユーザーをフォローする
