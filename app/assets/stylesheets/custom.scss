@@ -144,3 +144,11 @@ input {
   width: auto;
   margin-left: 0;
 }
+
+//error-explanation
+#error_explanation{
+  li {
+    list-style-type: disc;
+    color: rgb(255, 64, 64);
+  }
+}

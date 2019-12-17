@@ -11,5 +11,5 @@
       /-if user.introduce.present?
         .balloon1-left
           =user.introduce
-      /- if logged_in? && current_user.admin? && !current_user?(user) 
+      - if logged_in? && current_user.admin? && !current_user?(user) 
         li= link_to 'delete', user_path(user), method: :delete
