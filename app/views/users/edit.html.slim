@@ -6,7 +6,7 @@ h1 ユーザー編集
     = form_with(model:@user,local: true) do |f|
       = render 'shared/error_messages', object: f.object
       .edit-profile
-        /= image_tag @user.picture.url, size:'100x100'
+        = image_tag @user.picture.url, size:'100x100'
       = f.label :picture, "ユーザー画像"
       = f.file_field :picture, class:'btn btn-default'
       = f.label :name, class: 'col-form-label'

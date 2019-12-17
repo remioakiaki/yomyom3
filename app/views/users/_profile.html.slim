@@ -1,6 +1,6 @@
 .user-pofile
   .user-pic.text-center
-    /= image_tag user.picture.url, size:'100x100'
+    = image_tag user.picture.url, size:'100x100'
   .user-name.text-center
     h1= user.name
   /-if user.introduce.present?

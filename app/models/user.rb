@@ -20,7 +20,7 @@
    has_secure_password
    validates :password, presence: true, length: { minimum: 6 }, allow_nil: true
    validates :introduce, length: { maximum: 100 }
-#   mount_uploader :picture, PictureUploader
+   mount_uploader :picture, ImagesUploader
 #   validate :picture_size
 
 #   # お気に入り

@@ -1,6 +1,6 @@
   .post
       .prof
-        /= image_tag user.picture.url,:size =>'50x50', :class => "img-circle"
+        = image_tag user.picture.url,:size =>'50x50', :class => "img-circle"
         = link_to user_path(user) do
           = user.name
       .menu1
