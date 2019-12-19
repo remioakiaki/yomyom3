@@ -3,13 +3,13 @@ ul.nav.nav-tabs.nav-justified
       =link_to user_path(@user) do 
         =@user.microposts.count
         |投稿
-    li class="#{'active' if current_page?(likes_user_path(@user))}"
-      =link_to likes_user_path(@user) do 
+    /li class="#{'active' if current_page?(likes_user_path(@user))}"
+      /=link_to likes_user_path(@user) do 
         =@user.likes.count
         |いいね
-    li class="#{'active' if current_page?(goods_user_path(@user))}"
+    /li class="#{'active' if current_page?(goods_user_path(@user))}"
       =link_to goods_user_path(@user) do 
-        =@user.goods.count
+        /=@user.goods.count
         |お気に入り
     li class="#{'active' if current_page?(following_user_path(@user))}"
       =link_to following_user_path(@user) do

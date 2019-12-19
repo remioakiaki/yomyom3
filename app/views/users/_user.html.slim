@@ -6,9 +6,9 @@
       .menu1
         - if logged_in? && !current_user?(user) 
           div class="relation-btn_#{user.id} text-right"
-            /= render 'relationships/relationship', user: user
+            = render 'relationships/relationship', user: user
       .content
-      /-if user.introduce.present?
+      -if user.introduce.present?
         .balloon1-left
           =user.introduce
       - if logged_in? && current_user.admin? && !current_user?(user) 
