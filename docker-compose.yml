@@ -19,3 +19,7 @@ services:
       - db
     tty: true
     stdin_open: true
+    environment:
+      - RAKUTEN_APPID
+      - RAKUTEN_AFID
+
