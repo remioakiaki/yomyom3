@@ -16,6 +16,11 @@ Rails.application.routes.draw do
     resources :comments, only: %i[create index]
     resources :books, only: %i[create]
   end
+  resources :books do
+    #collection do
+     # get :ranking
+    #end
+  end
   resources :relationships, only: %i[create destroy]
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

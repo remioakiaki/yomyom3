@@ -24,7 +24,7 @@ nav.navbar
                 ul class="dropdown-menu"
                   li = link_to "マイページ",current_user
                   li = link_to "ログアウト",logout_path, method: :delete
-            /li.nav-item = link_to "書籍一覧", books_path
+            li.nav-item = link_to "書籍一覧", books_path
             li.nav-item = link_to "ユーザー一覧",users_path
             /li.nav-item = link_to "投稿検索",microposts_path
             /li.nav-item = link_to "ランキング",ranking_books_path
