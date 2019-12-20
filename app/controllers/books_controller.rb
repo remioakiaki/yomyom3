@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
 class BooksController < ApplicationController
-  #include CommonActions
-
   before_action :admin_user, only: %i[destroy edit]
   def index
     @q = Book.ransack(params[:q])
