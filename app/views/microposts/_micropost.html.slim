@@ -34,20 +34,20 @@
             b= micropost.title
           p= micropost.content
   .row
-    -if micropost.pictures.present?
+    -if micropost.picture.present?
       .col-sm-10.col-sm-offset-2.pic-parent
-        -micropost.pictures.each do |p|
+        -micropost.picture.each do |p|
           .col-sm-3.text-center
             =image_tag p.url
 
-  .row
+  /.row
     .col-sm-10.col-sm-offset-2
       div class="comment comment_form_#{micropost.id}" id="comment" 
         div class="slide slide_#{micropost.id}" value="#{micropost.id}" style="height:#{comment_height(micropost.comments.count)}px"
         div class="form form_#{micropost.id}"
 
         //コメントフォームの表示、非表示、いいね
-      .menu2
+      /.menu2
         - if logged_in?
           = link_to micropost_comments_path(micropost.id),id:"opnbtn",class:"btn btn-opn_#{micropost.id}",remote: true  do
             span.glyphicon.glyphicon-comment aria-hidden="true" 
@@ -55,7 +55,7 @@
           div class="btn btn-cls_#{micropost.id}" value="#{micropost.id}" id="clsbtn"
             span.glyphicon.glyphicon-remove aria-hidden="true"
 
-          div id="likes_buttons_#{micropost.id}" class="like"
+          /div id="likes_buttons_#{micropost.id}" class="like"
             = render 'likes/like', micropost: micropost
 
       .menu3

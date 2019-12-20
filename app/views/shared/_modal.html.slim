@@ -1,0 +1,14 @@
+.container.edit-form
+  .modal-daialog
+    .modal-content
+      .modal-header
+        .modal-title
+        = title + "を編集" 
+      .modal-body
+        -if title == "投稿"
+          = render 'shared/micropost_form', btnname: "更新"
+        -else
+          = render 'shared/comment_form', object: @comment, btnname: "更新"
+      .modal-footer
+        button type="button" class="btn btn-default" data-dismiss="modal"
+          |閉じる 
