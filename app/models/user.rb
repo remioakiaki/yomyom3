@@ -108,12 +108,12 @@
     following.include?(other_user)
   end
 
-#   # # 必要な投稿を取得
-#   def feed
-#     Micropost.where("user_id IN (:following_ids)
-#     OR user_id     =   :user_id",
-#                     following_ids: following_ids, user_id: id).includes([:user])
-#   end
+   # # 必要な投稿を取得
+   def feed
+     Micropost.where("user_id IN (:following_ids)
+     OR user_id     =   :user_id",
+                     following_ids: following_ids, user_id: id).includes([:user])
+   end
 
 #   private
 
