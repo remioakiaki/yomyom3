@@ -40,14 +40,14 @@
           .col-sm-3.text-center
             =image_tag p.url
 
-  /.row
+  .row
     .col-sm-10.col-sm-offset-2
       div class="comment comment_form_#{micropost.id}" id="comment" 
         div class="slide slide_#{micropost.id}" value="#{micropost.id}" style="height:#{comment_height(micropost.comments.count)}px"
         div class="form form_#{micropost.id}"
 
         //コメントフォームの表示、非表示、いいね
-      /.menu2
+      .menu2
         - if logged_in?
           = link_to micropost_comments_path(micropost.id),id:"opnbtn",class:"btn btn-opn_#{micropost.id}",remote: true  do
             span.glyphicon.glyphicon-comment aria-hidden="true" 
