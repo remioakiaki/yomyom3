@@ -16,7 +16,7 @@ class Micropost < ApplicationRecord
   # has_many :likes, foreign_key: 'micropost_id', dependent: :destroy
   # has_many :users, through: :likes
 
-  # has_many :comments, dependent: :destroy
+   has_many :comments, dependent: :destroy
 
   private
 

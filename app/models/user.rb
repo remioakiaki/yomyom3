@@ -46,8 +46,8 @@
 #   # いいね
 #   has_many :likes, dependent: :destroy
 #   has_many :likeposts, through: :likes, source: :micropost
-#   # # コメント
-#   has_many :comments
+   # # コメント
+   has_many :comments
 
 #   # いいね追加
 #   def good(micropost)
