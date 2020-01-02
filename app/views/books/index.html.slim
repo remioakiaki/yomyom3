@@ -1,0 +1,17 @@
+- provide(:title, '書籍検索')
+
+.search
+  = search_form_for @q do |f|
+    = f.search_field :title_cont,placeholder:"タイトルで検索", class: "form-control"
+    = f.search_field :author_cont,placeholder:"作者で検索", class: "form-control"
+    .btn-parent
+      = f.submit "書籍を検索", class: "btn btn-primary"
+.new-book
+  = link_to '書籍がない場合はこちらから検索', new_book_path, class:'btn btn-warning'
+
+  -if @books.present?
+    
+      = render 'book', books: @books
+
+.paginate
+  = paginate @books

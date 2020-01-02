@@ -1,0 +1,40 @@
+.row
+  -@books.each do |book|
+    .book-list 
+      .row-eq-height
+        .col-sm-3
+          .title
+            -if book.persisted?
+              = link_to book_path(book) do
+                p= book.title  
+            -else
+              p= book.title
+          .image.text-center
+            = image_tag book.image_url
+          .author
+            p= book.author
+          .publisher
+            p= book.publishername
+
+          .star-average
+            -if book.persisted?
+              div id="star-rate_#{book.id}"
+                javascript:
+                  $("#star-rate_#{book.id}").raty({
+                    path: '/assets/',
+                    half: true,
+                    readOnly: true,
+                    score: #{book.microposts.average(:rate).to_f.round(1)}
+                  });
+              .record
+                ="（レビュー#{book.microposts.count}件）"
+
+          div class="add add_#{book.id}"
+            -if logged_in?
+              -if book.persisted?
+                /=render 'goods/good', book: book
+
+              -else
+                = form_with(model:@book,local:true,url:books_path) do |f|
+                  = hidden_field_tag :isbn, book['isbn']
+                  = f.submit '追加', class:'btn btn-primary'

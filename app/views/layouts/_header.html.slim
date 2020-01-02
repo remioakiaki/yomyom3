@@ -13,7 +13,7 @@ nav.navbar
            | yomyom
       .collapse.navbar-collapse#navbar-content
         ul.nav.navbar-nav.navbar-right
-          /- if logged_in?
+          - if logged_in?
             li.nav-item
               
               .dropdown
@@ -24,15 +24,13 @@ nav.navbar
                 ul class="dropdown-menu"
                   li = link_to "マイページ",current_user
                   li = link_to "ログアウト",logout_path, method: :delete
-            //li.nav-item = link_to "お店検索", restaurants_path
             li.nav-item = link_to "書籍一覧", books_path
             li.nav-item = link_to "ユーザー一覧",users_path
-            li.nav-item = link_to "投稿検索",microposts_path
-            li.nav-item = link_to "ランキング",ranking_books_path
+            /li.nav-item = link_to "投稿検索",microposts_path
+            /li.nav-item = link_to "ランキング",ranking_books_path
 
-          /- else
+          - else
             li.nav-item = link_to "新規登録", signup_path 
             li.nav-item = link_to "ログイン", login_path
-            //li.nav-item = link_to "お店検索", restaurants_path
 
 

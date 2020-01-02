@@ -1,0 +1,68 @@
+// Place all the styles related to the Books controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.book-list{
+  .col-sm-3{
+    background-color: #ffffff;
+  
+    border: 1px solid #ddd;
+    padding:5px 5px 5px 5px;
+    height:460px;
+
+  }
+  .title{
+    height:52px;
+    
+    p{
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 2;
+      overflow: hidden;
+    }
+  }
+  .author {
+    height:36px;
+    p{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;}
+  }
+  .publisher{
+    height: 36px;
+  }
+  .star-average{
+    height:50px;
+  }
+  .image{
+    height:200px;
+  }
+  .add{
+    height:50px;
+  }
+  .good{
+    height:30px;
+    .glyphicon{
+      font-size:18px;
+    }
+  }
+
+}
+
+table{
+  td{
+    width:300px;
+    padding:10px;
+  }
+}
+.chk{
+  padding-top:10px;
+}
+
+//index
+.new-book{
+  .btn{
+    width:100%;
+  }
+  
+}

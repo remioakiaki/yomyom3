@@ -1,0 +1,22 @@
+- provide(:title, '書籍編集')
+
+h1 書籍編集
+.row
+  .col-md-6.col-md-offset-3
+    = form_with(model:@book,local: true) do |f|
+      /= render 'shared/error_messages', object: f.object
+      .edit-profile
+        = image_tag @book.image_url, size:'150x200'
+      
+      
+      = f.label :title, class: 'col-form-label'
+      = f.text_field :title, class: 'form-control'
+      = f.label :author
+      = f.text_field :author, class: 'form-control'
+      = f.label :image_url
+      = f.text_field :image_url, class: 'form-control'
+      = f.label :isbn
+      = f.text_field :isbn, class: 'form-control'
+      = f.label :publishername
+      = f.text_field :publishername, class: 'form-control',size:"30x5"     
+      = f.submit "更新", class: "btn btn-primary"

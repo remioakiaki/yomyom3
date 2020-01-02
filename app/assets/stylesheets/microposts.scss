@@ -1,0 +1,83 @@
+// Place all the styles related to the Microposts controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+.post{
+  background-color: #ffffff;
+  
+  border: 1px solid #ddd;
+  border-bottom: 0px;
+  padding:5px 5px 5px 5px;
+
+
+
+  .menu2{
+    margin:0 0 0 auto;
+    
+
+    .glyphicon{
+      font-size:18px;
+    }
+
+  .search1{
+    text-align:right;
+  }
+  .like{
+    display:inline-block;
+  }
+  .btn{
+    margin-bottom: 0px;
+  }
+
+  }
+  
+
+  .mwidth{
+    width: 100%;
+    height: auto;
+    text-align: center;
+
+  }
+
+}
+
+.search1{
+  display: inline-block;
+  text-align: right;
+  form{
+    display: inline-block;
+    text-align: right;
+  }    
+}
+.menu2 > form > .search1{
+  text-align:right;
+}
+
+//吹き出し
+.balloon1-left {
+  //position: relative;
+  padding: 8px 8px;
+  //margin:5px 0px;
+  width:100%;
+  //min-width: 120px;
+  //max-width: 100%;
+  color: #555;
+  background: #e0edff;
+  border-radius: 15px;
+}
+
+//本の画像
+.book-image{
+
+  img{width: auto;
+      max-height: 150px;
+    }
+}
+
+
+#star-rating{
+  margin-bottom: 15px;
+}
+
+.pic-parent{
+  margin-top:10px;
+}

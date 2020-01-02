@@ -1,9 +1,6 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
-@import "bootstrap-sprockets";
-@import "bootstrap";
-
 $gray-medium-light: #eaeaea;
 
 @mixin box_sizing {
@@ -146,4 +143,12 @@ input {
 #session_remember_me {
   width: auto;
   margin-left: 0;
+}
+
+//error-explanation
+#error_explanation{
+  li {
+    list-style-type: disc;
+    color: rgb(255, 64, 64);
+  }
 }

@@ -1,0 +1,5 @@
+$('.slide_<%= @micropost.id %>').html("<%= j(render 'comments/comment', comments: @comments) %>");
+$('.form_<%= @micropost.id %>').html("<%= j(render 'comments/form', comment: @comment) %>");
+$('.content_<%=@micropost.id %>').val("");
+$('.slide_<%= @micropost.id %>').scrollTop($('.slide_<%= @micropost.id %>').get(0).scrollHeight);
+

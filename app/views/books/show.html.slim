@@ -1,0 +1,44 @@
+.row
+  .col-sm-3.col-sm-offset-2
+    .text-center
+      = image_tag @book.image_url
+  .col-sm-6
+    h4.text-center 
+      =@book.title
+    table.text-center
+      tr
+        td.text-center
+          b 作者
+        td
+          = @book.author
+      tr
+        td.text-center
+          b 出版社
+        td
+          = @book.publishername
+      tr
+        td.text-center
+          b 評価
+        td
+          .star-average
+              div id="star-rate_#{@book.id}"
+                javascript:
+                  $("#star-rate_#{@book.id}").raty({
+                    path: '/assets/',
+                    half: true,
+                    readOnly: true,
+                    score: #{@book.microposts.average(:rate).to_f.round(1)}
+                  });
+    
+    .chk.text-center
+      =link_to '楽天で詳しく見る', @book.rakuten_url, class:'btn btn-danger' 
+      /-if admin?
+        p= link_to 'edit',edit_book_path(@book)
+
+.row
+  .col-sm-8.col-sm-offset-2.form
+    = render 'shared/micropost_form',  btnname: "レビューを投稿"
+.row
+  = render @microposts
+
+
