@@ -1,0 +1,8 @@
+$('.slide_<%= @micropost.id %>').html("<%= j(render 'comments/comment',comments:@comments,micropost:@micropost) %>");
+$('.form_<%= @micropost.id %>').html("<%= j(render 'comments/form') %>");
+
+var val = <%= @micropost.id %>;
+$('.comment_form_' + val ).slideDown();
+$('.slide_'+ val).scrollTop($('.slide_'+ val).get(0).scrollHeight);
+$('.btn-opn_' + val).hide();
+$('.btn-cls_' + val).css('display','inline') ; 

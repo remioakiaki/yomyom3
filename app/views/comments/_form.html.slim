@@ -1,0 +1,7 @@
+=form_for @comment,url: micropost_comments_path ,remote:true do |f|
+  = render 'shared/error_messages', object: f.object
+  =f.text_field :content,placeholder:"コメントを入力",class: "comment-content content_#{@micropost.id}"
+  = hidden_field_tag :micropost_id,@micropost.id
+  .btn-parent
+    =f.submit 'コメント', class: "comu btn btn-primary"
+  

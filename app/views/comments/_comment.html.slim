@@ -1,0 +1,19 @@
+- comments.each do |comment| 
+  .row
+    .col-sm-3.col-xs-4
+      .prof
+        = image_tag comment.user.picture.url,:size =>'50x50', :class => "img-circle"
+        = link_to user_path(comment.user) do
+          =comment.user.name
+      .menu1
+        -if logged_in? && current_user?(comment.user)
+            .btn-group role="group"
+              = link_to edit_comment_path(comment),class: "btn btn-default comment_edit_#{comment.id}",remote:true do
+                span.glyphicon.glyphicon-pencil aria-hidden="true"
+              = link_to comment, method: :delete,class: "btn btn-default comment_delete_#{comment.id}" do
+                span.glyphicon.glyphicon-trash aria-hidden="true"
+    
+            div#editmodal class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"
+    .col-sm-9.col-xs-12
+      .balloon1-left
+        p= comment.content

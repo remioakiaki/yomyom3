@@ -1,0 +1,6 @@
+= form_with(model:object,remote: true) do |f|
+  = render 'shared/error_messages', object: f.object
+  =f.label :content, 'コメント'
+  =f.text_area :content,placeholder:"コメントを入力",class:"edit-area"
+  .btn-space
+    = f.submit "更新", class: "btn btn-primary"
