@@ -35,11 +35,11 @@ ActiveRecord::Schema.define(version: 2020_01_03_093320) do
 
   create_table "likes", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "user_id"
-    t.bigint "micropost_id"
+    t.bigint "book_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["micropost_id"], name: "index_likes_on_micropost_id"
-    t.index ["user_id", "micropost_id"], name: "index_likes_on_user_id_and_micropost_id", unique: true
+    t.index ["book_id"], name: "index_likes_on_book_id"
+    t.index ["user_id", "book_id"], name: "index_likes_on_user_id_and_book_id", unique: true
     t.index ["user_id"], name: "index_likes_on_user_id"
   end
 
@@ -81,7 +81,7 @@ ActiveRecord::Schema.define(version: 2020_01_03_093320) do
 
   add_foreign_key "comments", "microposts"
   add_foreign_key "comments", "users"
-  add_foreign_key "likes", "microposts"
+  add_foreign_key "likes", "books"
   add_foreign_key "likes", "users"
   add_foreign_key "microposts", "books"
   add_foreign_key "microposts", "users"
