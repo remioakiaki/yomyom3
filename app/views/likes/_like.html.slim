@@ -1,0 +1,15 @@
+- if current_user.likebook?(book)
+  = form_for(current_user.likes.find_by(book_id: book.id), html: { method: :delete },remote:true) do |f|
+    = hidden_field_tag :book_id, book.id
+    = f.submit 'お気に入り解除', class:'btn btn-danger'
+
+-else
+  = form_for(current_user.likes.build,remote:true) do |f|
+    = hidden_field_tag :book_id, book.id
+    = f.submit 'お気に入り登録', class:'btn btn-success'
+
+.good.text-center
+  span.glyphicon.glyphicon-thumbs-up aria-hidden="true"
+  =book.likes.count
+  -if admin?
+    = link_to "delete",  book_path(book),method: :delete
