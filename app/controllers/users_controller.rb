@@ -48,13 +48,7 @@ class UsersController < ApplicationController
 
   def likes
     @user = User.find(params[:id])
-    @microposts = @user.likeposts
-    render :show
-  end
-
-  def goods
-    @user = User.find(params[:id])
-    @books = @user.goodbooks
+    @books = @user.likebooks
     render :show_goods
   end
 
