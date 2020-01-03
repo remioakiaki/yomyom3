@@ -23,47 +23,27 @@
    mount_uploader :picture, ImagesUploader
 #   validate :picture_size
 
-#   # お気に入り
-#   has_many :goods, dependent: :destroy
-#   has_many :goodbooks, through: :goods, source: :book
-
-#   # お気に入り追加
-#   def goodbook(book)
-#     goodbooks << book
-#   end
-
-#   # お気に入り削除
-#   def notgoodbook(book)
-#     good = goods.find_by(book_id: book.id)
-#     good&.destroy
-#   end
-
-#   # お気に入り登録判定
-#   def goodbook?(book)
-#     goodbooks.include?(book)
-#   end
-
-#   # いいね
-#   has_many :likes, dependent: :destroy
-#   has_many :likeposts, through: :likes, source: :micropost
+  # お気に入り
+  has_many :likes, dependent: :destroy
+  has_many :likebooks, through: :likes, source: :book
    # # コメント
    has_many :comments
 
-#   # いいね追加
-#   def good(micropost)
-#     likeposts << micropost
-#   end
+  # お気に入り追加
+  def like(book)
+    likebooks << book
+  end
 
-#   # いいね削除
-#   def notgood(micropost)
-#     like = likes.find_by(micropost_id: micropost.id)
-#     like.destroy
-#   end
+  # お気に入り削除
+  def notlike(book)
+    like = likes.find_by(book_id: book.id)
+    like.destroy
+  end
 
-#   # いいね登録判定
-#   def likepost?(micropost)
-#     likeposts.include?(micropost)
-#   end
+  # お気に入り登録判定
+  def likebook?(book)
+    likebooks.include?(book)
+  end
 
   def self.digest(string)
     cost = if ActiveModel::SecurePassword.min_cost

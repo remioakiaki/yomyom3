@@ -13,9 +13,6 @@ class Micropost < ApplicationRecord
    mount_uploader :picture, ImagesUploader
   # validate :picture_size
 
-  # has_many :likes, foreign_key: 'micropost_id', dependent: :destroy
-  # has_many :users, through: :likes
-
    has_many :comments, dependent: :destroy
 
   private

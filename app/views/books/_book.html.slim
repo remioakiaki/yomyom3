@@ -32,7 +32,7 @@
           div class="add add_#{book.id}"
             -if logged_in?
               -if book.persisted?
-                /=render 'goods/good', book: book
+                =render 'likes/like', book: book
 
               -else
                 = form_with(model:@book,local:true,url:books_path) do |f|
