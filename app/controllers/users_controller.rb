@@ -49,7 +49,7 @@ class UsersController < ApplicationController
   def likes
     @user = User.find(params[:id])
     @books = @user.likebooks
-    render :show_goods
+    render :show_likes
   end
 
   def destroy

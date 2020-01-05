@@ -17,9 +17,9 @@ Rails.application.routes.draw do
     resources :books, only: %i[create]
   end
   resources :books do
-    #collection do
-     # get :ranking
-    #end
+    collection do
+     get :ranking
+    end
   end
   resources :comments, only: %i[edit update destroy]
   resources :relationships, only: %i[create destroy]
