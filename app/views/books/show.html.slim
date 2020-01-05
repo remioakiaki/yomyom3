@@ -32,7 +32,7 @@
     
     .chk.text-center
       =link_to '楽天で詳しく見る', @book.rakuten_url, class:'btn btn-danger' 
-      /-if admin?
+      -if admin?
         p= link_to 'edit',edit_book_path(@book)
 
 .row
