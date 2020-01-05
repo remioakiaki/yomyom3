@@ -48,14 +48,8 @@ class UsersController < ApplicationController
 
   def likes
     @user = User.find(params[:id])
-    @microposts = @user.likeposts
-    render :show
-  end
-
-  def goods
-    @user = User.find(params[:id])
-    @books = @user.goodbooks
-    render :show_goods
+    @books = @user.likebooks
+    render :show_likes
   end
 
   def destroy

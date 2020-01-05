@@ -78,7 +78,7 @@ class BooksController < ApplicationController
   end
 
   def ranking
-    @ranking_counts = Good.ranking
+    @ranking_counts = Like.ranking
     @books = Book.find(@ranking_counts.keys)
   end
 

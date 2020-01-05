@@ -1,1 +1,25 @@
 
+ -content_for :cover do
+  .maintitle
+    h1 
+      |yomyom 
+      br
+      br
+      |みんなで　本をレビューしよう
+ end 
+
+
+  h3.text-center お気に入りランキング
+  
+  = render 'books/book', books: @books
+  .edit-btn.text-center
+    = link_to 'お気に入りランキングをもっとみる', ranking_books_path, class:'btn btn-warning'
+  h3.text-center 
+    |新しい投稿
+  =render @microposts
+  .edit-btn.text-center
+    = link_to '新しい投稿ををもっとみる', microposts_path, class:'btn btn-warning'
+
+
+
+
