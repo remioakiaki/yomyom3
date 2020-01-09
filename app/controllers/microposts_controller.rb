@@ -8,7 +8,6 @@ class MicropostsController < ApplicationController
     @micropost = current_user.microposts.build(micropost_params)
     @book = Book.find(params[:book_id])
     @micropost.book_id = @book.id
-
     if @micropost.save
       flash[:success] = '投稿が完了しました'
       redirect_to book_path(@book)
@@ -52,7 +51,7 @@ class MicropostsController < ApplicationController
   private
 
   def micropost_params
-    params.require(:micropost).permit(:title, :content, :updated_at, :rate, pictures: [])
+    params.require(:micropost).permit(:title, :content, :updated_at, :rate, {pictures: []})
   end
 
   def correct_user
