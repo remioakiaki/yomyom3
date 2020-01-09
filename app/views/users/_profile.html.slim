@@ -3,7 +3,7 @@
     = image_tag user.picture.url, size:'100x100'
   .user-name.text-center
     h1= user.name
-  /-if user.introduce.present?
+  -if user.introduce.present?
     .user-introduce.balloon1-left
       = user.introduce
     

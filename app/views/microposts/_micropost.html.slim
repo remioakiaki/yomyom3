@@ -34,9 +34,9 @@
             b= micropost.title
           p= micropost.content
   .row
-    -if micropost.picture.present?
+    -if micropost.pictures.present?
       .col-sm-10.col-sm-offset-2.pic-parent
-        -micropost.picture.each do |p|
+        -micropost.pictures.each do |p|
           .col-sm-3.text-center
             =image_tag p.url
 

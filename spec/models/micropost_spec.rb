@@ -23,10 +23,5 @@ RSpec.describe Micropost, type: :model do
       expect(micropost.errors[:content]).to include('は140文字以内で入力してください')
     end
 
-    it '画像が4枚を超えるとエラー' do
-      micropost.pictures = %w[a b c d e]
-      micropost.valid?
-      expect(micropost.errors[:pictures]).to include('は4枚以内で入力してください')
-    end
   end
 end
