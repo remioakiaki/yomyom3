@@ -3,15 +3,15 @@ class Micropost < ApplicationRecord
    validates :book_id, presence: true
    validates :title, length: { maximum: 50 }
    validates :content, presence: true, length: { maximum: 140 }
-  # validates :pictures, length: { maximum: 4,
-  #                                too_long: 'は%{count}枚以内で入力してください' }
+   validates :pictures, length: { maximum: 4,
+                                  too_long: 'は%{count}枚以内で入力してください' }
    validates :rate, presence: true, numericality: { greater_than: 1 }
   belongs_to :user
    default_scope -> { order(updated_at: :desc) }
    belongs_to :book
 
-   mount_uploader :picture, ImagesUploader
-  # validate :picture_size
+   mount_uploader :pictures, ImagesUploader
+   validate :picture_size
 
    has_many :comments, dependent: :destroy
 

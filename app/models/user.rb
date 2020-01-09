@@ -21,7 +21,7 @@
    validates :password, presence: true, length: { minimum: 6 }, allow_nil: true
    validates :introduce, length: { maximum: 100 }
    mount_uploader :picture, ImagesUploader
-#   validate :picture_size
+   validate :picture_size
 
   # お気に入り
   has_many :likes, dependent: :destroy
@@ -95,12 +95,12 @@
                      following_ids: following_ids, user_id: id).includes([:user])
    end
 
-#   private
+  private
 
-#   # アップロード画像のサイズを検証する
-#   def picture_size
-#     errors.add(:image, 'should be less than 5MB') if picture.size > 5.megabytes
-#   end
+  # アップロード画像のサイズを検証する
+  def picture_size
+    errors.add(:image, 'should be less than 5MB') if picture.size > 5.megabytes
+  end
  end
 
 
