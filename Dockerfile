@@ -4,7 +4,7 @@ FROM ruby:2.5.3
 
 # 必要なパッケージのインストール（基本的に必要になってくるものだと思うので削らないこと）
 RUN curl -sL https://deb.nodesource.com/setup_10.x | bash - \
-    && apt-get install -y nodejs        
+    && apt-get install -y nodejs chromium-driver    
 
 # 作業ディレクトリの作成、設定
 RUN mkdir /app_name 
