@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module StaticPagesHelper
   # ページごとの完全なタイトルを返します。
   def full_title(page_title = '')

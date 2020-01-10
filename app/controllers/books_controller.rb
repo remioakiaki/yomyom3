@@ -115,6 +115,7 @@ class BooksController < ApplicationController
   def book_params
     params.require(:book).permit(:title, :author, :image_url, :isbn, :publishername)
   end
+
   def admin_user
     redirect_to root_url unless current_user.admin?
   end

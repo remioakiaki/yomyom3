@@ -22,6 +22,5 @@ RSpec.describe Micropost, type: :model do
       micropost.valid?
       expect(micropost.errors[:content]).to include('は140文字以内で入力してください')
     end
-
   end
 end

@@ -1,9 +1,11 @@
+# frozen_string_literal: true
+
 Rails.application.routes.draw do
   get 'sessions/new'
   get 'users/new'
   root 'static_pages#home'
   get 'static_pages/home'
-  get  '/signup',  to: 'users#new'
+  get '/signup', to: 'users#new'
   get    '/login',   to: 'sessions#new'
   post   '/login',   to: 'sessions#create'
   delete '/logout',  to: 'sessions#destroy'
@@ -18,7 +20,7 @@ Rails.application.routes.draw do
   end
   resources :books do
     collection do
-     get :ranking
+      get :ranking
     end
   end
   resources :comments, only: %i[edit update destroy]
