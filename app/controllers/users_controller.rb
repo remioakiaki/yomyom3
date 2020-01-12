@@ -20,7 +20,7 @@ class UsersController < ApplicationController
       log_in @user
       flash[:success] = '登録成功'
       redirect_to user_path(@user)
-      #redirect_to root_url
+      # redirect_to root_url
     else
       render :new
     end
@@ -74,13 +74,14 @@ class UsersController < ApplicationController
 
   def user_params
     params.require(:user).permit(:name, :email, :password,
-                                 :password_confirmation,:picture,:introduce)
+                                 :password_confirmation, :picture, :introduce)
   end
 
   def correct_user
     @user = User.find(params[:id])
     redirect_to(current_user) unless @user == current_user
   end
+
   def admin_user
     redirect_to root_url unless current_user.admin?
   end
