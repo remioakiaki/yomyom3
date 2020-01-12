@@ -6,7 +6,7 @@ class Micropost < ApplicationRecord
   validates :title, length: { maximum: 50 }
   validates :content, presence: true, length: { maximum: 140 }
   validates :pictures, length: { maximum: 4,
-                                 too_long: 'は%{count}枚以内で入力してください' }
+                                 too_long: 'は%<count>枚以内で入力してください' }
   validates :rate, presence: true, numericality: { greater_than: 1 }
   belongs_to :user
   default_scope -> { order(updated_at: :desc) }
@@ -21,8 +21,8 @@ class Micropost < ApplicationRecord
 
   # アップロード画像のサイズを検証する
   def picture_size
-    if pictures.size > 5.megabytes
-      errors.add(:pictures, 'should be less than 5MB')
-   end
+    return if pictures.size > 5.megabytes
+
+    errors.add(:pictures, 'should be less than 5MB')
   end
 end

@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-# # frozen_string_literal: true
-
 class User < ApplicationRecord
   attr_accessor :remember_token
   has_many :microposts, dependent: :destroy
@@ -98,10 +96,10 @@ class User < ApplicationRecord
                     following_ids: following_ids, user_id: id).includes([:user])
   end
 
-   private
+  private
 
   # アップロード画像のサイズを検証する
   def picture_size
     errors.add(:image, 'should be less than 5MB') if picture.size > 5.megabytes
   end
- end
+end
