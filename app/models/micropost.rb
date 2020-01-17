@@ -21,7 +21,7 @@ class Micropost < ApplicationRecord
 
   # アップロード画像のサイズを検証する
   def picture_size
-    return if pictures.size > 5.megabytes
+    return if pictures.size < 5.megabytes
 
     errors.add(:pictures, 'should be less than 5MB')
   end
