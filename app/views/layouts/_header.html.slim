@@ -24,13 +24,34 @@ nav.navbar
                 ul class="dropdown-menu"
                   li = link_to "マイページ",current_user
                   li = link_to "ログアウト",logout_path, method: :delete
-            li.nav-item = link_to "書籍一覧", books_path
-            li.nav-item = link_to "ユーザー一覧",users_path
-            /li.nav-item = link_to "投稿検索",microposts_path
-            /li.nav-item = link_to "ランキング",ranking_books_path
+            li.nav-item = link_to books_path do
+                          span.glyphicon.glyphicon-book aria-hidden="true"  
+                          |  書籍一覧
+            li.nav-item = link_to users_path do
+                          span.glyphicon.glyphicon-user aria-hidden="true"  
+                          |  ユーザー一覧 
+            li.nav-item = link_to microposts_path do
+                          span.glyphicon.glyphicon-comment aria-hidden="true"  
+                          |  投稿検索 
+            li.nav-item = link_to ranking_books_path do
+                          span.glyphicon.glyphicon-signal aria-hidden="true"  
+                          |  ランキング                          
+                          
 
           - else
             li.nav-item = link_to "新規登録", signup_path 
             li.nav-item = link_to "ログイン", login_path
+            li.nav-item = link_to books_path do
+                          span.glyphicon.glyphicon-book aria-hidden="true"  
+                          |  書籍一覧
+            li.nav-item = link_to users_path do
+                          span.glyphicon.glyphicon-user aria-hidden="true"  
+                          |  ユーザー一覧 
+            li.nav-item = link_to microposts_path do
+                          span.glyphicon.glyphicon-comment aria-hidden="true"  
+                          |  投稿検索 
+            li.nav-item = link_to ranking_books_path do
+                          span.glyphicon.glyphicon-signal aria-hidden="true"  
+                          |  ランキング   
 
-
+      
