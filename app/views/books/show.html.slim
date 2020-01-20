@@ -32,12 +32,13 @@
     
     .chk.text-center
       =link_to '楽天で詳しく見る', @book.rakuten_url, class:'btn btn-danger' 
-      -if admin?
+      -if logged_in? && admin?
         p= link_to 'edit',edit_book_path(@book)
 
 .row
-  .col-sm-8.col-sm-offset-2.form
-    = render 'shared/micropost_form',  btnname: "レビューを投稿"
+  -if logged_in?
+    .col-sm-8.col-sm-offset-2.form
+      = render 'shared/micropost_form',  btnname: "レビューを投稿"
 .row
   = render @microposts
 
