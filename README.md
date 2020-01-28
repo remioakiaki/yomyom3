@@ -3,10 +3,10 @@
 ## 機能と使用技術
 
 - インフラ(AWS)
-  EC2
-  RDS
-  S3
-  VPC
+  EC2  
+  RDS  
+  S3  
+  VPC  
   <!-- 使用技術に追記があればこちらに記入 -->
 - 単体・統合テスト(RSpec, factory_bot, capybara)
 - データベース(MYSQL)
