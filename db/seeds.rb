@@ -5,3 +5,9 @@ User.create!(name: 'テストユーザー',
              password: 'password',
              password_confirmation: 'password',
              admin: false)
+
+User.create!(name: '管理者ユーザー',
+            email: 'admin@admin.com',
+            password: 'administrator',
+            password_confirmation: 'administrator',
+            admin: true)
