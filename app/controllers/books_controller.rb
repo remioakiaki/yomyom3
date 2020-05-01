@@ -2,6 +2,10 @@
 
 class BooksController < ApplicationController
   before_action :admin_user, only: %i[destroy edit]
+  RakutenWebService.configure do |c|
+    c.application_id = ENV['RAKUTEN_APPID']
+  end
+  
   def index
     @q = Book.ransack(params[:q])
     @books = @q.result.order(created_at: :desc)
