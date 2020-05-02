@@ -1,3 +1,3 @@
 class Status < ApplicationRecord
-  has_many :bookshelves, foreign_key: 'bookshelf_id', dependent: :destroy
+  has_one :user_bookshelves, foreign_key: "user_bookshelves_id"
 end
