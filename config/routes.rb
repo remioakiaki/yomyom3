@@ -23,6 +23,8 @@ Rails.application.routes.draw do
       get :ranking
     end
   end
+  
+  resources :bookshelves
   resources :comments, only: %i[edit update destroy]
   resources :relationships, only: %i[create destroy]
   resources :likes, only: %i[create destroy]

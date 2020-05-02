@@ -33,6 +33,12 @@ class User < ApplicationRecord
   has_many :user_bookshelves, dependent: :destroy
   has_many :bookshelves, through: :user_bookshelves
 
+  #本棚追加
+  def mkbksh(bookshelf)
+    
+    bookshelves << bookshelf
+  end
+
   # お気に入り追加
   def like(book)
     likebooks << book
