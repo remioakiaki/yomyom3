@@ -11,3 +11,9 @@ User.create!(name: '管理者ユーザー',
             password: 'administrator',
             password_confirmation: 'administrator',
             admin: true)
+Bookshelf.create!(title: 'テストブック',
+                  author: 'テスト著者',
+                  user_id: 1,
+                  status_id: 1
+                  )
+Status.create!(name: '未読')
