@@ -28,7 +28,12 @@ class User < ApplicationRecord
   has_many :likebooks, through: :likes, source: :book
   # # コメント
   has_many :comments
-
+  
+  #本棚
+  has_many :bookshelves
+  #ステータス
+  has_many :statuses, foreign_key: 'user_id',dependent: :destroy
+  has_many :statusbookshelves, through: :bookshelves, source: :status
   # お気に入り追加
   def like(book)
     likebooks << book
