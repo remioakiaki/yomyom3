@@ -9,15 +9,12 @@ jobs:
       - image: circleci/ruby:2.5.3-node-browsers-legacy
         environment:
           RAILS_ENV: test
-
-      - image: circleci/mysql:5.7.28
-        environment:
-          - MYSQL_ALLOW_EMPTY_PASSWORD: yes
-          - MYSQL_ROOT_HOST: '127.0.0.1'
-          - MYSQL_ROOT_USER: 'root'
-          - MYSQL_ROOT_PASSWORD: 'password'
-          - MYSQL_DATABASE: app_name_test
-    working_directory: ~/repo
+          environment:
+            - DB_HOST: '127.0.0.1'
+            - DB_USERNAME: 'root'
+            - DB_PASSWORD: ''
+            
+    working_directory: ~/app_name
     steps:
       - checkout
       - restore_cache:
@@ -25,13 +22,20 @@ jobs:
             - v1-dependencies-{{ checksum "Gemfile.lock" }}
             # fallback to using the latest cache if no exact match is found
             - v1-dependencies-
-      - run: bundle install --jobs=4 --retry=3 --path vendor/bundle
-      - run: dockerize -wait tcp://127.0.0.1:3306 -timeout 1m
-      - run: yarn install
+      - run:
+        name: install dependencies
+        command: |
+          bundle install --jobs=4 --retry=3 --path vendor/bundle
+
       - save_cache:
           paths:
             - ./vendor/bundle
           key: v1-dependencies-{{ checksum "Gemfile.lock" }}
+
+      - run:
+          name: Wait for DB
+          command: dockerize -wait tcp://127.0.0.1:3306 -timeout 120s
+
       - run: bundle exec rake db:create
       - run: bundle exec rake db:schema:load
       # Rspec
@@ -39,9 +43,5 @@ jobs:
           name: Rspec
           command: bundle exec rspec
 
-workflows:
-  version: 2
-  workflows:
-    jobs:
-      - rspec
+
 
