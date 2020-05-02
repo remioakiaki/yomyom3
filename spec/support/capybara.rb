@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'capybara/rspec'
+#require 'capybara/rspec'
 
 RSpec.configure do |config|
   config.before(:each, type: :system) do
