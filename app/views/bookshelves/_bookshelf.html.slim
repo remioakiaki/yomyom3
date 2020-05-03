@@ -1,0 +1,43 @@
+.row
+  -@bookshelves.each do |bookshelf|
+    .bookshelf-list 
+      .row-eq-height
+        .col-sm-3
+          .title
+            -if bookshelf.persisted?
+              = link_to bookshelf_path(bookshelf) do
+                p= bookshelf.title  
+            -else
+              p= bookshelf.title
+          .image.text-center
+            = image_tag bookshelf.image_url
+          .author
+            p= bookshelf.author
+          .publisher
+            p= bookshelf.publishername
+
+          / .star-average
+          /   -if bookshelf.persisted?
+          /     div id="star-rate_#{bookshelf.id}"
+          /       javascript:
+          /         $("#star-rate_#{bookshelf.id}").raty({
+          /           path: '/assets/',
+          /           half: true,
+          /           readOnly: true,
+          /           score: #{bookshelf.microposts.average(:rate).to_f.round(1)}
+          /         });
+          /     .record
+          /       ="（レビュー#{bookshelf.microposts.count}件）"
+
+          div class="add add_#{bookshelf.id}"
+            -if logged_in?
+              = form_with(model:@bookshelf,local:true,url:bookshelves_path) do |f|
+                = hidden_field_tag :isbn, bookshelf['isbn']
+                = f.submit '本棚に登録', class:'btn btn-primary'              
+              / -if bookshelf.persisted?
+              /   =render 'likes/like', bookshelf: bookshelf
+
+              / -else
+              /   = form_with(model:@bookshelf,local:true,url:books_path) do |f|
+              /     = hidden_field_tag :isbn, bookshelf['isbn']
+              /     = f.submit '新規書籍追加', class:'btn btn-primary'
