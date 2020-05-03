@@ -15,3 +15,7 @@ ul.nav.nav-tabs.nav-justified
       =link_to followers_user_path(@user) do
         = @user.followers.count
         |フォロワー
+    li class="#{'active' if current_page?(bookshelves_user_path(@user))}"
+      =link_to bookshelves_user_path(@user) do 
+        =@user.bookshelves.count
+        |本棚
