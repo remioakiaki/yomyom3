@@ -20,6 +20,7 @@ services:
     tty: true
     stdin_open: true
     environment:
+      - TZ
       - RAKUTEN_APPID
       - RAKUTEN_AFID
       - AWS_ACCESS_KEY_ID

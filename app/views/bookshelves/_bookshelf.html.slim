@@ -1,6 +1,6 @@
 .row
   -@bookshelves.each do |bookshelf|
-    .bookshelf-list 
+    .book-list 
       .row-eq-height
         .col-sm-3
           .title
@@ -29,11 +29,11 @@
           /     .record
           /       ="（レビュー#{bookshelf.microposts.count}件）"
 
-          div class="add add_#{bookshelf.id}"
-            -if logged_in?
-              = form_with(model:@bookshelf,local:true,url:bookshelves_path) do |f|
-                = hidden_field_tag :isbn, bookshelf['isbn']
-                = f.submit '本棚に登録', class:'btn btn-primary'              
+          / div class="add add_#{bookshelf.id}"
+          /   -if logged_in?
+          /     = form_with(model:@bookshelf,local:true,url:bookshelves_path) do |f|
+          /       = hidden_field_tag :isbn, bookshelf['isbn']
+          /       = f.submit '本棚に登録', class:'btn btn-primary'              
               / -if bookshelf.persisted?
               /   =render 'likes/like', bookshelf: bookshelf
 
