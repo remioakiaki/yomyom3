@@ -7,14 +7,6 @@ ul.nav.nav-tabs.nav-justified
       =link_to likes_user_path(@user) do 
         =@user.likes.count
         |お気に入り
-    / li class="#{'active' if current_page?(following_user_path(@user))}"
-    /   =link_to following_user_path(@user) do
-    /     = @user.following.count
-    /     |フォロー
-    / li class="#{'active' if current_page?(followers_user_path(@user))}"
-    /   =link_to followers_user_path(@user) do
-    /     = @user.followers.count
-    /     |フォロワー
     li class="#{'active' if current_page?(bookshelves_user_path(@user))}"
       =link_to bookshelves_user_path(@user) do 
         =@user.bookshelves.count
