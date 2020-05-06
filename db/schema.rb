@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_06_135041) do
+ActiveRecord::Schema.define(version: 2020_05_06_221946) do
 
   create_table "books", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "title"
@@ -21,17 +21,6 @@ ActiveRecord::Schema.define(version: 2020_05_06_135041) do
     t.string "rakuten_url"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-  end
-
-  create_table "bookshelves", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.bigint "user_id"
-    t.bigint "book_id"
-    t.bigint "status_id", default: 1
-    t.index ["book_id"], name: "index_bookshelves_on_book_id"
-    t.index ["status_id"], name: "index_bookshelves_on_status_id"
-    t.index ["user_id"], name: "index_bookshelves_on_user_id"
   end
 
   create_table "comments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -74,13 +63,11 @@ ActiveRecord::Schema.define(version: 2020_05_06_135041) do
     t.date "yyyymmdd"
     t.time "hhmm"
     t.bigint "user_id"
-    t.bigint "bookshelf_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "page_amount", default: 0
     t.integer "minutes", default: 0
     t.integer "hours", default: 0
-    t.index ["bookshelf_id"], name: "index_records_on_bookshelf_id"
     t.index ["user_id"], name: "index_records_on_user_id"
   end
 
@@ -100,17 +87,6 @@ ActiveRecord::Schema.define(version: 2020_05_06_135041) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "user_bookshelves", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.bigint "user_id"
-    t.bigint "bookshelf_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.bigint "status_id", default: 1
-    t.index ["bookshelf_id"], name: "index_user_bookshelves_on_bookshelf_id"
-    t.index ["status_id"], name: "index_user_bookshelves_on_status_id"
-    t.index ["user_id"], name: "index_user_bookshelves_on_user_id"
-  end
-
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name"
     t.string "email"
@@ -123,18 +99,11 @@ ActiveRecord::Schema.define(version: 2020_05_06_135041) do
     t.boolean "admin"
   end
 
-  add_foreign_key "bookshelves", "books"
-  add_foreign_key "bookshelves", "statuses"
-  add_foreign_key "bookshelves", "users"
   add_foreign_key "comments", "microposts"
   add_foreign_key "comments", "users"
   add_foreign_key "likes", "books"
   add_foreign_key "likes", "users"
   add_foreign_key "microposts", "books"
   add_foreign_key "microposts", "users"
-  add_foreign_key "records", "bookshelves"
   add_foreign_key "records", "users"
-  add_foreign_key "user_bookshelves", "bookshelves"
-  add_foreign_key "user_bookshelves", "statuses"
-  add_foreign_key "user_bookshelves", "users"
 end
