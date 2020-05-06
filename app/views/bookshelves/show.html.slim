@@ -16,19 +16,6 @@
           b 出版社
         td
           = @bookshelf.publishername
-      tr
-        td.text-center
-          b 評価
-        td
-          / .star-average
-          /     div id="star-rate_#{@bookshelf.id}"
-          /       javascript:
-          /         $("#star-rate_#{@bookshelf.id}").raty({
-          /           path: '/assets/',
-          /           half: true,
-          /           readOnly: true,
-          /           score: #{@bookshelf.microposts.average(:rate).to_f.round(1)}
-          /         });
     
     .chk.text-center
       =link_to '楽天で詳しく見る', @bookshelf.rakuten_url, class:'btn btn-danger' 
@@ -40,6 +27,6 @@
     .col-sm-8.col-sm-offset-2.form
       = render 'shared/record_form',  btnname: "読書時間を記録"
 .row
-  /= render @microposts
+  = render @records
 
 
