@@ -30,15 +30,15 @@ class User < ApplicationRecord
   has_many :comments
   
   #本棚
-  has_many :user_bookshelves, dependent: :destroy
-  has_many :bookshelves, through: :user_bookshelves
+  has_many :bookshelves, dependent: :destroy
+  has_many :mybksh, through: :bookshelves, source: :book
 
   has_many :records, dependent: :destroy
 
   #本棚追加
   def mkbksh(bookshelf)
     
-    bookshelves << bookshelf
+    mybksh << bookshelf
   end
 
   # お気に入り追加

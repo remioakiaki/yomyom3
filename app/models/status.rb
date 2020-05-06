@@ -1,3 +1,3 @@
 class Status < ApplicationRecord
-  has_one :user_bookshelves, foreign_key: "user_bookshelves_id"
+  has_one :bookshelves, foreign_key: "bookshelves_id"
 end

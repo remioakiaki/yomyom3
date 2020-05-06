@@ -1,5 +1,6 @@
 class Bookshelf < ApplicationRecord
-  has_many :user_bookshelves, dependent: :destroy
-  has_many :users, through: :user_bookshelves
-  has_one :status
+  belongs_to :user
+  belongs_to :book
+  belongs_to :status
+
 end

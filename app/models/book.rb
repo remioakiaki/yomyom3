@@ -6,6 +6,6 @@ class Book < ApplicationRecord
   validates :isbn, uniqueness: true, presence: true
   has_many :microposts, dependent: :destroy
   has_many :likes, foreign_key: 'book_id', dependent: :destroy
-
+  has_many :user, dependent: :destroy
   paginates_per 12
 end
