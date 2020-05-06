@@ -24,6 +24,7 @@ Rails.application.routes.draw do
     end
   end
   
+  resources :records
   resources :bookshelves
   resources :comments, only: %i[edit update destroy]
   resources :relationships, only: %i[create destroy]
