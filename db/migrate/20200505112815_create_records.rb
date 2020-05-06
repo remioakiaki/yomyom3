@@ -4,7 +4,7 @@ class CreateRecords < ActiveRecord::Migration[5.2]
       t.date :yyyymmdd
       t.time :hhmm
       t.references :user, foreign_key: true
-      t.references :bookshelf,foreign_key: true
+      
 
       t.timestamps
     end
