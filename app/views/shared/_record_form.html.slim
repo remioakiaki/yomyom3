@@ -1,0 +1,16 @@
+=form_with model: @record,local: :true do |f|
+    = render 'shared/error_messages', object: f.object
+    /=f.label :title, 'タイトル'
+    /=f.text_field :title,placeholder:"タイトルを入力"
+    /=f.label :content, 'コメント'
+    / =f.text_area :content,placeholder:"コメントを入力"
+    = hidden_field_tag :bookshelf_id,@bookshelf.id
+    / = f.hidden_field :rate , class: :book_rating
+    / = f.label :pictures, "画像を追加"
+    / = f.file_field :pictures, class:'btn btn-default', :multiple => true
+    =f.label :時間
+    =f.number_field :hours, placeholder:"時間を入力" 
+    =f.label :分
+    =f.number_field :minutes,placeholder:"分を入力"
+    .btn-parent
+    =f.submit btnname, class: "comu btn btn-primary"

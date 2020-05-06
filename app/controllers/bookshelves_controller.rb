@@ -16,6 +16,11 @@ class BookshelvesController < ApplicationController
     current_user.mkbksh(@bookshelf)
 
   end
+  def show
+    @bookshelf = Bookshelf.find(params[:id])
+    @record = Record.new
+    
+  end
   private
 
   def read(result)

@@ -1,0 +1,45 @@
+.row
+  .col-sm-3.col-sm-offset-2
+    .text-center
+      = image_tag @bookshelf.image_url
+  .col-sm-6
+    h4.text-center 
+      =@bookshelf.title
+    table.text-center
+      tr
+        td.text-center
+          b 作者
+        td
+          = @bookshelf.author
+      tr
+        td.text-center
+          b 出版社
+        td
+          = @bookshelf.publishername
+      tr
+        td.text-center
+          b 評価
+        td
+          / .star-average
+          /     div id="star-rate_#{@bookshelf.id}"
+          /       javascript:
+          /         $("#star-rate_#{@bookshelf.id}").raty({
+          /           path: '/assets/',
+          /           half: true,
+          /           readOnly: true,
+          /           score: #{@bookshelf.microposts.average(:rate).to_f.round(1)}
+          /         });
+    
+    .chk.text-center
+      =link_to '楽天で詳しく見る', @bookshelf.rakuten_url, class:'btn btn-danger' 
+      -if logged_in? && admin?
+        p= link_to 'edit',edit_book_path(@bookshelf)
+
+.row
+  -if logged_in?
+    .col-sm-8.col-sm-offset-2.form
+      = render 'shared/record_form',  btnname: "読書時間を記録"
+.row
+  /= render @microposts
+
+
