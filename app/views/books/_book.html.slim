@@ -31,8 +31,8 @@
 
           .record
             -if logged_in? && current_user.likebook?(book)
-              = link_to '記録を追加', new_record_path, class:'btn btn-info'
-
+              = link_to '記録を追加', new_record_path, class:'btn btn-info',remote:true
+              div#newmodal class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"
           div class="add add_#{book.id}"
             -if logged_in?
               -if book.persisted?
