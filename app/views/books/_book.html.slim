@@ -29,11 +29,14 @@
               .record
                 ="（レビュー#{book.microposts.count}件）"
 
+          .record
+            -if logged_in? && current_user.likebook?(book)
+              = link_to '記録を追加', new_record_path, class:'btn btn-info'
+
           div class="add add_#{book.id}"
             -if logged_in?
               -if book.persisted?
                 =render 'likes/like', book: book
-
               -else
                 = form_with(model:@book,local:true,url:books_path) do |f|
                   = hidden_field_tag :isbn, book['isbn']
