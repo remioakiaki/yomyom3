@@ -19,6 +19,9 @@ class RecordsController < ApplicationController
             redirect_to bookshelf_path(@bookshelf)
         end
     end
+    def new
+      @record = Record.new
+    end
     private
 
     def record_params
