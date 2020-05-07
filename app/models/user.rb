@@ -28,6 +28,18 @@ class User < ApplicationRecord
   has_many :likebooks, through: :likes, source: :book
   # # コメント
   has_many :comments
+  
+  #本棚
+  has_many :bookshelves, dependent: :destroy
+  has_many :mybksh, through: :bookshelves, source: :book
+
+  has_many :records, dependent: :destroy
+
+  #本棚追加
+  def mkbksh(bookshelf)
+    
+    mybksh << bookshelf
+  end
 
   # お気に入り追加
   def like(book)

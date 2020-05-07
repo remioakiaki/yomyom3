@@ -46,6 +46,12 @@ class UsersController < ApplicationController
                .page(params[:page]).per(10)
   end
 
+  def bookshelves
+    @user = User.find(params[:id])
+    @bookshelves = @user.bookshelves
+    render :show_bookshelves
+  end
+
   def likes
     @user = User.find(params[:id])
     @books = @user.likebooks

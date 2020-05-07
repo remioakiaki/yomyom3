@@ -5,8 +5,9 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: password
       MYSQL_DATABASE: root
+      TZ: Asia/Tokyo
     ports:
-      - "3306:3306"
+      - "13306:3306"
 
   web:
     build: .
@@ -20,6 +21,7 @@ services:
     tty: true
     stdin_open: true
     environment:
+      - TZ
       - RAKUTEN_APPID
       - RAKUTEN_AFID
       - AWS_ACCESS_KEY_ID

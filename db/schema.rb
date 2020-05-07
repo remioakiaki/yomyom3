@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_09_011253) do
+ActiveRecord::Schema.define(version: 2020_05_06_135041) do
 
   create_table "books", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "title"
@@ -38,6 +38,7 @@ ActiveRecord::Schema.define(version: 2020_01_09_011253) do
     t.bigint "book_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "status_id", default: 1
     t.index ["book_id"], name: "index_likes_on_book_id"
     t.index ["user_id", "book_id"], name: "index_likes_on_user_id_and_book_id", unique: true
     t.index ["user_id"], name: "index_likes_on_user_id"
@@ -58,6 +59,18 @@ ActiveRecord::Schema.define(version: 2020_01_09_011253) do
     t.index ["user_id"], name: "index_microposts_on_user_id"
   end
 
+  create_table "records", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.date "yyyymmdd"
+    t.time "hhmm"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "page_amount", default: 0
+    t.integer "minutes", default: 0
+    t.integer "hours", default: 0
+    t.index ["user_id"], name: "index_records_on_user_id"
+  end
+
   create_table "relationships", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.integer "follower_id"
     t.integer "followed_id"
@@ -66,6 +79,12 @@ ActiveRecord::Schema.define(version: 2020_01_09_011253) do
     t.index ["followed_id"], name: "index_relationships_on_followed_id"
     t.index ["follower_id", "followed_id"], name: "index_relationships_on_follower_id_and_followed_id", unique: true
     t.index ["follower_id"], name: "index_relationships_on_follower_id"
+  end
+
+  create_table "statuses", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -86,4 +105,5 @@ ActiveRecord::Schema.define(version: 2020_01_09_011253) do
   add_foreign_key "likes", "users"
   add_foreign_key "microposts", "books"
   add_foreign_key "microposts", "users"
+  add_foreign_key "records", "users"
 end

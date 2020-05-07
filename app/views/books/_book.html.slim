@@ -37,4 +37,4 @@
               -else
                 = form_with(model:@book,local:true,url:books_path) do |f|
                   = hidden_field_tag :isbn, book['isbn']
-                  = f.submit '追加', class:'btn btn-primary'
+                  = f.submit '新規書籍追加', class:'btn btn-primary'

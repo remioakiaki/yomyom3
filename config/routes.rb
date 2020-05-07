@@ -11,7 +11,7 @@ Rails.application.routes.draw do
   delete '/logout',  to: 'sessions#destroy'
   resources :users do
     member do
-      get :following, :followers, :likes, :goods
+      get :following, :followers, :likes, :goods, :bookshelves
     end
   end
   resources :microposts, only: %i[create destroy edit update index] do
@@ -23,6 +23,9 @@ Rails.application.routes.draw do
       get :ranking
     end
   end
+  
+  resources :records
+  resources :bookshelves
   resources :comments, only: %i[edit update destroy]
   resources :relationships, only: %i[create destroy]
   resources :likes, only: %i[create destroy]
