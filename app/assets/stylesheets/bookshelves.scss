@@ -1,3 +1,50 @@
 // Place all the styles related to the bookshelves controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.bookshelf-list{
+  .col-sm-3{
+    background-color: #ffffff;
+  
+    border: 1px solid #ddd;
+    padding:5px 5px 5px 5px;
+    height:320px;
+
+  }
+  .mark-parent{
+    padding-top:10px;
+  }
+  .mark{
+    display:inline-block;
+    width:50%;
+  }
+  .status_1{
+    background-color:rgb(201, 195, 195);
+    
+  }
+  .status_2{
+    background-color:rgb(252, 248, 227);
+  }
+  .status_3{
+    background-color:rgb(255, 255, 158);
+  }
+  .category_1{
+    background-color:rgb(235, 235, 235);
+    
+  }
+  .category_2{
+    background-color:rgb(255, 132, 132);
+  }
+  .category_3{
+    background-color:rgba(102, 127, 255, 0.859);
+  }
+  .category_4{
+    background-color:rgba(255, 181, 102, 0.859);
+  }
+  .category_5{
+    background-color:rgba(175, 244, 141, 0.776);
+  }
+  .category_6{
+    background-color:rgba(141, 218, 244, 0.776);
+  }
+}

@@ -1,7 +1,7 @@
 .row
   -@bookshelves.each do |bookshelf|
   
-    .book-list 
+    .bookshelf-list 
       .row-eq-height
         .col-sm-3
           .title
@@ -12,9 +12,10 @@
               p= bookshelf.book.title
           .image.text-center
             = image_tag bookshelf.book.image_url
-          .author
-            p= bookshelf.book.author
-          .publisher
-            p= bookshelf.book.publishername
-            p= bookshelf.status.name
+
+          .mark-parent.text-center
+            div class="mark status_#{bookshelf.status.id}"
+              = bookshelf.status.name
+            div class="mark category_#{bookshelf.category.id}"
+              = bookshelf.category.name
 
