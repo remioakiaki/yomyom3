@@ -1,0 +1,20 @@
+.row
+  -@bookshelves.each do |bookshelf|
+  
+    .book-list 
+      .row-eq-height
+        .col-sm-3
+          .title
+            -if bookshelf.book.persisted?
+              = link_to bookshelf_path(bookshelf) do
+                p= bookshelf.book.title  
+            -else
+              p= bookshelf.book.title
+          .image.text-center
+            = image_tag bookshelf.book.image_url
+          .author
+            p= bookshelf.book.author
+          .publisher
+            p= bookshelf.book.publishername
+            p= bookshelf.status.name
+

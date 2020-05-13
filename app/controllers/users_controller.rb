@@ -48,7 +48,8 @@ class UsersController < ApplicationController
 
   def bookshelves
     @user = User.find(params[:id])
-    @bookshelves = @user.bookshelves
+    # @bookshelves = @user.bookshelves
+    @bookshelves = Bookshelf.eager_load(:book,:status).where(user_id: @user.id)
     render :show_bookshelves
   end
 
