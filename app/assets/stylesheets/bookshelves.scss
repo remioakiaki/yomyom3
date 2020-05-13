@@ -5,11 +5,20 @@
 .bookshelf-list{
   .col-sm-3{
     background-color: #ffffff;
-  
     border: 1px solid #ddd;
     padding:5px 5px 5px 5px;
-    height:340px;
+    height:360px;
 
+  }
+  .title{
+    height:52px;
+    
+    p{
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 2;
+      overflow: hidden;
+    }
   }
   .mark-parent{
     padding-top:10px;
