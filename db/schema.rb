@@ -29,7 +29,7 @@ ActiveRecord::Schema.define(version: 2020_05_13_065913) do
     t.bigint "status_id", default: 1
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "category_id"
+    t.bigint "category_id", default: 1
     t.index ["book_id"], name: "index_bookshelves_on_book_id"
     t.index ["category_id"], name: "index_bookshelves_on_category_id"
     t.index ["status_id"], name: "index_bookshelves_on_status_id"

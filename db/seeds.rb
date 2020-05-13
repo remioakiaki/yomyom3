@@ -16,6 +16,7 @@ Status.create!(name:'未読')
 Status.create!(name:'読書中')
 Status.create!(name:'読書済')
 
+Category.create!(name: 'カテゴリなし')
 Category.create!(name: '小説')
 Category.create!(name: 'ビジネス')
 Category.create!(name: '自己啓発')

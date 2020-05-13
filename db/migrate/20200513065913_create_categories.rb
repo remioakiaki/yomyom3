@@ -5,6 +5,6 @@ class CreateCategories < ActiveRecord::Migration[5.2]
 
       t.timestamps
     end
-    add_reference :bookshelves, :category, foreign_key: true
+    add_reference :bookshelves, :category, foreign_key: true, default:1
   end
 end
