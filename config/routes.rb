@@ -24,6 +24,11 @@ Rails.application.routes.draw do
     end
   end
   
+  resources :bookshelves do
+    resources :records
+  end
+
+  resources :records
   resources :statuses
   resources :records
   resources :bookshelves

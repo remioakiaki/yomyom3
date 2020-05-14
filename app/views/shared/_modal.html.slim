@@ -10,7 +10,7 @@
         -elsif title == 'コメントを編集'
           = render 'shared/comment_form', object: @comment, btnname: "更新"
         -else
-          = render 'shared/record_form', object: @record, btnname: "追加"
+          = render partial:'shared/record_form', locals:{object: @record, bookshelf:@bookshelf, btnname: "追加"}
       .modal-footer
         button type="button" class="btn btn-default" data-dismiss="modal"
           |閉じる 

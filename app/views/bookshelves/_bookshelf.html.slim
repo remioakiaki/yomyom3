@@ -20,6 +20,6 @@
             div class="mark category_#{bookshelf.category.id}"
               = bookshelf.category.name
           .record
-            = link_to '記録を追加', new_record_path, class:'btn btn-info',remote:true
+            = link_to '記録を追加', new_bookshelf_record_path(bookshelf.id), class:'btn btn-info',remote:true
             div#newmodal class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"
             
