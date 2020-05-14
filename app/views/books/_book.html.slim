@@ -31,8 +31,14 @@
 
           .record
             -if logged_in? 
-              = link_to '記録を追加', new_record_path, class:'btn btn-info',remote:true
-              div#newmodal class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"
+                = form_with(model:@bookshelf, local:true, scope: :bookshelf) do |f|
+                  = hidden_field_tag :id, book.id
+                  = f.submit '本棚に追加', class:'btn btn-primary'
+                  / /= hidden_field_tag :user_id, current_user.id
+                  
+                  / = hidden_field_tag :book_id, book.id
+                  
+              
           div class="add add_#{book.id}"
             -if logged_in?
               -if book.persisted?

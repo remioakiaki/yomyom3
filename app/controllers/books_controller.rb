@@ -7,6 +7,7 @@ class BooksController < ApplicationController
   end
   
   def index
+    @bookshelf = current_user.bookshelves.new
     @q = Book.ransack(params[:q])
     @books = @q.result.order(created_at: :desc)
                .page(params[:page]).per(12)

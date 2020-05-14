@@ -36,7 +36,7 @@ class User < ApplicationRecord
   has_many :records, dependent: :destroy
 
   #本棚追加
-  def mkbksh(bookshelf)
+  def addbksh(bookshelf)
     
     mybksh << bookshelf
   end
