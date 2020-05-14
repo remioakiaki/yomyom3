@@ -41,6 +41,11 @@ class User < ApplicationRecord
     mybksh << bookshelf
   end
 
+  #本棚存在確認
+  def chbksh?(book)
+    mybksh.include?(book)
+  end
+
   # お気に入り追加
   def like(book)
     likebooks << book
