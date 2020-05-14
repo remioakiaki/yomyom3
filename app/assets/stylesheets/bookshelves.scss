@@ -60,3 +60,33 @@
     background-color:rgba(141, 218, 244, 0.776);
   }
 }
+
+// .modal_selectbox{
+//   width:40%;
+  
+// }
+
+.edit-form.bookshelf {
+  
+  width: 50%;
+  margin: 0 auto;
+}
+
+.modal_st_ct{
+  display:inline-block;
+  width: 50%;
+  padding: 10px 5px;
+
+  select{
+    margin-bottom: 0px;
+    height:25.59px;
+  }
+}
+
+@media screen and (max-width:480px){
+  .edit-form.bookshelf {
+  
+    width: 100%;
+    margin: 0 auto;
+  }
+}

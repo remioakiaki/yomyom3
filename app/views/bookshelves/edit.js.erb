@@ -1,2 +1,2 @@
-$("#editmodal").html("<%= j(render'shared/modal',title:"書籍情報を編集") %>")
+$("#editmodal").html("<%= j(render partial:'shared/bookshelf_form',locals:{object: @bookshelf, book: @book}) %>")
 $("#editmodal").modal("show")
