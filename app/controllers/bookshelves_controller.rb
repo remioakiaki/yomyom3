@@ -2,14 +2,10 @@ class BookshelvesController < ApplicationController
 
   def create
     @bookshelf = current_user.bookshelves.build(bookshelf_params)
-    # @bookshelf.user_id = current_user.id
-    @bookshelf.book_id = params[:id]
-
-
 
     if @bookshelf.save 
       flash[:success] = '本棚への追加が完了しました'
-      redirect_to user_path(current_user)
+      redirect_to bookshelves_user_path(current_user)
 
     end
     
@@ -36,7 +32,7 @@ class BookshelvesController < ApplicationController
 
   private
   def bookshelf_params
-    params.permit(:user_id, :book_id, :status_id, :category_id)
-    #params.require(:bookshelf).permit(:user_id, :book_id, :status_id, :category_id)
+    #params.permit(:user_id, :book_id, :status_id, :category_id)
+    params.require(:bookshelf).permit(:user_id, :book_id, :status_id, :category_id)
   end
 end

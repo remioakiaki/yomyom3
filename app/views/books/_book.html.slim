@@ -31,12 +31,9 @@
 
           .record
             -if logged_in? 
-                = form_with(model:@bookshelf, local:true, scope: :bookshelf) do |f|
-                  = hidden_field_tag :id, book.id
-                  = f.submit '本棚に追加', class:'btn btn-primary'
-                  / /= hidden_field_tag :user_id, current_user.id
-                  
-                  / = hidden_field_tag :book_id, book.id
+                = form_with(model:@bookshelf, local:true) do |f|
+                  = f.hidden_field :book_id, value: book.id
+                  = f.submit '本棚追加', class:'btn btn-primary'
                   
               
           div class="add add_#{book.id}"
