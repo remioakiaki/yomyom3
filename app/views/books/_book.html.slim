@@ -27,12 +27,19 @@
                     score: #{book.microposts.average(:rate).to_f.round(1)}
                   });
               .record
-                ="（レビュー#{book.microposts.count}件）"
+                ="（レビュー#{book.microposts.size}件）"
 
           .record
-            -if logged_in? && current_user.likebook?(book)
-              = link_to '記録を追加', new_record_path, class:'btn btn-info',remote:true
-              div#newmodal class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"
+            -if logged_in? 
+              -if current_user.chbksh?(book)
+                .record
+                  = link_to '記録を追加', new_record_path, class:'btn btn-info',remote:true
+                  div#newmodal class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"
+              -else
+                = form_with(model:@bookshelf, local:true) do |f|
+                  = f.hidden_field :book_id, value: book.id
+                  = f.submit '本棚追加', class:'btn btn-primary'
+              
           div class="add add_#{book.id}"
             -if logged_in?
               -if book.persisted?

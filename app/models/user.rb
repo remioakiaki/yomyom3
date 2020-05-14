@@ -36,9 +36,14 @@ class User < ApplicationRecord
   has_many :records, dependent: :destroy
 
   #本棚追加
-  def mkbksh(bookshelf)
+  def addbksh(bookshelf)
     
     mybksh << bookshelf
+  end
+
+  #本棚存在確認
+  def chbksh?(book)
+    mybksh.include?(book)
   end
 
   # お気に入り追加

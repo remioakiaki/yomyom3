@@ -10,6 +10,6 @@
 
 .good.text-center
   span.glyphicon.glyphicon-thumbs-up aria-hidden="true"
-  =book.likes.count
+  =book.likes.size
   -if admin?
     = link_to "delete",  book_path(book),method: :delete

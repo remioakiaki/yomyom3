@@ -1,0 +1,92 @@
+// Place all the styles related to the bookshelves controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.bookshelf-list{
+  .col-sm-3{
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    padding:5px 5px 5px 5px;
+    height:360px;
+
+  }
+  .title{
+    height:52px;
+    
+    p{
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 2;
+      overflow: hidden;
+    }
+  }
+  .mark-parent{
+    padding-top:10px;
+    padding-bottom:10px;
+  }
+  .mark{
+    display:inline-block;
+    width:45%;
+    border-radius: 5px;
+    margin: 5px 5px;
+  }
+  .status_1{
+    background-color:rgb(201, 195, 195);
+    
+  }
+  .status_2{
+    background-color:rgb(252, 248, 227);
+  }
+  .status_3{
+    background-color:rgb(255, 255, 158);
+  }
+  .category_1{
+    background-color:rgb(235, 235, 235);
+    
+  }
+  .category_2{
+    background-color:rgb(255, 132, 132);
+  }
+  .category_3{
+    background-color:rgba(102, 127, 255, 0.859);
+  }
+  .category_4{
+    background-color:rgba(255, 181, 102, 0.859);
+  }
+  .category_5{
+    background-color:rgba(175, 244, 141, 0.776);
+  }
+  .category_6{
+    background-color:rgba(141, 218, 244, 0.776);
+  }
+}
+
+// .modal_selectbox{
+//   width:40%;
+  
+// }
+
+.edit-form.bookshelf {
+  
+  width: 50%;
+  margin: 0 auto;
+}
+
+.modal_st_ct{
+  display:inline-block;
+  width: 50%;
+  padding: 10px 5px;
+
+  select{
+    margin-bottom: 0px;
+    height:25.59px;
+  }
+}
+
+@media screen and (max-width:480px){
+  .edit-form.bookshelf {
+  
+    width: 100%;
+    margin: 0 auto;
+  }
+}

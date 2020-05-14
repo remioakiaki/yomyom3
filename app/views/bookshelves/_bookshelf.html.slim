@@ -1,0 +1,25 @@
+.row
+  -@bookshelves.each do |bookshelf|
+  
+    .bookshelf-list 
+      .row-eq-height
+        .col-sm-3
+          .title
+            -if bookshelf.book.persisted?
+              = link_to edit_bookshelf_path(bookshelf),remote:true do
+                p= bookshelf.book.title  
+              div#editmodal class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"
+            -else
+              p= bookshelf.book.title
+          .image.text-center
+            = image_tag bookshelf.book.image_url
+
+          .mark-parent.text-center
+            div class="mark status_#{bookshelf.status.id}"
+              = bookshelf.status.name
+            div class="mark category_#{bookshelf.category.id}"
+              = bookshelf.category.name
+          .record
+            = link_to '記録を追加', new_record_path, class:'btn btn-info',remote:true
+            div#newmodal class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"
+            

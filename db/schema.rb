@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_06_135041) do
+ActiveRecord::Schema.define(version: 2020_05_13_065913) do
 
   create_table "books", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "title"
@@ -19,6 +19,25 @@ ActiveRecord::Schema.define(version: 2020_05_06_135041) do
     t.string "isbn"
     t.string "publishername"
     t.string "rakuten_url"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "bookshelves", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "book_id"
+    t.bigint "status_id", default: 1
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "category_id", default: 1
+    t.index ["book_id"], name: "index_bookshelves_on_book_id"
+    t.index ["category_id"], name: "index_bookshelves_on_category_id"
+    t.index ["status_id"], name: "index_bookshelves_on_status_id"
+    t.index ["user_id"], name: "index_bookshelves_on_user_id"
+  end
+
+  create_table "categories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -99,6 +118,10 @@ ActiveRecord::Schema.define(version: 2020_05_06_135041) do
     t.boolean "admin"
   end
 
+  add_foreign_key "bookshelves", "books"
+  add_foreign_key "bookshelves", "categories"
+  add_foreign_key "bookshelves", "statuses"
+  add_foreign_key "bookshelves", "users"
   add_foreign_key "comments", "microposts"
   add_foreign_key "comments", "users"
   add_foreign_key "likes", "books"
