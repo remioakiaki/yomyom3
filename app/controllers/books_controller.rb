@@ -10,7 +10,12 @@ class BooksController < ApplicationController
     
     @q = Book.ransack(params[:q])
     @books = @q.result.order(created_at: :desc)
-               .page(params[:page]).per(12)
+                      .includes(:microposts,:likes)
+                      .page(params[:page]).per(12)
+                      
+               
+            
+               
     @bookshelf = Bookshelf.new
   end
 

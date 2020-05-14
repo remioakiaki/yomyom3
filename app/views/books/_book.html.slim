@@ -27,7 +27,7 @@
                     score: #{book.microposts.average(:rate).to_f.round(1)}
                   });
               .record
-                ="（レビュー#{book.microposts.count}件）"
+                ="（レビュー#{book.microposts.size}件）"
 
           .record
             -if logged_in? 
