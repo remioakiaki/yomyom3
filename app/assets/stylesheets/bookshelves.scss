@@ -22,11 +22,13 @@
   }
   .mark-parent{
     padding-top:10px;
-    padding-bottom:15px;
+    padding-bottom:10px;
   }
   .mark{
     display:inline-block;
-    width:50%;
+    width:45%;
+    border-radius: 5px;
+    margin: 5px 5px;
   }
   .status_1{
     background-color:rgb(201, 195, 195);

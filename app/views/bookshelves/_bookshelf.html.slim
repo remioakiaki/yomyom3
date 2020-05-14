@@ -6,8 +6,9 @@
         .col-sm-3
           .title
             -if bookshelf.book.persisted?
-              = link_to bookshelf_path(bookshelf) do
+              = link_to edit_bookshelf_path(bookshelf),remote:true do
                 p= bookshelf.book.title  
+              div#editmodal class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"
             -else
               p= bookshelf.book.title
           .image.text-center

@@ -9,6 +9,8 @@
           = render 'shared/micropost_form', btnname: "更新"
         -elsif title == 'コメントを編集'
           = render 'shared/comment_form', object: @comment, btnname: "更新"
+        -elsif title == '書籍情報を編集'
+          = render partial:'shared/bookshelf_form',locals:{object: @bookshelf, book: @book}, btnname: "編集"
         -else
           = render 'shared/record_form', object: @record, btnname: "追加"
       .modal-footer
