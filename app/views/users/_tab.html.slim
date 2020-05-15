@@ -14,3 +14,8 @@ ul.nav.nav-tabs.nav-justified
         span.badge
           =@user.bookshelves.count
         |本棚
+    li class="#{'active' if current_page?(records_user_path(@user))}"
+      =link_to records_user_path(@user) do 
+        span.badge
+          =@records.count
+        |記録

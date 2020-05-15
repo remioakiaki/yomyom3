@@ -14,6 +14,9 @@ class RecordsController < ApplicationController
   def new
     @record = Record.new
   end
+  def show
+    
+  end
     private
 
     def record_params

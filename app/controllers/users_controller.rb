@@ -7,6 +7,7 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @microposts = Micropost.where(user_id: params[:id]).includes(:book, :user)
+    @records = Record.where(params[:id])
   end
 
   def new
@@ -51,13 +52,30 @@ class UsersController < ApplicationController
     @statuses = Status.all
     @categories = Category.all
     @bookshelves = Bookshelf.eager_load(:book,:status,:category).where(user_id: @user.id)
+    
+    @records = Record.eager_load(:bookshelf).where(bookshelves:{user_id:[@user.id]})
+    
     render :show_bookshelves
   end
 
   def likes
     @user = User.find(params[:id])
     @books = @user.likebooks
+
+    @records = Record.eager_load(:bookshelf).where(bookshelves:{user_id:[@user.id]})
+
     render :show_likes
+  end
+
+  def records
+    @user = User.find(params[:id])
+    @records = Record.eager_load(bookshelf: :user).eager_load(bookshelf: :book).where(bookshelves:{user_id:[@user.id]})
+    
+  
+    
+  
+    
+    render :show_records
   end
 
   def destroy

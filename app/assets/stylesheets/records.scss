@@ -8,3 +8,36 @@
  .record{
    height: 50px;
  }
+
+ //_record
+.rec{
+  
+  background-color: #ffffff;
+  border: 1px solid #ddd;
+  padding: 5px 5px 5px 5px;
+
+  .row-eq-height {
+    display: flex;
+    flex-wrap: wrap;
+}
+}
+
+.rec-col{
+  height:180px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.rec-name{
+  margin-top: 20px;
+}
+ .rec-menu{
+  margin-top: 20px;
+   .btn{
+     margin-bottom: 0px;
+   }
+ }
+
+ .rec-usr-menu{
+  
+ }
