@@ -16,16 +16,14 @@
                   = link_to record, method: :delete,class: "btn btn-default micropost_delete_#{record.id}" do
                     span.glyphicon.glyphicon-trash aria-hidden="true"
                 div#editmodal class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"
-      .col-sm-2.col-xs-7.rec-col
+      .col-sm-3.col-xs-6.rec-col
         .book-image
           = image_tag record.bookshelf.book.image_url
+      .col-sm-5.col-xs-10.col-xs-offset-1.col-sm-offset-0.rec-col
+        .balloon1-left
+          |こめんとですとです
 
-    / .col-sm-8.col-xs-12
-    /   .content
-    /     .balloon1-left
-    /       -if record.title.present?
-    /         b= record.title
-    /       p= record.content
+
   / .row
   /   -if record.pictures.present?
   /     .col-sm-10.col-sm-offset-2.pic-parent

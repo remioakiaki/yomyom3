@@ -27,6 +27,20 @@
   display: flex;
   justify-content: center;
   align-items: center;
+
+ //吹き出し
+ .balloon1-left {
+  //position: relative;
+  padding: 8px 8px;
+  //margin:5px 0px;
+  width:100%;
+  height:150px;
+  //min-width: 120px;
+  //max-width: 100%;
+  color: #555;
+  background: #d6f5cd;
+  border-radius: 15px;
+}
 }
 .rec-name{
   margin-top: 20px;
@@ -36,8 +50,5 @@
    .btn{
      margin-bottom: 0px;
    }
- }
 
- .rec-usr-menu{
-  
  }
