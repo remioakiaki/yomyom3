@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_18_010958) do
+ActiveRecord::Schema.define(version: 2020_05_18_022638) do
 
   create_table "books", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "title"
@@ -82,7 +82,7 @@ ActiveRecord::Schema.define(version: 2020_05_18_010958) do
     t.date "yyyymmdd"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "page_amount", default: 0
+    t.integer "page_amount"
     t.integer "minutes", default: 0
     t.integer "hours"
     t.bigint "bookshelf_id"

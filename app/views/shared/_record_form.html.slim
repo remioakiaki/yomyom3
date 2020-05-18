@@ -12,7 +12,7 @@
           =f.date_field :yyyymmdd,value: Time.now.strftime("%Y-%m-%d"), class:'form-control'
           =f.label :時間
           .time_select
-            =f.time_select :hours,{end_hour: 10,minute_step: 5, prompt:true,size: 50,order: 1}
+            =f.time_select :hours,{end_hour: 10,minute_step: 5,size: 50,order: 1}
           =f.label  :ページ量
           =f.number_field :page_amount
           =f.label :メモ

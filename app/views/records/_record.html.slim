@@ -21,9 +21,19 @@
           = image_tag record.bookshelf.book.image_url
       .col-sm-5.col-xs-10.col-xs-offset-1.col-sm-offset-0.rec-col
         .balloon1-left
-          |こめんとですとです
-
-
+          b=record.bookshelf.book.title
+          .record_h_m
+            - if record.hours?
+              ="#{record.hours}時間 #{record.minutes} 分"
+            -else
+              ="#{record.minutes} 分"
+          .record_pa
+           -unless record.page_amount.nil? 
+             ="#{record.page_amount}ページ"
+          -unless record.memo.nil?
+             =record.memo
+          .record_date
+            =I18n.l(record.yyyymmdd)
 
 
   / .row
