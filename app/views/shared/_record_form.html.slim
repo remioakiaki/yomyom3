@@ -3,22 +3,24 @@
     .modal-content
       .modal-header
         .modal-title
-        = '記録を追加'
+        = title
       .modal-body
-        =form_with model: object, url:bookshelf_records_path,local: :true do |f|
+        =form_with model: [object1,object2],local: :true do |f|
           =render 'shared/error_messages', object: f.object
           
           =f.label :日付
           =f.date_field :yyyymmdd,value: Time.now.strftime("%Y-%m-%d"), class:'form-control'
           =f.label :時間
           .time_select
-            =f.time_select :hours,{end_hour: 10,minute_step: 5,size: 50,order: 1}
+            =f.select :hours,[[0,0],[1,1],[2,2],[3,3],[4,4],[5,5],[6,6],[7,7],[8,8],[9,9],[10,10]]
+            | ： 
+            =f.select :minutes,[[0,0],[5,5],[10,10],[15,15],[20,20],[25,25],[30,30],[35,35],[40,40],[45,45],[50,50],[55,55]]
           =f.label  :ページ量
           =f.number_field :page_amount
           =f.label :メモ
           =f.text_area :memo, placeholder:"メモを入力"        
           .btn-parent
-            =f.submit "追加", class: "comu btn btn-primary"
+            =f.submit btn, class: "comu btn btn-primary"
       .modal-footer
         button type="button" class="btn btn-default" data-dismiss="modal"
           |閉じる 

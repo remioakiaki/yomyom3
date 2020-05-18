@@ -40,6 +40,7 @@
   color: #555;
   background: #d6f5cd;
   border-radius: 15px;
+  position:relative;
 }
 }
 .rec-name{
@@ -75,6 +76,9 @@
 .record_date{
   text-align: right;
   margin-top: 20px;
+  position:absolute;
+  top: 130px;
+    left: 170px;
 }
 
 @media screen and (max-width:480px){

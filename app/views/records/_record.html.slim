@@ -11,11 +11,11 @@
           .rec-menu
             -if logged_in? && current_user?(record.bookshelf.user)
                 .btn-group role="group"
-                  = link_to edit_record_path(record),class: "btn btn-default micropost_edit_#{record.id}",remote:true do
+                  = link_to edit_bookshelf_record_path(record.bookshelf, record),class: "btn btn-default micropost_edit_#{record.id}",remote:true do
                     span.glyphicon.glyphicon-pencil aria-hidden="true"
-                  = link_to record, method: :delete,class: "btn btn-default micropost_delete_#{record.id}" do
+                  = link_to record_path(record), method: :delete,class: "btn btn-default record_delete_#{record.id}" do
                     span.glyphicon.glyphicon-trash aria-hidden="true"
-                div#editmodal class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"
+      div#newmodal class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"
       .col-sm-3.col-xs-6.rec-col
         .book-image
           = image_tag record.bookshelf.book.image_url
