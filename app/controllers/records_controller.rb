@@ -1,6 +1,13 @@
 class RecordsController < ApplicationController
   def create
+    
+
+    
     @record =  Record.new(record_params)
+    @record.hours = params[:record]["hours(4i)"]
+    @record.minutes = params[:record]["hours(5i)"]
+
+
     @bookshelf = Bookshelf.find(params[:bookshelf_id])
     @record.bookshelf_id = @bookshelf.id
 
@@ -15,11 +22,11 @@ class RecordsController < ApplicationController
     @record = Record.new
   end
   def show
-    
+
   end
     private
 
     def record_params
-      params.require(:record).permit(:hours, :minutes)
+      params.require(:record).permit(:hours, :minutes,:yyyymmdd)
     end
 end

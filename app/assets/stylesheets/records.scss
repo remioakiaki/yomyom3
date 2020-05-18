@@ -52,3 +52,31 @@
    }
 
  }
+
+ //form
+ .edit-form.record{
+  width: 50%;
+  margin: 0 auto;
+  select{
+   
+    width:50px;
+    
+  }
+ }
+
+ #record_memo_4i{
+  width:50px
+}
+
+#record_memo_5i{
+  width:50px
+}
+
+@media screen and (max-width:480px){
+  .edit-form.record {
+  
+    width: 100%;
+    margin: 0 auto;
+  }
+}
+

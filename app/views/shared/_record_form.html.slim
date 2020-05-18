@@ -1,16 +1,24 @@
-=form_with model: object, url:bookshelf_records_path,local: :true do |f|
-    = render 'shared/error_messages', object: f.object
-    /=f.label :title, 'タイトル'
-    /=f.text_field :title,placeholder:"タイトルを入力"
-    /=f.label :content, 'コメント'
-    / =f.text_area :content,placeholder:"コメントを入力"
-    /= hidden_field_tag :bookshelf_id,@bookshelf.id
-    / = f.hidden_field :rate , class: :book_rating
-    / = f.label :pictures, "画像を追加"
-    / = f.file_field :pictures, class:'btn btn-default', :multiple => true
-    =f.label :時間
-    =f.number_field :hours, placeholder:"時間を入力" 
-    =f.label :分
-    =f.number_field :minutes,placeholder:"分を入力"
-    .btn-parent
-    =f.submit btnname, class: "comu btn btn-primary"
+.edit-form.record
+  .modal-daialog
+    .modal-content
+      .modal-header
+        .modal-title
+        = '記録を追加'
+      .modal-body
+        =form_with model: object, url:bookshelf_records_path,local: :true do |f|
+          =render 'shared/error_messages', object: f.object
+          
+          =f.label :日付
+          =f.date_field :yyyymmdd,value: Time.now.strftime("%Y-%m-%d"), class:'form-control'
+          =f.label :時間
+          .time_select
+            =f.time_select :hours,{end_hour: 10,minute_step: 5, prompt:true,size: 50,order: 1}
+          =f.label  :ページ量
+          =f.number_field :page_amount
+          =f.label :メモ
+          =f.text_area :memo, placeholder:"メモを入力"        
+          .btn-parent
+            =f.submit "追加", class: "comu btn btn-primary"
+      .modal-footer
+        button type="button" class="btn btn-default" data-dismiss="modal"
+          |閉じる 

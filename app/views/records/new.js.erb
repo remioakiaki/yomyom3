@@ -1,2 +1,2 @@
-$("#newmodal").html("<%= j(render'shared/modal',title:"記録を追加",object: @record) %>")
+$("#newmodal").html("<%= j(render'shared/record_form',object: @record) %>")
 $("#newmodal").modal("show")

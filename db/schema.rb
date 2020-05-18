@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_14_105809) do
+ActiveRecord::Schema.define(version: 2020_05_18_010958) do
 
   create_table "books", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "title"
@@ -80,13 +80,14 @@ ActiveRecord::Schema.define(version: 2020_05_14_105809) do
 
   create_table "records", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.date "yyyymmdd"
-    t.time "hhmm"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "page_amount", default: 0
     t.integer "minutes", default: 0
-    t.integer "hours", default: 0
+    t.integer "hours"
     t.bigint "bookshelf_id"
+    t.integer "summinutes", default: 0
+    t.text "memo"
     t.index ["bookshelf_id"], name: "index_records_on_bookshelf_id"
   end
 
