@@ -23,6 +23,7 @@ nav.navbar
                   span class="caret"
                 ul class="dropdown-menu"
                   li = link_to "マイページ",current_user
+                  li = link_to 'プロフィール編集', edit_user_path(current_user)
                   li = link_to following_user_path(current_user) do
                        | フォロー
                        span.badge

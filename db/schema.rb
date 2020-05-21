@@ -80,6 +80,7 @@ ActiveRecord::Schema.define(version: 2020_05_18_022638) do
 
   create_table "records", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.date "yyyymmdd"
+    t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "page_amount"
@@ -89,6 +90,7 @@ ActiveRecord::Schema.define(version: 2020_05_18_022638) do
     t.integer "summinutes", default: 0
     t.text "memo"
     t.index ["bookshelf_id"], name: "index_records_on_bookshelf_id"
+    t.index ["user_id"], name: "index_records_on_user_id"
   end
 
   create_table "relationships", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -130,4 +132,5 @@ ActiveRecord::Schema.define(version: 2020_05_18_022638) do
   add_foreign_key "microposts", "books"
   add_foreign_key "microposts", "users"
   add_foreign_key "records", "bookshelves"
+  add_foreign_key "records", "users"
 end

@@ -18,3 +18,5 @@
 //= require turbolinks
 //= require_tree .
 //= require jquery.raty
+//= require chartkick
+//= require Chart.bundle

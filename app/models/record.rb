@@ -10,8 +10,10 @@ class Record < ApplicationRecord
   belongs_to :bookshelf
 
   def changehours
-
-    self.summinutes = self.hours * 60 + self.minutes
+    
+    binding.pry
+    
+    self.summinutes = self.hours + self.minutes / 60
     
   end
 end
