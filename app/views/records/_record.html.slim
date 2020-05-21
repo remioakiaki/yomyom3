@@ -1,9 +1,9 @@
 -@records.each do |record|
   .rec
-    .row.row-eq-height
+    .row
       .col-sm-3.col-xs-5.text-center.rec-col
         .rec-usr-menu
-          .prof
+          .rec-img
             = image_tag record.bookshelf.user.picture.url,:size =>'50x50', :class => "img-circle"
           .rec-name  
             = link_to user_path(record.bookshelf.user) do
@@ -34,38 +34,3 @@
              =record.memo
           .record_date
             =I18n.l(record.yyyymmdd)
-
-
-  / .row
-  /   .col-sm-10.col-sm-offset-2
-  /     div class="comment comment_form_#{record.id}" id="comment" 
-  /       div class="slide slide_#{record.id}" value="#{record.id}" style="height:#{comment_height(record.comments.count)}px"
-  /       div class="form form_#{record.id}"
-
-        //コメントフォームの表示、非表示、いいね
-      / .menu2
-      /   - if logged_in?
-      /     = link_to micropost_comments_path(record.id),id:"opnbtn",class:"btn btn-opn_#{record.id}",remote: true  do
-      /       span.glyphicon.glyphicon-comment aria-hidden="true" 
-            
-      /     div class="btn btn-cls_#{record.id}" value="#{record.id}" id="clsbtn"
-      /       span.glyphicon.glyphicon-remove aria-hidden="true"
-
-      /     /div id="likes_buttons_#{record.id}" class="like"
-      /       = render 'likes/like', record: record
-
-      / .menu3
-      /   div id="star-rate_#{record.id}"
-      /     javascript:
-      /       $("#star-rate_#{record.id}").raty({
-      /         path: '/assets/',
-
-      /         readOnly: true,
-      /         score: #{record.rate}
-      /       });
-        
-
-
-
-
-            

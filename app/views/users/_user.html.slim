@@ -1,15 +1,24 @@
-  .post
-      .prof
-        = image_tag user.picture.url,:size =>'50x50', :class => "img-circle"
-        = link_to user_path(user) do
-          = user.name
-      .menu1
-        - if logged_in? && !current_user?(user) 
-          div class="relation-btn_#{user.id} text-right"
-            = render 'relationships/relationship', user: user
-      .content
-      -if user.introduce.present?
-        .balloon1-left
-          =user.introduce
-      - if logged_in? && current_user.admin? && !current_user?(user) 
-        li= link_to 'delete', user_path(user), method: :delete
+.col-xs-12.col-sm-8.col-xs-offset-0.col-sm-offset-2
+  .card_user.text-center
+    .card_user_01
+      .main
+        .img
+          = image_tag user.picture.url,:size =>'50x50', :class => "img-circle"
+      .sub_01
+        .name
+          = link_to user_path(user) do
+            = user.name
+        .delete
+        - if logged_in? && current_user.admin? && !current_user?(user) 
+          li= link_to 'delete', user_path(user), method: :delete
+      .sub_02 
+        .relation_btn
+          - if logged_in? && !current_user?(user) 
+            div class="relation-btn_#{user.id} text-right"
+              = render 'relationships/relationship', user: user
+    .card_user_02
+        .introduce
+          -if user.introduce.present?
+            .balloon1-left
+              =user.introduce
+

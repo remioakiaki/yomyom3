@@ -1,7 +1,39 @@
-.edit-profile{
-  text-align: center;
+
+.card_user{
+  background-color: #ffffff;
+  border: 1px solid #ddd;
+  padding:5px 5px 5px 5px;
+  //height:180px;
+  //position: relative;
   
+.card_user_01{
+  display:flex;
+.main{
+  width:20%;
 }
+.sub_01{
+  width:40%;
+}
+.sub_02{
+  width:40%;
+}
+.name{
+  margin: 10px 0px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.btn{
+  margin-top: 5px;
+  width:90%;
+}
+}
+.card_user_02{
+  margin-left: 20%;
+  text-align: left;
+  }
+}
+
 .edit-btn{
   padding-top: 10px;
 }
@@ -19,4 +51,18 @@
   vertical-align: middle;
   background-color: #777;
   border-radius: 10px;
+}
+
+.col-xs-12.col-sm-3{
+  padding:0;
+}
+
+//吹き出し
+.balloon1-left {
+  padding: 8px 8px;
+  margin-right:5px;
+  color: #555;
+  background: #e0edff;
+  border-radius: 15px;
+  width:100%;
 }
