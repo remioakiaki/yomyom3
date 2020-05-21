@@ -57,6 +57,9 @@ GEM
       sassc (>= 2.0.0)
     bootstrap-toggle-rails (2.2.1.0)
     builder (3.2.4)
+    bullet (6.1.0)
+      activesupport (>= 3.0.0)
+      uniform_notifier (~> 1.11)
     byebug (11.1.3)
     capybara (3.32.1)
       addressable
@@ -299,6 +302,7 @@ GEM
     uglifier (4.2.0)
       execjs (>= 0.3.0, < 3)
     unicode-display_width (1.7.0)
+    uniform_notifier (1.13.0)
     web-console (3.7.0)
       actionview (>= 5.0)
       activemodel (>= 5.0)
@@ -323,6 +327,7 @@ DEPENDENCIES
   bootsnap (>= 1.1.0)
   bootstrap-sass (= 3.4.1)
   bootstrap-toggle-rails
+  bullet
   byebug
   capybara
   carrierwave

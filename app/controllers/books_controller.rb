@@ -43,6 +43,7 @@ class BooksController < ApplicationController
             end
 
     makearray(books)
+    @bookshelf = Bookshelf.new
   end
 
   def edit
