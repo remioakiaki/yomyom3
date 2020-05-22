@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_18_022638) do
+ActiveRecord::Schema.define(version: 2020_05_22_005647) do
 
   create_table "books", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "title"
@@ -54,13 +54,12 @@ ActiveRecord::Schema.define(version: 2020_05_18_022638) do
 
   create_table "likes", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "user_id"
-    t.bigint "book_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "status_id", default: 1
-    t.index ["book_id"], name: "index_likes_on_book_id"
-    t.index ["user_id", "book_id"], name: "index_likes_on_user_id_and_book_id", unique: true
+    t.bigint "micropost_id"
+    t.index ["micropost_id"], name: "index_likes_on_micropost_id"
     t.index ["user_id"], name: "index_likes_on_user_id"
+    t.index ["user_id"], name: "index_likes_on_user_id_and_book_id", unique: true
   end
 
   create_table "microposts", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -127,7 +126,7 @@ ActiveRecord::Schema.define(version: 2020_05_18_022638) do
   add_foreign_key "bookshelves", "users"
   add_foreign_key "comments", "microposts"
   add_foreign_key "comments", "users"
-  add_foreign_key "likes", "books"
+  add_foreign_key "likes", "microposts"
   add_foreign_key "likes", "users"
   add_foreign_key "microposts", "books"
   add_foreign_key "microposts", "users"

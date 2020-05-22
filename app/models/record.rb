@@ -6,12 +6,10 @@ class Record < ApplicationRecord
 
   before_save :changehours
 
-  #belongs_to :user
+  belongs_to :user
   belongs_to :bookshelf
 
   def changehours
-    
-    binding.pry
     
     self.summinutes = self.hours + self.minutes / 60
     

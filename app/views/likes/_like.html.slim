@@ -1,11 +1,14 @@
-- if current_user.likebook?(book)
-  = form_for(current_user.likes.find_by(book_id: book.id), html: { method: :delete },remote:true) do |f|
-    = hidden_field_tag :book_id, book.id
-    = f.submit 'お気に入り解除', class:'btn btn-danger'
-
--else
+- if current_user.likepost?(micropost)
+  = form_for(current_user.likes.find_by(micropost_id: micropost.id), html: { method: :delete },remote:true) do |f|
+    = hidden_field_tag :micropost_id, micropost.id
+    = button_tag type:'submit', class: 'btn heart-on' do
+      span.glyphicon.glyphicon-heart aria-hidden="true"
+      = micropost.likes.count 
+- else
   = form_for(current_user.likes.build,remote:true) do |f|
-    = hidden_field_tag :book_id, book.id
-    = f.submit 'お気に入り登録', class:'btn btn-success'
+    = hidden_field_tag :micropost_id, micropost.id
+    = button_tag type:'submit', class: 'btn heart-off' do
+      span.glyphicon.glyphicon-heart-empty aria-hidden="true"
+      = micropost.likes.count
 
 
