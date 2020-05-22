@@ -8,8 +8,4 @@
     = hidden_field_tag :book_id, book.id
     = f.submit 'お気に入り登録', class:'btn btn-success'
 
-.good.text-center
-  span.glyphicon.glyphicon-thumbs-up aria-hidden="true"
-  =book.likes.size
-  -if admin?
-    = link_to "delete",  book_path(book),method: :delete
+

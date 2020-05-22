@@ -9,21 +9,12 @@ class BooksController < ApplicationController
   def index
     
     @q = Book.ransack(params[:q])
-    @books = @q.result.order(created_at: :desc)
-                      .includes(:microposts,:likes)
-                      .page(params[:page]).per(12)
-                      
-               
-            
-               
+    @books = @q.result.order(created_at: :desc).includes(:microposts,:likes).page(params[:page]).per(12)       
     @bookshelf = Bookshelf.new
   end
 
   def new
     require 'rakuten_web_service'
-    array = %w[重松清 宮部みゆき 池井戸潤]
-
-    randauthor = array[rand(array.length)]
 
     params[:page] = 1 if params[:page].nil?
 
@@ -37,12 +28,12 @@ class BooksController < ApplicationController
             elsif params[:author].present?
               RakutenWebService::Books::Book.search(author: params[:author], hits: 12,
                                                     page: params[:page])
-            else
-              RakutenWebService::Books::Book.search(author: randauthor, hits: 12,
-                                                    page: params[:page])
             end
-
-    makearray(books)
+    if books.present?
+      makearray(books)
+    else @books = Book.all.includes(:microposts,:bookshelves).page(params[:page]).per(12)
+    end
+          
     @bookshelf = Bookshelf.new
   end
 
@@ -61,15 +52,8 @@ class BooksController < ApplicationController
   end
 
   def create
-    @book = Book.find_or_initialize_by(isbn: params[:isbn])
-
-    return if @book.persisted?
-
-    results = RakutenWebService::Books::Book.search(isbn: @book.isbn)
-    @book = Book.new(read(results.first))
-
+    createbook(params[:isbn])
     if @book.save
-      flash[:success] = '書籍を登録しました'
       redirect_to book_url(@book)
     else
       flash[:danger] = '書籍の登録に失敗しました'

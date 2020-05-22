@@ -1,13 +1,20 @@
 class BookshelvesController < ApplicationController
-  before_action :correct_user, only: %i[edit update destroy]
+  before_action :correct_user, only: %i[edit update destroy]  
   def create
-    @bookshelf = current_user.bookshelves.build(bookshelf_params)
-
-    if @bookshelf.save 
-      flash[:success] = '本棚への追加が完了しました'
-      redirect_to bookshelves_user_path(current_user)
-
+    if params[:bookshelf][:book_id].empty?
+      createbook(params[:isbn])
+      @book.save
+      @bookshelf = current_user.bookshelves.build(bookshelf_params)
+      @bookshelf.book_id = @book.id
+    else
+      @bookshelf = current_user.bookshelves.build(bookshelf_params)
     end
+      
+      if @bookshelf.save 
+        flash[:success] = '本棚への追加が完了しました'
+        redirect_to bookshelves_user_path(current_user)
+      end
+    
     
   end
 

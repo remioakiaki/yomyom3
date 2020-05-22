@@ -1,0 +1,12 @@
+- provide(:title, '書籍検索')
+
+.search
+  = form_with url: new_book_path,method: :get,local: true do |f|
+    = f.text_field :title, placeholder: "タイトルを入力", class: 'form-control'
+    = f.text_field :author, placeholder: "作者で検索", class: 'form-control'
+    .btn-parent
+      = f.submit "書籍を検索", class: "btn btn-primary"
+
+  -if @books.present?
+    = render 'book', books: @books
+    = paginate @books

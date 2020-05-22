@@ -34,11 +34,11 @@ nav.navbar
                          = current_user.followers.count
                   li = link_to "ログアウト",logout_path, method: :delete
             li.nav-item = link_to new_book_path do
-                          span.glyphicon.glyphicon-plus aria-hidden="true"  
-                          |  書籍登録
-            li.nav-item = link_to books_path do
                           span.glyphicon.glyphicon-book aria-hidden="true"  
-                          |  書籍検索
+                          |  書籍一覧
+            / li.nav-item = link_to books_path do
+            /               span.glyphicon.glyphicon-book aria-hidden="true"  
+            /               |  書籍検索
             li.nav-item = link_to users_path do
                           span.glyphicon.glyphicon-user aria-hidden="true"  
                           |  ユーザー検索 
