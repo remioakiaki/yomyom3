@@ -25,7 +25,7 @@ class User < ApplicationRecord
 
   # お気に入り
   has_many :likes, dependent: :destroy
-  has_many :likebooks, through: :likes, source: :book
+  has_many :likeposts, through: :likes, source: :micropost
   # # コメント
   has_many :comments
   
@@ -35,11 +35,11 @@ class User < ApplicationRecord
 
   has_many :records, dependent: :destroy
 
-  #本棚追加
-  def addbksh(bookshelf)
+  # #本棚追加
+  # def addbksh(bookshelf)
     
-    mybksh << bookshelf
-  end
+  #   mybksh << bookshelf
+  # end
 
   #本棚存在確認
   def chbksh?(book)
@@ -47,19 +47,19 @@ class User < ApplicationRecord
   end
 
   # お気に入り追加
-  def like(book)
-    likebooks << book
+  def like(micropost)
+    likeposts << micropost
   end
 
   # お気に入り削除
-  def notlike(book)
-    like = likes.find_by(book_id: book.id)
+  def notlike(micropost)
+    like = likes.find_by(micropost_id: micropost.id)
     like.destroy
   end
 
   # お気に入り登録判定
-  def likebook?(book)
-    likebooks.include?(book)
+  def likepost?(micropost)
+    likeposts.include?(micropost)
   end
 
   def self.digest(string)
@@ -106,12 +106,12 @@ class User < ApplicationRecord
     following.include?(other_user)
   end
 
-  # # 必要な投稿を取得
-  def feed
-    Micropost.where("user_id IN (:following_ids)
-     OR user_id     =   :user_id",
-                    following_ids: following_ids, user_id: id).includes([:user])
-  end
+  # # # 必要な投稿を取得
+  # def feed
+  #   Micropost.where("user_id IN (:following_ids)
+  #    OR user_id     =   :user_id",
+  #                   following_ids: following_ids, user_id: id).includes([:user])
+  # end
 
   private
 

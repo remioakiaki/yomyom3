@@ -32,11 +32,7 @@
               
           .record
             -if logged_in? 
-              -if current_user.chbksh?(book)
-                .record
-                  = link_to '記録を追加', new_record_path, class:'btn btn-info',remote:true
-                  div#newmodal class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"
-              -else
+              -unless current_user.chbksh?(book)
                 = form_with(model:@bookshelf, local:true) do |f|
                   = f.hidden_field :book_id, value: book.id
                   = hidden_field_tag :isbn, book['isbn']

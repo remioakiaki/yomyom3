@@ -8,9 +8,9 @@ class BooksController < ApplicationController
   
   def index
     
-    @q = Book.ransack(params[:q])
-    @books = @q.result.order(created_at: :desc).includes(:microposts,:likes).page(params[:page]).per(12)       
-    @bookshelf = Bookshelf.new
+    # @q = Book.ransack(params[:q])
+    # @books = @q.result.order(created_at: :desc).includes(:microposts,:likes).page(params[:page]).per(12)       
+    # @bookshelf = Bookshelf.new
   end
 
   def new
@@ -33,7 +33,6 @@ class BooksController < ApplicationController
       makearray(books)
     else @books = Book.all.includes(:microposts,:bookshelves).page(params[:page]).per(12)
     end
-          
     @bookshelf = Bookshelf.new
   end
 
@@ -74,7 +73,7 @@ class BooksController < ApplicationController
   end
 
   def ranking
-    @ranking_counts = Like.ranking
+    @ranking_counts = Bookshelf.ranking
     @books = Book.find(@ranking_counts.keys)
   end
 

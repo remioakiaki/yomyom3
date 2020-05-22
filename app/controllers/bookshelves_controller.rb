@@ -44,7 +44,6 @@ class BookshelvesController < ApplicationController
 
   private
   def bookshelf_params
-    #params.permit(:user_id, :book_id, :status_id, :category_id)
     params.require(:bookshelf).permit(:user_id, :book_id, :status_id, :category_id)
   end
   def correct_user

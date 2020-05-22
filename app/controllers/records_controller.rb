@@ -1,15 +1,10 @@
 class RecordsController < ApplicationController
   def create
     
-
-    
-    @record =  Record.new(record_params)
-    # @record.hours = params[:record]["hours(4i)"]
-    # @record.minutes = params[:record]["hours(5i)"]
-
-
+    @record = current_user.records.build(record_params)
     @bookshelf = Bookshelf.find(params[:bookshelf_id])
     @record.bookshelf_id = @bookshelf.id
+    
 
     if @record.save 
       flash[:success] = '記録が完了しました'
@@ -33,23 +28,7 @@ class RecordsController < ApplicationController
     
   end
   def update
-    @record = Record.find(params[:id])
-    # @record.hours = params[:record]["hours(4i)"]
-    # @record.minutes = params[:record]["hours(5i)"]
-    
-    #params[:record]["hours"] =  params[:record]["hours(4i)"].to_i
-    #params[:record]["minutes"] =  37
-    #params[:record]["minutes"] =  params[:record]["hours(5i)"].to_i
-    
-    
-    
-    #@record.assign_attributes({ yyyymmdd: params[:yyyymmdd], hours: params[:hours],minutes: params[:minutes]})
-    
-    #if @record.save
-    
-    
-    
-    
+    @record = Record.find(params[:id])    
     if @record.update!(record_params)
       flash[:success] = '編集が完了しました'
       redirect_back(fallback_location: root_path)
@@ -65,6 +44,6 @@ class RecordsController < ApplicationController
     private
 
     def record_params
-      params.require(:record).permit(:hours, :minutes,:yyyymmdd,:page_amount,:memo)
+      params.require(:record).permit(:hours, :minutes,:yyyymmdd,:page_amount,:memo,:user_id,:bookshelf_id)
     end
 end
