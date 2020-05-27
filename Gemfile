@@ -50,11 +50,15 @@ gem 'rails-i18n', '~> 5.1'
 gem 'rakuten_web_service'
 gem 'ransack'
 gem "actionview", ">= 5.2.4.2"
-gem 'chartkick'
-gem 'groupdate'
+# gem 'chartkick'
+# gem 'groupdate'
 gem 'chart-js-rails', '~> 0.1.4'
 gem 'counter_culture', '~> 1.0'
-gem 'gon'
+# gem 'gon'
+gem "activesupport", ">= 5.2.4.3"
+gem "actionpack", ">= 5.2.4.3"
+gem "activestorage", ">= 5.2.4.3"
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
