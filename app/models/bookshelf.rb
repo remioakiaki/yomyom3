@@ -1,6 +1,7 @@
 class Bookshelf < ApplicationRecord
   belongs_to :user
   belongs_to :book
+  counter_culture :book
   belongs_to :status
   belongs_to :category
 

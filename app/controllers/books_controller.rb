@@ -31,7 +31,7 @@ class BooksController < ApplicationController
             end
     if books.present?
       makearray(books)
-    else @books = Book.all.includes(:microposts,:bookshelves).page(params[:page]).per(12)
+    else @books = Book.all.page(params[:page]).per(12)
     end
     @bookshelf = Bookshelf.new
   end

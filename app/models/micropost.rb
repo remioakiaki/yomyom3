@@ -11,12 +11,22 @@ class Micropost < ApplicationRecord
   belongs_to :user
   default_scope -> { order(updated_at: :desc) }
   belongs_to :book
-
+  counter_culture :book
   mount_uploaders :pictures, ImagesUploader
   validate :picture_size
 
   has_many :likes, dependent: :destroy
   has_many :comments, dependent: :destroy
+
+  after_save :avgrate
+   
+  def avgrate
+    book = Book.find(self.book_id)
+    book.avg_rate = book.microposts.average(:rate)
+    book.save
+    
+    
+  end
 
   private
 

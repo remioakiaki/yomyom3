@@ -23,15 +23,15 @@
                   path: '/assets/',
                   half: true,
                   readOnly: true,
-                  score: #{book.microposts.average(:rate).to_f.round(1)}
+                  score: #{book.avg_rate}
                 });
             -else
               - 5.times do
                 = image_tag "/assets/star-off.png"
                 = " "
           .review
-            ="（本棚:#{book.bookshelves.size}件）"
-            ="（レビュー#{book.microposts.size}件）"
+            ="（本棚:#{book.bookshelves_count}件）"
+            ="（レビュー#{book.microposts_count}件）"
               
           .add_bookshelf
             -if logged_in? 
