@@ -1,12 +1,16 @@
 // Place all the styles related to the Records controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
- .btn-info{
-   width:100%;
- }
+//  .btn-info{
+//    width:100%;
+//  }
 
  .record{
    height: 50px;
+   .btn{
+     width:49%;
+     margin: 0px 1px;
+   }
  }
 
  //_record
@@ -63,6 +67,9 @@
     width:50px;
     
   }
+  .btn{
+    width:100%;
+  }
  }
 
  #record_memo_4i{
@@ -87,5 +94,94 @@
     width: 100%;
     margin: 0 auto;
   }
+}
+
+//グラフ
+.chart-container{
+  position:relative;
+  width:55vw;
+  height:70vh;
+  margin:0 auto;
+}
+
+.st_container{
+  position:relative;
+  width:35vw;
+  height:38vh;
+  display: inline-block;
+  margin: 15px 25px;
+  
+}
+
+.cate_container{
+  position:relative;
+  display: inline-block;
+    width:35vw;
+  height:38vh;
+  
+  margin: 15px 25px;
+  
+}
+@media screen and (max-width:480px){
+  .chart-container{
+    position:relative;
+    width: 78vw;
+    height: 55vh;
+    margin:0 auto;
+  }
+  .cate_container {
+   display:block;
+    width: 100%;
+    margin: 0 auto;
+    margin: 10px 0px;
+  }
+  .st_container {
+    display:block;
+     width: 100%;
+     margin: 0 auto;
+     margin: 10px 0px;
+   }
+}
+
+.st_count{
+  position: absolute;
+  top: 0;
+  left: -95px;
+  margin: auto;
+  right: 0;
+  margin: auto;
+  text-align: center;
+  top: 57%;
+  -webkit-transform: translateY(-50%);
+  transform: translateY(-50%);
+  font-size: 31px;
+
+
+}
+
+.cate_count{
+  position: absolute;
+  top: 0;
+  left: -128px;
+  margin: auto;
+  right: 0;
+  margin: auto;
+  text-align: center;
+  top: 57%;
+  -webkit-transform: translateY(-50%);
+  transform: translateY(-50%);
+  font-size: 31px;
+
+
+}
+
+.graph_all{
+  background-color:#FFF;
+  margin-bottom:15px;
+  border: 1px solid #ddd;
+}
+
+.graph_st_cate{
+  text-align:center;
 }
 

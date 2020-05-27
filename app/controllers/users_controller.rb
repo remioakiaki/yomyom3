@@ -67,7 +67,16 @@ class UsersController < ApplicationController
 
   def records
     @user = User.find(params[:id])
-    @records = Record.eager_load(bookshelf: :user).eager_load(bookshelf: :book).where(bookshelves:{user_id:[@user.id]})  
+    @records = Record.eager_load(bookshelf: :user)
+                     .eager_load(bookshelf: :book)
+                     .where(bookshelves:{user_id:@user.id})  
+    createvar(@user.id)
+
+    createpie('status',@user.id)
+    createpie('category',@user.id)
+    
+    
+    
     render :show_records
   end
 
@@ -111,4 +120,36 @@ class UsersController < ApplicationController
     flash[:danger] = 'テストユーザーでこの操作はできません'
     redirect_back(fallback_location: root_path)
   end
+
+  def createvar(user_id)
+    #棒グラフのラベルを取得
+    @var_labels = [*6.days.ago.to_date..Time.zone.today]
+    hash = (6.days.ago.to_date..Time.zone.today).map {|day| [day,0]}.to_h
+    #カテゴリーの数だけ繰り返し実施
+    @r1, @r2, @r3, @r4, @r5, @r6 = (1..6).map do |i|
+      datahash = Record.reorder(nil).eager_load(bookshelf: :category).where(yyyymmdd:(6.days.ago.to_date)..(Time.zone.today)).where("categories.id=#{i} and records.user_id = #{user_id}").group("records.yyyymmdd").order("categories.id").sum(:summinutes)
+                                                          
+      hash.merge(datahash).values
+      
+    end
+
+    
+  end
+  
+    def createpie(string,user_id)
+      strings = string.pluralize
+      
+      record = Bookshelf.eager_load(string)
+                        .where("bookshelves.user_id = #{user_id}")
+                        .group("#{strings}.id,#{strings}.name")
+                        .order("#{strings}_id").count
+      
+      if string == 'status'
+        @pie_st_labels = record.keys
+        @pie_st_values = record.values
+      else
+        @pie_cate_labels = record.keys
+        @pie_cate_values = record.values
+      end  
+    end
 end

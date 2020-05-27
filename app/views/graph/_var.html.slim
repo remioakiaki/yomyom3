@@ -1,0 +1,75 @@
+.chart-container
+  canvas#graph_var 
+
+javascript:
+    var ctx = document.getElementById("graph_var").getContext('2d');
+        // ctx.canvas.height = 450;
+        // ctx.canvas.width = 800;
+
+    var myChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            
+            labels:#{@var_labels.to_json.html_safe} ,
+            datasets: [
+                {
+                label:"カテゴリなし",
+                data:#{@r1} ,
+                backgroundColor: '#ebebeb'
+            },
+                {
+                label:"小説",
+                data:#{@r2},
+                backgroundColor: '#ff8484'
+            },
+                {
+                label:"ビジネス",
+                data:#{@r3},
+                backgroundColor: 'rgba(102, 127, 255, 0.859)'
+            },
+                {
+                label:"自己啓発",
+                data:#{@r4},
+                backgroundColor: 'rgba(255, 181, 102, 0.859)'
+            },
+            {
+                label:"資格",
+                data:#{@r5},
+                backgroundColor: 'rgba(175, 244, 141, 0.776)'
+            },
+            {
+                label:"IT",
+                data:#{@r6},
+                backgroundColor:'rgba(141, 218, 244, 0.776)'
+            }
+
+            ]
+        },
+            options: {
+            scales: {
+                xAxes: [{
+                    stacked: true,
+                    barPercentage: 0.5,
+                    
+                }],
+                yAxes: [{
+                    stacked: true
+                }]
+            },
+          title:{
+              display:true,
+              text:"１週間のカテゴリ別読書時間",
+              fontSize:24
+          },
+          legend:{
+              
+              display:true,
+              position:"top"
+          },
+            maintainAspectRatio: false,
+            resposive:true
+            
+
+        }
+
+    });

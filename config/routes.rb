@@ -14,7 +14,7 @@ Rails.application.routes.draw do
       get :following, :followers, :likes, :goods, :bookshelves,:records
     end
   end
-  resources :microposts, only: %i[create destroy edit update index] do
+  resources :microposts, only: %i[new create destroy edit update index] do
     resources :comments, only: %i[create index]
     resources :books, only: %i[create]
   end
@@ -28,7 +28,7 @@ Rails.application.routes.draw do
     resources :records
   end
 
-
+  resources :likes
   resources :statuses
   resources :records
   resources :bookshelves

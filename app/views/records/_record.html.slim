@@ -23,8 +23,10 @@
         .balloon1-left
           b=record.bookshelf.book.title
           .record_h_m
-            - if record.hours?
-              ="#{record.hours.to_i}時間 #{record.minutes.to_i} 分"
+            - if record.hours? && record.minutes?
+              ="#{record.hours}時間 #{record.minutes} 分"
+            -elsif record.hours?
+              ="#{record.hours} 時間"
             -else
               ="#{record.minutes} 分"
           .record_pa

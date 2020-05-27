@@ -1,4 +1,3 @@
-
  -content_for :cover do
   .maintitle
     h1 
@@ -19,13 +18,3 @@
   =render @microposts
   .edit-btn.text-center
     = link_to '新しい投稿ををもっとみる', microposts_path, class:'btn btn-warning'
-
-
-
-
-  = javascript_include_tag "//www.google.com/jsapi", "chartkick"
-  = javascript_include_tag '//code.highcharts.com/highcharts.js', 'chartkick'
-  = pie_chart Bookshelf.eager_load(:book,:status,:category).group("categories.name").count
- = column_chart @r
-  
-

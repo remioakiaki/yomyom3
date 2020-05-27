@@ -9,7 +9,7 @@
           =render 'shared/error_messages', object: f.object
           
           =f.label :日付
-          =f.date_field :yyyymmdd,value: Time.now.strftime("%Y-%m-%d"), class:'form-control'
+          =f.date_field :yyyymmdd,value: (object2.yyyymmdd || Time.now.strftime("%Y-%m-%d")), class:'form-control'
           =f.label :時間
           .time_select
             =f.select :hours,[[0,0],[1,1],[2,2],[3,3],[4,4],[5,5],[6,6],[7,7],[8,8],[9,9],[10,10]]
