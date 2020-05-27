@@ -35,7 +35,18 @@
     text-align: center;
 
   }
-
+//吹き出し
+.balloon1-left {
+  //position: relative;
+  padding: 8px 8px;
+  //margin:5px 0px;
+  width:100%;
+  //min-width: 120px;
+  //max-width: 100%;
+  color: #555;
+  background: #e0edff;
+  border-radius: 15px;
+}
 }
 
 .search1{
@@ -50,18 +61,7 @@
   text-align:right;
 }
 
-//吹き出し
-.balloon1-left {
-  //position: relative;
-  padding: 8px 8px;
-  //margin:5px 0px;
-  width:100%;
-  //min-width: 120px;
-  //max-width: 100%;
-  color: #555;
-  background: #e0edff;
-  border-radius: 15px;
-}
+
 
 //本の画像
 .book-image{
@@ -82,4 +82,19 @@
 
 .new_micropost{
   font-size:16px
+}
+
+.pos-name{
+  margin-top: 20px;
+}
+
+.pos-menu{
+  margin-top:20px;
+}
+
+.pos-col {
+  height: 180px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

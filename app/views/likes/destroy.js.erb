@@ -1,1 +1,1 @@
-$('.add_<%= @book.id %>').html("<%= j(render 'likes/like', book: @book) %>");
+$('#likes_buttons_<%= @micropost.id %>').html("<%= j(render 'likes/like', micropost: @micropost) %>");

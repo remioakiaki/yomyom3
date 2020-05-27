@@ -1,0 +1,54 @@
+.cate_container
+  .cate_count 
+    |合計<br>
+    =@pie_cate_values.sum
+  canvas#graph_cate
+javascript:
+  var ctx = document.getElementById("graph_cate").getContext('2d');
+      //ctx.canvas.height = 331;
+  var myChart = new Chart(ctx, {
+      type: 'doughnut',
+      data: {
+          labels:#{@pie_cate_labels.to_json.html_safe},
+          datasets: [{
+              label: "登録数",
+              data:#{@pie_cate_values},
+              backgroundColor: [
+                  '#ebebeb',
+                  '#ff8484',
+                  'rgba(102, 127, 255, 0.859)',
+                  'rgba(255, 181, 102, 0.859)',
+                  'rgba(175, 244, 141, 0.776)',
+                  'rgba(141, 218, 244, 0.776)'
+
+              ],
+              borderColor: [
+                  '#ebebeb',
+                  '#ff8484',
+                  'rgba(102, 127, 255, 0.859)',
+                  'rgba(255, 181, 102, 0.859)',
+                  'rgba(175, 244, 141, 0.776)',
+                  'rgba(141, 218, 244, 0.776)'
+
+              ],
+              
+              fill: true
+          }]
+      },
+      options: {
+          title:  {
+            display: true,
+            text: "カテゴリー",
+            position: 'top',
+            fontSize: 18,
+            padding:10
+          },
+          legend:{
+              position:"right"
+          },
+          responsive: true,
+          maintainAspectRatio: false
+
+      
+      }
+  });

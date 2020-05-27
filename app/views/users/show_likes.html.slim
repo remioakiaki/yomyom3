@@ -1,3 +1,5 @@
+- provide(:title, 'お気に入り一覧')
+
 = render 'users/profile', user:@user
 = render 'users/tab', user:@user
-= render 'books/book', books: @books
+= render @microposts

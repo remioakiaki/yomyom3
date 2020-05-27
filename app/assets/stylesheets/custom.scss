@@ -12,6 +12,7 @@ $gray-medium-light: #eaeaea;
 
 body{
   background: #f7f7f7;
+  font-family: 'ヒラギノ丸ゴ ProN', 'Hiragino Maru Gothic ProN';
 }
 
 
@@ -127,9 +128,9 @@ input, textarea, select, .uneditable-input {
   @include box_sizing;
 }
 
-input {
-  height: auto !important;
-}
+// input {
+//   //height: auto !important;
+// }
 
 .checkbox {
   margin-top: -10px;

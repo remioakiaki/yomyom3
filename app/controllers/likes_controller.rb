@@ -2,20 +2,20 @@
 
 class LikesController < ApplicationController
   def create
-    @book = Book.find(params[:book_id])
-    current_user.like(@book)
-    @book.reload
+    @micropost = Micropost.find(params[:micropost_id])
+    current_user.like(@micropost)
+    @micropost.reload
   end
 
   def destroy
-    @book = Book.find(params[:book_id])
-    current_user.notlike(@book)
-    @book.reload
+    @micropost = Micropost.find(params[:micropost_id])
+    current_user.notlike(@micropost)
+    @micropost.reload
   end
 
   private
 
   def like_params
-    params.permit(:user_id, :book_id)
+    params.permit(:user_id, :micropost_id)
   end
 end

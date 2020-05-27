@@ -1,66 +1,38 @@
-.post
-  .row
-    .col-sm-2.col-xs-5
-      .prof
-        = image_tag record.user.picture.url,:size =>'50x50', :class => "img-circle"
-        = link_to user_path(record.user) do
-          = record.user.name
-      //編集フォーム、削除 
-      .menu1
-        -if logged_in? && current_user?(record.user)
-            .btn-group role="group"
-              = link_to edit_record_path(record),class: "btn btn-default micropost_edit_#{record.id}",remote:true do
-                span.glyphicon.glyphicon-pencil aria-hidden="true"
-              = link_to record, method: :delete,class: "btn btn-default micropost_delete_#{record.id}" do
-                span.glyphicon.glyphicon-trash aria-hidden="true"
-            div#editmodal class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"
-
-    .col-sm-2.col-xs-7
-      .book-image
-        = image_tag record.bookshelf.image_url
-    / .col-sm-8.col-xs-12
-    /   .content
-    /     .balloon1-left
-    /       -if record.title.present?
-    /         b= record.title
-    /       p= record.content
-  / .row
-  /   -if record.pictures.present?
-  /     .col-sm-10.col-sm-offset-2.pic-parent
-  /       -record.pictures.each do |p|
-  /         .col-sm-3.text-center
-  /           =image_tag p.url
-
-  / .row
-  /   .col-sm-10.col-sm-offset-2
-  /     div class="comment comment_form_#{record.id}" id="comment" 
-  /       div class="slide slide_#{record.id}" value="#{record.id}" style="height:#{comment_height(record.comments.count)}px"
-  /       div class="form form_#{record.id}"
-
-        //コメントフォームの表示、非表示、いいね
-      / .menu2
-      /   - if logged_in?
-      /     = link_to micropost_comments_path(record.id),id:"opnbtn",class:"btn btn-opn_#{record.id}",remote: true  do
-      /       span.glyphicon.glyphicon-comment aria-hidden="true" 
-            
-      /     div class="btn btn-cls_#{record.id}" value="#{record.id}" id="clsbtn"
-      /       span.glyphicon.glyphicon-remove aria-hidden="true"
-
-      /     /div id="likes_buttons_#{record.id}" class="like"
-      /       = render 'likes/like', record: record
-
-      / .menu3
-      /   div id="star-rate_#{record.id}"
-      /     javascript:
-      /       $("#star-rate_#{record.id}").raty({
-      /         path: '/assets/',
-
-      /         readOnly: true,
-      /         score: #{record.rate}
-      /       });
-        
-
-
-
-
-            
+-@records.each do |record|
+  .rec
+    .row
+      .col-sm-3.col-xs-5.text-center.rec-col
+        .rec-usr-menu
+          .rec-img
+            = image_tag record.bookshelf.user.picture.url,:size =>'50x50', :class => "img-circle"
+          .rec-name  
+            = link_to user_path(record.bookshelf.user) do
+              = record.bookshelf.user.name
+          .rec-menu
+            -if logged_in? && current_user?(record.bookshelf.user)
+                .btn-group role="group"
+                  = link_to edit_bookshelf_record_path(record.bookshelf, record),class: "btn btn-default micropost_edit_#{record.id}",remote:true do
+                    span.glyphicon.glyphicon-pencil aria-hidden="true"
+                  = link_to record_path(record), method: :delete,class: "btn btn-default record_delete_#{record.id}" do
+                    span.glyphicon.glyphicon-trash aria-hidden="true"
+      div#newmodal class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"
+      .col-sm-3.col-xs-6.rec-col
+        .book-image
+          = image_tag record.bookshelf.book.image_url
+      .col-sm-5.col-xs-10.col-xs-offset-1.col-sm-offset-0.rec-col
+        .balloon1-left
+          b=record.bookshelf.book.title
+          .record_h_m
+            - if record.hours? && record.minutes?
+              ="#{record.hours}時間 #{record.minutes} 分"
+            -elsif record.hours?
+              ="#{record.hours} 時間"
+            -else
+              ="#{record.minutes} 分"
+          .record_pa
+           -unless record.page_amount.nil? 
+             ="#{record.page_amount}ページ"
+          -unless record.memo.nil?
+             =record.memo
+          .record_date
+            =I18n.l(record.yyyymmdd)

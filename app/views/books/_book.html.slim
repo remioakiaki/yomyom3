@@ -4,47 +4,47 @@
       .row-eq-height
         .col-sm-3
           .title
-            -if book.persisted?
-              = link_to book_path(book) do
-                p= book.title  
-            -else
-              p= book.title
+            p= book.title
           .image.text-center
             = image_tag book.image_url
           .author
             p= book.author
           .publisher
-            p= book.publishername
+            p
+             = book.publishername
+             -if logged_in? && admin? && book.persisted?
+               = link_to "delete",  book_path(book),method: :delete
 
           .star-average
             -if book.persisted?
               div id="star-rate_#{book.id}"
-                javascript:
-                  $("#star-rate_#{book.id}").raty({
-                    path: '/assets/',
-                    half: true,
-                    readOnly: true,
-                    score: #{book.microposts.average(:rate).to_f.round(1)}
-                  });
-              .record
-                ="（レビュー#{book.microposts.size}件）"
-
-          .record
+              javascript:
+                $("#star-rate_#{book.id}").raty({
+                  path: '/assets/',
+                  half: true,
+                  readOnly: true,
+                  score: #{book.microposts.average(:rate).to_f.round(1)}
+                });
+            -else
+              - 5.times do
+                = image_tag "/assets/star-off.png"
+                = " "
+          .review
+            ="（本棚:#{book.bookshelves.size}件）"
+            ="（レビュー#{book.microposts.size}件）"
+              
+          .add_bookshelf
             -if logged_in? 
-              -if current_user.chbksh?(book)
-                .record
-                  = link_to '記録を追加', new_record_path, class:'btn btn-info',remote:true
-                  div#newmodal class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"
-              -else
+              -unless current_user.chbksh?(book)
                 = form_with(model:@bookshelf, local:true) do |f|
                   = f.hidden_field :book_id, value: book.id
+                  = hidden_field_tag :isbn, book['isbn']
                   = f.submit '本棚追加', class:'btn btn-primary'
-              
           div class="add add_#{book.id}"
             -if logged_in?
               -if book.persisted?
-                =render 'likes/like', book: book
-              -else
+                = link_to "レビューを投稿", book_path(book),class:'btn btn-success'
+              -else    
                 = form_with(model:@book,local:true,url:books_path) do |f|
                   = hidden_field_tag :isbn, book['isbn']
-                  = f.submit '新規書籍追加', class:'btn btn-primary'
+                  = f.submit 'レビューを投稿', class:'btn btn-success'

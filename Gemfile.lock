@@ -44,6 +44,9 @@ GEM
       tzinfo (~> 1.1)
     addressable (2.7.0)
       public_suffix (>= 2.0.2, < 5.0)
+    after_commit_action (1.1.0)
+      activerecord (>= 3.0.0)
+      activesupport (>= 3.0.0)
     arel (9.0.0)
     ast (2.4.0)
     autoprefixer-rails (9.7.6)
@@ -57,6 +60,9 @@ GEM
       sassc (>= 2.0.0)
     bootstrap-toggle-rails (2.2.1.0)
     builder (3.2.4)
+    bullet (6.1.0)
+      activesupport (>= 3.0.0)
+      uniform_notifier (~> 1.11)
     byebug (11.1.3)
     capybara (3.32.1)
       addressable
@@ -73,6 +79,9 @@ GEM
       image_processing (~> 1.1)
       mimemagic (>= 0.3.0)
       mini_mime (>= 0.1.3)
+    chart-js-rails (0.1.7)
+      railties (> 3.1)
+    chartkick (3.3.1)
     childprocess (3.0.0)
     coderay (1.1.2)
     coffee-rails (4.2.2)
@@ -83,6 +92,10 @@ GEM
       execjs
     coffee-script-source (1.12.2)
     concurrent-ruby (1.1.6)
+    counter_culture (1.12.0)
+      activerecord (>= 3.0.0)
+      activesupport (>= 3.0.0)
+      after_commit_action (~> 1.0)
     crass (1.0.6)
     diff-lcs (1.3)
     erubi (1.9.0)
@@ -113,6 +126,13 @@ GEM
     formatador (0.2.5)
     globalid (0.4.2)
       activesupport (>= 4.2.0)
+    gon (6.3.2)
+      actionpack (>= 3.0.20)
+      i18n (>= 0.7)
+      multi_json
+      request_store (>= 1.0)
+    groupdate (5.0.0)
+      activesupport (>= 5)
     i18n (1.8.2)
       concurrent-ruby (~> 1.0)
     image_processing (1.10.3)
@@ -222,6 +242,8 @@ GEM
     rb-inotify (0.10.1)
       ffi (~> 1.0)
     regexp_parser (1.7.0)
+    request_store (1.5.0)
+      rack (>= 1.4)
     rexml (3.2.4)
     rspec-core (3.9.2)
       rspec-support (~> 3.9.3)
@@ -299,6 +321,7 @@ GEM
     uglifier (4.2.0)
       execjs (>= 0.3.0, < 3)
     unicode-display_width (1.7.0)
+    uniform_notifier (1.13.0)
     web-console (3.7.0)
       actionview (>= 5.0)
       activemodel (>= 5.0)
@@ -323,12 +346,18 @@ DEPENDENCIES
   bootsnap (>= 1.1.0)
   bootstrap-sass (= 3.4.1)
   bootstrap-toggle-rails
+  bullet
   byebug
   capybara
   carrierwave
+  chart-js-rails (~> 0.1.4)
+  chartkick
   coffee-rails (~> 4.2)
+  counter_culture (~> 1.0)
   factory_bot_rails
   fog-aws
+  gon
+  groupdate
   jbuilder (~> 2.5)
   jquery-rails
   kaminari

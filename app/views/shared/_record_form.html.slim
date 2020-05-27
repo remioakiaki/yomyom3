@@ -1,16 +1,26 @@
-=form_with model: object,local: :true do |f|
-    = render 'shared/error_messages', object: f.object
-    /=f.label :title, 'タイトル'
-    /=f.text_field :title,placeholder:"タイトルを入力"
-    /=f.label :content, 'コメント'
-    / =f.text_area :content,placeholder:"コメントを入力"
-    /= hidden_field_tag :bookshelf_id,@bookshelf.id
-    / = f.hidden_field :rate , class: :book_rating
-    / = f.label :pictures, "画像を追加"
-    / = f.file_field :pictures, class:'btn btn-default', :multiple => true
-    =f.label :時間
-    =f.number_field :hours, placeholder:"時間を入力" 
-    =f.label :分
-    =f.number_field :minutes,placeholder:"分を入力"
-    .btn-parent
-    =f.submit btnname, class: "comu btn btn-primary"
+.edit-form.record
+  .modal-daialog
+    .modal-content
+      .modal-header
+        .modal-title
+        = title
+      .modal-body
+        =form_with model: [object1,object2],local: :true do |f|
+          =render 'shared/error_messages', object: f.object
+          
+          =f.label :日付
+          =f.date_field :yyyymmdd,value: (object2.yyyymmdd || Time.now.strftime("%Y-%m-%d")), class:'form-control'
+          =f.label :時間
+          .time_select
+            =f.select :hours,[[0,0],[1,1],[2,2],[3,3],[4,4],[5,5],[6,6],[7,7],[8,8],[9,9],[10,10]]
+            | ： 
+            =f.select :minutes,[[0,0],[5,5],[10,10],[15,15],[20,20],[25,25],[30,30],[35,35],[40,40],[45,45],[50,50],[55,55]]
+          =f.label  :ページ量
+          =f.number_field :page_amount
+          =f.label :メモ
+          =f.text_area :memo, placeholder:"メモを入力"        
+          .btn-parent
+            =f.submit btn, class: "comu btn btn-primary"
+      .modal-footer
+        button type="button" class="btn btn-default" data-dismiss="modal"
+          |閉じる 

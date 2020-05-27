@@ -1,0 +1,48 @@
+.st_container
+  .st_count 
+    |合計<br>
+    =@pie_st_values.sum
+  canvas#graph_st style="width 400px;"
+javascript:
+  var ctx = document.getElementById("graph_st").getContext('2d');
+      ctx.canvas.height = 331;
+  var myChart = new Chart(ctx, {
+      type: 'doughnut',
+      data: {
+          labels:#{@pie_st_labels.to_json.html_safe},
+          datasets: [{
+              label: "登録数",
+              data:#{@pie_st_values},
+              backgroundColor: [
+                  '#c9c3c3',
+                  '#fcf8e3',
+                  '#ffff9e'
+                  
+
+              ],
+              borderColor: [
+                  '#c9c3c3',
+                  '#fcf8e3',
+                  '#ffff9e'
+                  
+
+              ],
+              fill: true
+          }]
+      },
+      options: {
+          title:  {
+            display: true,
+            text: "ステータス",
+            position: 'top',
+            fontSize: 18,
+            padding:10
+          },
+          legend:{
+              position:"right"
+          },
+          responsive: true,
+          maintainAspectRatio: false
+      
+      }
+  });
