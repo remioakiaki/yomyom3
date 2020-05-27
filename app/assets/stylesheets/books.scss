@@ -8,7 +8,7 @@
   
     border: 1px solid #ddd;
     padding:5px 5px 5px 5px;
-    height:500px;
+    height: 460px;
 
   }
   .title{
@@ -37,9 +37,7 @@
   }
   .add{
     height:50px;
-    .btn{
-      width:100%;
-    }
+
   }
   .good{
     height:30px;
@@ -47,7 +45,13 @@
       font-size:18px;
     }
   }
-
+  .btn{
+    width:100%;
+    margin-bottom: 10px;
+  }
+  .add_bookshelf{
+    height:42px;
+  }
 }
 
 table{

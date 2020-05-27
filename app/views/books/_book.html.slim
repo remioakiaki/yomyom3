@@ -10,7 +10,10 @@
           .author
             p= book.author
           .publisher
-            p= book.publishername
+            p
+             = book.publishername
+             -if logged_in? && admin? && book.persisted?
+               = link_to "delete",  book_path(book),method: :delete
 
           .star-average
             -if book.persisted?
@@ -30,7 +33,7 @@
             ="（本棚:#{book.bookshelves.size}件）"
             ="（レビュー#{book.microposts.size}件）"
               
-          .record
+          .add_bookshelf
             -if logged_in? 
               -unless current_user.chbksh?(book)
                 = form_with(model:@bookshelf, local:true) do |f|
@@ -45,7 +48,3 @@
                 = form_with(model:@book,local:true,url:books_path) do |f|
                   = hidden_field_tag :isbn, book['isbn']
                   = f.submit 'レビューを投稿', class:'btn btn-success'
-
-          .delete.text-center
-            -if logged_in? && admin? && book.persisted?
-              = link_to "delete",  book_path(book),method: :delete

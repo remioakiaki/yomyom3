@@ -11,7 +11,7 @@ class Record < ApplicationRecord
 
   def changehours
     
-    self.summinutes = self.hours + self.minutes / 60
-    
+    self.summinutes = hours * 60 + minutes
+    self.summinutes /= 60
   end
 end
