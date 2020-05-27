@@ -48,7 +48,8 @@ class UsersController < ApplicationController
 
   def bookshelves
     @user = User.find(params[:id])
-    @bookshelves = Bookshelf.eager_load(:book,:status,:category).where(user_id: @user.id)
+    @bookshelves = Bookshelf.eager_load(:book,:status,:category)
+    　　　　　　　　　　　　　　 .where(user_id: @user.id)
     render :show_bookshelves
   end
 
@@ -121,7 +122,10 @@ class UsersController < ApplicationController
     hash = (6.days.ago.to_date..Time.zone.today).map {|day| [day,0]}.to_h
     #カテゴリーの数だけ繰り返し実施
     @r1, @r2, @r3, @r4, @r5, @r6 = (1..6).map do |i|
-      datahash = Record.reorder(nil).eager_load(bookshelf: :category).where(yyyymmdd:(6.days.ago.to_date)..(Time.zone.today)).where("categories.id=#{i} and records.user_id = #{user_id}").group("records.yyyymmdd").order("categories.id").sum(:summinutes)
+      datahash = Record.reorder(nil).eager_load(bookshelf: :category)
+                                    .where(yyyymmdd:(6.days.ago.to_date)..(Time.zone.today))
+                                    .where("categories.id=#{i} and records.user_id = #{user_id}")
+                                    .group("records.yyyymmdd").order("categories.id").sum(:summinutes)
                                                           
       hash.merge(datahash).values
       
