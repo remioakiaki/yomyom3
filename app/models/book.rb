@@ -8,5 +8,7 @@ class Book < ApplicationRecord
   has_many :likes, foreign_key: 'book_id', dependent: :destroy
   has_many :user, dependent: :destroy
   has_many :bookshelves, dependent: :destroy
+  #counter_culture :bookshelf
+  
   paginates_per 12
 end

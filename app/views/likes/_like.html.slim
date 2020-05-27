@@ -3,12 +3,12 @@
     = hidden_field_tag :micropost_id, micropost.id
     = button_tag type:'submit', class: 'btn heart-on' do
       span.glyphicon.glyphicon-heart aria-hidden="true"
-      = micropost.likes.count 
+      = micropost.likes_count 
 - else
   = form_for(current_user.likes.build,remote:true) do |f|
     = hidden_field_tag :micropost_id, micropost.id
     = button_tag type:'submit', class: 'btn heart-off' do
       span.glyphicon.glyphicon-heart-empty aria-hidden="true"
-      = micropost.likes.count
+      = micropost.likes_count
 
 
