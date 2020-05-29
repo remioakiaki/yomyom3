@@ -35,7 +35,7 @@
               
           .add_bookshelf
             -if logged_in? 
-              -unless current_user.chbksh?(book)
+              -unless book.persisted? && current_user.chbksh?(book)
                 = form_with(model:@bookshelf, local:true) do |f|
                   = f.hidden_field :book_id, value: book.id
                   = hidden_field_tag :isbn, book['isbn']
