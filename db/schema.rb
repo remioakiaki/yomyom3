@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_27_135630) do
+ActiveRecord::Schema.define(version: 2020_05_29_013008) do
 
   create_table "books", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "title"
@@ -62,7 +62,6 @@ ActiveRecord::Schema.define(version: 2020_05_27_135630) do
     t.bigint "micropost_id"
     t.index ["micropost_id"], name: "index_likes_on_micropost_id"
     t.index ["user_id"], name: "index_likes_on_user_id"
-    t.index ["user_id"], name: "index_likes_on_user_id_and_book_id", unique: true
   end
 
   create_table "microposts", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
