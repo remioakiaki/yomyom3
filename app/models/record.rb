@@ -11,6 +11,7 @@ class Record < ApplicationRecord
   belongs_to :user
   belongs_to :bookshelf
 
+  paginates_per 5
   def changehours
     
     self.summinutes = hours * 60 + minutes

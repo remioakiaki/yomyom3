@@ -23,6 +23,7 @@ class User < ApplicationRecord
   mount_uploader :picture, ImagesUploader
   validate :picture_size
 
+  paginates_per 10
   # お気に入り
   has_many :likes, dependent: :destroy
   has_many :likeposts, through: :likes, source: :micropost

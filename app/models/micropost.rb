@@ -19,6 +19,8 @@ class Micropost < ApplicationRecord
   has_many :comments, dependent: :destroy
 
   after_save :avgrate
+
+  paginates_per 10
    
   def avgrate
     book = Book.find(self.book_id)

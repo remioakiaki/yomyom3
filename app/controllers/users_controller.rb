@@ -9,6 +9,7 @@ class UsersController < ApplicationController
     @bookshelves = Bookshelf.eager_load(:book,:status,:category)
                             .where(user_id: @user.id)
                             .order('statuses.id ,categories.id')
+                            .page(params[:page])
     
   end
 
@@ -46,12 +47,12 @@ class UsersController < ApplicationController
   def index
     @q = User.ransack(params[:q])
     @users = @q.result.order(created_at: :desc)
-               .page(params[:page]).per(10)
+               .page(params[:page]).page(params[:page])
   end
 
   def microposts
     @user = User.find(params[:id])
-    @microposts = Micropost.where(user_id: params[:id]).includes(:book, :user)
+    @microposts = Micropost.where(user_id: params[:id]).page(params[:page]).includes(:book, :user)
     render :show_microposts
   end
 
@@ -67,7 +68,8 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @records = Record.eager_load(bookshelf: :user)
                      .eager_load(bookshelf: :book)
-                     .where(bookshelves:{user_id:@user.id})  
+                     .where(bookshelves:{user_id:@user.id}) 
+                     .page(params[:page])
     createvar(@user.id)
 
     createpie('status',@user.id)

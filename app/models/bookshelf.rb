@@ -6,6 +6,8 @@ class Bookshelf < ApplicationRecord
   belongs_to :category
 
   has_many :records, dependent: :destroy
+
+  paginates_per 12
   def self.ranking
     group(:book_id).order('count_book_id DESC').limit(12).count(:book_id)
   end
