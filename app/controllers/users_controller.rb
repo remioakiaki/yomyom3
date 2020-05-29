@@ -6,7 +6,10 @@ class UsersController < ApplicationController
   before_action :test_user, only: :update
   def show
     @user = User.find(params[:id])
-    @microposts = Micropost.where(user_id: params[:id]).includes(:book, :user)
+    @bookshelves = Bookshelf.eager_load(:book,:status,:category)
+                            .where(user_id: @user.id)
+                            .order('statuses.id ,categories.id')
+    
   end
 
   def new
@@ -46,13 +49,12 @@ class UsersController < ApplicationController
                .page(params[:page]).per(10)
   end
 
-  def bookshelves
+  def microposts
     @user = User.find(params[:id])
-    @bookshelves = Bookshelf.eager_load(:book,:status,:category)
-                            .where(user_id: @user.id)
-                            .order('statuses.id ,categories.id')
-    render :show_bookshelves
+    @microposts = Micropost.where(user_id: params[:id]).includes(:book, :user)
+    render :show_microposts
   end
+
 
   def likes
     @user = User.find(params[:id])
