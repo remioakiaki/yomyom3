@@ -1,0 +1,6 @@
+- provide(:title, '本棚一覧')
+= render 'users/profile', user:@user
+= render 'users/tab', user:@user
+- if @user.microposts.any?
+  = render @microposts
+  = paginate @microposts
