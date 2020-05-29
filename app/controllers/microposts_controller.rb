@@ -45,7 +45,7 @@ class MicropostsController < ApplicationController
   def index
     @q = Micropost.includes(:book, :user).ransack(params[:q])
     @microposts = @q.result.order(created_at: :desc)
-                    .page(params[:page]).per(10)
+                    .page(params[:page])
   end
 
   private

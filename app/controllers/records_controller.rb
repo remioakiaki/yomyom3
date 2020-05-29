@@ -10,7 +10,7 @@ class RecordsController < ApplicationController
       flash[:success] = '記録が完了しました'
       redirect_to records_user_path(current_user)
     else
-      redirect_to bookshelf_path(@bookshelf)
+      respond_to :js
     end
   end
   def new
@@ -29,9 +29,11 @@ class RecordsController < ApplicationController
   end
   def update
     @record = Record.find(params[:id])    
-    if @record.update!(record_params)
+    if @record.update(record_params)
       flash[:success] = '編集が完了しました'
       redirect_back(fallback_location: root_path)
+    else
+      respond_to :js
     end
 
   end

@@ -6,7 +6,11 @@ class UsersController < ApplicationController
   before_action :test_user, only: :update
   def show
     @user = User.find(params[:id])
-    @microposts = Micropost.where(user_id: params[:id]).includes(:book, :user)
+    @bookshelves = Bookshelf.eager_load(:book,:status,:category)
+                            .where(user_id: @user.id)
+                            .order('statuses.id ,categories.id')
+                            .page(params[:page])
+    
   end
 
   def new
@@ -43,15 +47,15 @@ class UsersController < ApplicationController
   def index
     @q = User.ransack(params[:q])
     @users = @q.result.order(created_at: :desc)
-               .page(params[:page]).per(10)
+               .page(params[:page]).page(params[:page])
   end
 
-  def bookshelves
+  def microposts
     @user = User.find(params[:id])
-    @bookshelves = Bookshelf.eager_load(:book,:status,:category)
-    　　　　　　　　　　　　　　 .where(user_id: @user.id)
-    render :show_bookshelves
+    @microposts = Micropost.where(user_id: params[:id]).page(params[:page]).includes(:book, :user)
+    render :show_microposts
   end
+
 
   def likes
     @user = User.find(params[:id])
@@ -64,7 +68,8 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @records = Record.eager_load(bookshelf: :user)
                      .eager_load(bookshelf: :book)
-                     .where(bookshelves:{user_id:@user.id})  
+                     .where(bookshelves:{user_id:@user.id}) 
+                     .page(params[:page])
     createvar(@user.id)
 
     createpie('status',@user.id)
@@ -125,7 +130,8 @@ class UsersController < ApplicationController
       datahash = Record.reorder(nil).eager_load(bookshelf: :category)
                                     .where(yyyymmdd:(6.days.ago.to_date)..(Time.zone.today))
                                     .where("categories.id=#{i} and records.user_id = #{user_id}")
-                                    .group("records.yyyymmdd").order("categories.id").sum(:summinutes)
+                                    .group("records.yyyymmdd").order("categories.id")
+                                    .sum('round(records.summinutes,2)')
                                                           
       hash.merge(datahash).values
       
