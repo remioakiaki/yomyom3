@@ -1,36 +1,46 @@
 require 'rails_helper'
 
-describe '閲覧ページ確認', type: :system do
-  let!(:user) { FactoryBot.create(:user, name: '一般ユーザー') }
-  let!(:book) { FactoryBot.create(:book) }
+describe '閲覧ページ確認', type: :system, js:true do
+  let(:user) { FactoryBot.create(:user, name: '一般ユーザー') }
 
-  context "非ログイン時" do
-    before do
-      visit ('static_pages/home')
+  describe 'ログイン前' do
+    before  do
+      visit root_path
     end
-    it '表示ページ内容の確認' do
+    it 'ヘッダーに正しく情報が表示される' do
       expect(page).to have_link('新規登録', href: '/signup')
       expect(page).to have_link('ログイン', href: '/login')
-      expect(page).to have_link('書籍検索', href: '/books')
+      expect(page).to have_link('書籍検索')
       expect(page).to have_link('ユーザー検索', href: '/users')
       expect(page).to have_link('投稿検索', href: '/microposts')
       expect(page).to have_link('ランキング', href: '/books/ranking')
     end
-    it '本の詳細ページには、投稿フォームが表示されない' do
-      visit book_path(book)
-      expect(page).to_not have_content 'レビューを投稿'
-    end
   end
 
-  context "ログイン時" do
-    before do
+  describe 'ログイン後' do
+    before  do
       sign_in_as user
-      visit ('static_pages/home')
+      visit root_path
     end
-    it '表示ページ内容の確認' do
-      expect(page).to have_link('書籍登録', href: '/books/new')
+    it 'ヘッダーに正しく情報が表示される' do
+      expect(page).to have_button(user.name + "さん" )
+      expect(page).to have_link('書籍検索', href: '/books/new')
+      expect(page).to have_link('ユーザー検索', href: '/users')
+      expect(page).to have_link('投稿検索', href: '/microposts')
+      expect(page).to have_link('ランキング', href: '/books/ranking')
     end
-  end
 
+    context 'ドロップダウンをクリックした時' do
+      it 'ドロップダウンメニューが正しく表示される' do
+        find(".dropdown-toggle").click
+        expect(page).to have_link('マイページ')
+        expect(page).to have_link('マイページ')
+        expect(page).to have_link('フォロー')
+        expect(page).to have_link('フォロワー')
+        expect(page).to have_link('ログアウト')
+      end
+    end
+
+  end
 
 end

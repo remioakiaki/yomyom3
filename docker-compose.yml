@@ -17,8 +17,9 @@ services:
       - bundle:/bundle
     ports:
       - "3000:3000"
-    links:
+    depends_on:
       - db
+      - chrome
     tty: true
     stdin_open: true
     environment:
@@ -28,10 +29,11 @@ services:
       - AWS_ACCESS_KEY_ID
       - AWS_SECRET_ACCESS_KEY
       - "SELENIUM_DRIVER_URL=http://selenium_chrome:4444/wd/hub"
-  selenium_chrome:
-    image: selenium/standalone-chrome-debug
-    logging:
-      driver: none
+  chrome:
+    image: selenium/standalone-chrome-debug:latest
+    ports:
+      - 4444:4444
+      - 5900:5900
 volumes:
   bundle:
     driver: local
