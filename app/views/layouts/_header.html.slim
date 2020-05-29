@@ -35,7 +35,7 @@ nav.navbar
                   li = link_to "ログアウト",logout_path, method: :delete
             li.nav-item = link_to new_book_path do
                           span.glyphicon.glyphicon-book aria-hidden="true"  
-                          |  書籍一覧
+                          |  書籍検索
             / li.nav-item = link_to books_path do
             /               span.glyphicon.glyphicon-book aria-hidden="true"  
             /               |  書籍検索
@@ -54,9 +54,6 @@ nav.navbar
             li.nav-item = link_to "新規登録", signup_path 
             li.nav-item = link_to "ログイン", login_path
             li.nav-item = link_to new_book_path do
-                          span.glyphicon.glyphicon-plus aria-hidden="true"  
-                          |  書籍登録
-            li.nav-item = link_to books_path do
                           span.glyphicon.glyphicon-book aria-hidden="true"  
                           |  書籍検索
             li.nav-item = link_to users_path do
