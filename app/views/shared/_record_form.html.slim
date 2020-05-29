@@ -5,7 +5,7 @@
         .modal-title
         = title
       .modal-body
-        =form_with model: [object1,object2],local: :true do |f|
+        =form_with model: [object1,object2],remote: :true do |f|
           =render 'shared/error_messages', object: f.object
           
           =f.label :日付

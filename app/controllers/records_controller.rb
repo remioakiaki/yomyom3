@@ -10,7 +10,7 @@ class RecordsController < ApplicationController
       flash[:success] = '記録が完了しました'
       redirect_to records_user_path(current_user)
     else
-      redirect_to bookshelf_path(@bookshelf)
+      respond_to :js
     end
   end
   def new
