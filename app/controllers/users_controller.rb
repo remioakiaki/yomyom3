@@ -126,7 +126,8 @@ class UsersController < ApplicationController
       datahash = Record.reorder(nil).eager_load(bookshelf: :category)
                                     .where(yyyymmdd:(6.days.ago.to_date)..(Time.zone.today))
                                     .where("categories.id=#{i} and records.user_id = #{user_id}")
-                                    .group("records.yyyymmdd").order("categories.id").sum(:summinutes)
+                                    .group("records.yyyymmdd").order("categories.id")
+                                    .sum('round(records.summinutes,2)')
                                                           
       hash.merge(datahash).values
       
