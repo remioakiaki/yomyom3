@@ -12,7 +12,7 @@ class BookshelvesController < ApplicationController
       
       if @bookshelf.save 
         flash[:success] = '本棚への追加が完了しました'
-        redirect_to bookshelves_user_path(current_user)
+        redirect_to user_path(current_user)
       end
     
     

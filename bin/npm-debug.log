@@ -1,0 +1,73 @@
+0 info it worked if it ends with ok
+1 verbose cli [ 'node', '/usr/bin/npm', 'install', 'yarn', '-g' ]
+2 info using npm@1.3.6
+3 info using node@v0.10.48
+4 verbose cache add [ 'yarn', null ]
+5 verbose cache add name=undefined spec="yarn" args=["yarn",null]
+6 verbose parsed url { protocol: null,
+6 verbose parsed url   slashes: null,
+6 verbose parsed url   auth: null,
+6 verbose parsed url   host: null,
+6 verbose parsed url   port: null,
+6 verbose parsed url   hostname: null,
+6 verbose parsed url   hash: null,
+6 verbose parsed url   search: null,
+6 verbose parsed url   query: null,
+6 verbose parsed url   pathname: 'yarn',
+6 verbose parsed url   path: 'yarn',
+6 verbose parsed url   href: 'yarn' }
+7 silly lockFile d19a2519-yarn yarn
+8 verbose lock yarn /root/.npm/d19a2519-yarn.lock
+9 verbose chmod /root/tmp/npm-11115-vBmXIses/1590791914385-0.5016878144815564/tmp.tgz 644
+10 verbose tar unpack /root/tmp/npm-11115-vBmXIses/1590791914385-0.5016878144815564/tmp.tgz
+11 silly lockFile 3ac894f5-14385-0-5016878144815564-package tar:///root/tmp/npm-11115-vBmXIses/1590791914385-0.5016878144815564/package
+12 verbose lock tar:///root/tmp/npm-11115-vBmXIses/1590791914385-0.5016878144815564/package /root/.npm/3ac894f5-14385-0-5016878144815564-package.lock
+13 silly lockFile 5af8ec0f-14385-0-5016878144815564-tmp-tgz tar:///root/tmp/npm-11115-vBmXIses/1590791914385-0.5016878144815564/tmp.tgz
+14 verbose lock tar:///root/tmp/npm-11115-vBmXIses/1590791914385-0.5016878144815564/tmp.tgz /root/.npm/5af8ec0f-14385-0-5016878144815564-tmp-tgz.lock
+15 silly gunzTarPerm modes [ '755', '644' ]
+16 error not a package /root/tmp/npm-11115-vBmXIses/1590791914385-0.5016878144815564/tmp.tgz
+17 silly lockFile 3ac894f5-14385-0-5016878144815564-package tar:///root/tmp/npm-11115-vBmXIses/1590791914385-0.5016878144815564/package
+18 silly lockFile 3ac894f5-14385-0-5016878144815564-package tar:///root/tmp/npm-11115-vBmXIses/1590791914385-0.5016878144815564/package
+19 silly lockFile 5af8ec0f-14385-0-5016878144815564-tmp-tgz tar:///root/tmp/npm-11115-vBmXIses/1590791914385-0.5016878144815564/tmp.tgz
+20 silly lockFile 5af8ec0f-14385-0-5016878144815564-tmp-tgz tar:///root/tmp/npm-11115-vBmXIses/1590791914385-0.5016878144815564/tmp.tgz
+21 silly lockFile d19a2519-yarn yarn
+22 silly lockFile d19a2519-yarn yarn
+23 verbose addNamed [ 'yarn', '' ]
+24 verbose addNamed [ null, '*' ]
+25 silly lockFile d5475ddd-yarn yarn@
+26 verbose lock yarn@ /root/.npm/d5475ddd-yarn.lock
+27 silly addNameRange { name: 'yarn', range: '*', hasData: false }
+28 verbose url raw yarn
+29 verbose url resolving [ 'https://registry.npmjs.org/', './yarn' ]
+30 verbose url resolved https://registry.npmjs.org/yarn
+31 info trying registry request attempt 1 at 22:38:34
+32 http GET https://registry.npmjs.org/yarn
+33 info retry will retry, error on last attempt: Error: UNABLE_TO_GET_ISSUER_CERT_LOCALLY
+34 info trying registry request attempt 2 at 22:38:44
+35 http GET https://registry.npmjs.org/yarn
+36 info retry will retry, error on last attempt: Error: UNABLE_TO_GET_ISSUER_CERT_LOCALLY
+37 info trying registry request attempt 3 at 22:39:44
+38 http GET https://registry.npmjs.org/yarn
+39 silly lockFile d5475ddd-yarn yarn@
+40 silly lockFile d5475ddd-yarn yarn@
+41 error Error: UNABLE_TO_GET_ISSUER_CERT_LOCALLY
+41 error     at SecurePair.<anonymous> (tls.js:1430:32)
+41 error     at SecurePair.emit (events.js:92:17)
+41 error     at SecurePair.maybeInitFinished (tls.js:1029:10)
+41 error     at CleartextStream.read [as _read] (tls.js:521:13)
+41 error     at CleartextStream.Readable.read (_stream_readable.js:341:10)
+41 error     at EncryptedStream.write [as _write] (tls.js:418:25)
+41 error     at doWrite (_stream_writable.js:226:10)
+41 error     at writeOrBuffer (_stream_writable.js:216:5)
+41 error     at EncryptedStream.Writable.write (_stream_writable.js:183:11)
+41 error     at write (_stream_readable.js:602:24)
+42 error If you need help, you may report this log at:
+42 error     <http://github.com/isaacs/npm/issues>
+42 error or email it to:
+42 error     <npm-@googlegroups.com>
+43 error System Linux 4.14.154-99.181.amzn1.x86_64
+44 error command "node" "/usr/bin/npm" "install" "yarn" "-g"
+45 error cwd /var/www/rails/yomyom3/bin
+46 error node -v v0.10.48
+47 error npm -v 1.3.6
+48 verbose exit [ 1, true ]

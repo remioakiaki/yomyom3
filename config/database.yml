@@ -14,8 +14,8 @@ default: &default
   encoding: utf8
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   username: root
-  password: password
-  host: db
+  password: 
+
 
 development:
   <<: *default
@@ -51,5 +51,4 @@ test:
 production:
   <<: *default
   database: app_name_production
-  username: app_name
-  password: <%= ENV['APP_NAME_DATABASE_PASSWORD'] %>
+  username: root
