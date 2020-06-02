@@ -2,6 +2,7 @@
 
 class UsersController < ApplicationController
   before_action :admin_user, only: :destroy
+  before_action :logged_in_user, only: %i[edit update destroy]
   before_action :correct_user, only: %i[edit update]
   before_action :test_user, only: :update
   def show
@@ -14,7 +15,12 @@ class UsersController < ApplicationController
   end
 
   def new
-    @user = User.new
+    unless logged_in?
+      @user = User.new
+    else
+      flash[:danger] = "すでにログインしています"
+      redirect_to user_path(current_user)
+    end
   end
 
   def create
@@ -31,7 +37,7 @@ class UsersController < ApplicationController
   end
 
   def edit
-    # @user = User.find(params[:id])
+
   end
 
   def update
@@ -107,7 +113,10 @@ class UsersController < ApplicationController
 
   def correct_user
     @user = User.find(params[:id])
-    redirect_to(current_user) unless @user == current_user
+    unless @user == current_user
+      flash[:danger] = "他ユーザーの編集はできません" 
+      redirect_to(current_user) 
+    end
   end
 
   def admin_user
