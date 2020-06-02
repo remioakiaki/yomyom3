@@ -39,7 +39,7 @@ class BookshelvesController < ApplicationController
     @bookshelf = Bookshelf.find(params[:id])
     @bookshelf.destroy
     flash[:success] = '本棚から削除されました'
-    redirect_to bookshelves_user_path(current_user)
+    redirect_to user_path(current_user)
   end
 
   private
