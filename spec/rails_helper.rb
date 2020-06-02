@@ -70,7 +70,7 @@ Capybara.register_driver :remote_chrome do |app|
     "goog:chromeOptions" => {
       "args" => [
         "no-sandbox",
-        #"headless",
+        "headless",
         "disable-gpu",
         "window-size=1680,1050"
       ]
