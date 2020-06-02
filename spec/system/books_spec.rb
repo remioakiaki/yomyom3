@@ -14,8 +14,8 @@ describe '書籍登録機能', type: :system do
       end
       it '書籍登録ができること' do
         visit new_book_path
-        expect { click_on '追加', match: :first }.to change { Book.count }.by(1)
-        expect(page).to have_content '書籍を登録しました'
+        expect { click_on 'レビューを投稿', match: :first }.to change { Book.count }.by(1)
+        
       end
     end
 

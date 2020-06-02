@@ -73,6 +73,7 @@ ActiveRecord::Schema.define(version: 2020_05_29_013008) do
     t.datetime "updated_at", null: false
     t.float "rate"
     t.bigint "book_id"
+    t.json "pictures"
     t.integer "likes_count", default: 0, null: false
     t.integer "comments_count", default: 0, null: false
     t.index ["book_id"], name: "index_microposts_on_book_id"
