@@ -28,7 +28,7 @@ services:
       - RAKUTEN_AFID
       - AWS_ACCESS_KEY_ID
       - AWS_SECRET_ACCESS_KEY
-      - "SELENIUM_DRIVER_URL=http://selenium_chrome:4444/wd/hub"
+      #- "SELENIUM_DRIVER_URL=http://selenium_chrome:4444/wd/hub"
   chrome:
     image: selenium/standalone-chrome-debug:latest
     ports:

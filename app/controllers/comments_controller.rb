@@ -37,7 +37,7 @@ class CommentsController < ApplicationController
   end
 
   def index
-    @comment = current_user.comments.build
+    @comment = Comment.new
     @comments = Comment.where(micropost_id: params[:micropost_id])
     @micropost = Micropost.find(params[:micropost_id])
     respond_to :js

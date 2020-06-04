@@ -9,9 +9,9 @@
             = link_to user_path(record.bookshelf.user) do
               = record.bookshelf.user.name
           .rec-menu
-            -if logged_in? && current_user?(record.bookshelf.user)
+            -if logged_in? && current_user?(record.bookshelf.user.id)
                 .btn-group role="group"
-                  = link_to edit_bookshelf_record_path(record.bookshelf, record),class: "btn btn-default micropost_edit_#{record.id}",remote:true do
+                  = link_to edit_bookshelf_record_path(record.bookshelf, record),class: "btn btn-default record_edit_#{record.id}",remote:true do
                     span.glyphicon.glyphicon-pencil aria-hidden="true"
                   = link_to record_path(record), method: :delete,class: "btn btn-default record_delete_#{record.id}" do
                     span.glyphicon.glyphicon-trash aria-hidden="true"

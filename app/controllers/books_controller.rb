@@ -69,7 +69,7 @@ class BooksController < ApplicationController
   def destroy
     @book = Book.find(params[:id]).destroy
     flash[:success] = '書籍を削除しました'
-    redirect_to books_path
+    redirect_to new_book_path
   end
 
   def ranking
@@ -112,6 +112,9 @@ class BooksController < ApplicationController
   end
 
   def admin_user
-    redirect_to root_url unless current_user.admin?
+    unless current_user.admin?
+      flash[:danger] = "こちらの操作はできません"  
+      redirect_to root_url 
+    end
   end
 end

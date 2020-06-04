@@ -5,7 +5,7 @@
       .row-eq-height
         .col-sm-3
           .title
-            -if bookshelf.book.persisted?
+            -if bookshelf.book.persisted? && logged_in?
               = link_to edit_bookshelf_path(bookshelf),remote:true do
                 p= bookshelf.book.title  
               div#editmodal class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"
@@ -20,7 +20,10 @@
             div class="mark category_#{bookshelf.category.id}"
               = bookshelf.category.name
           .record
-            = link_to '記録を追加', new_bookshelf_record_path(bookshelf.id), class:'btn btn-info',remote:true
+          
+            -if logged_in? && current_user?(bookshelf.user_id)
+              = link_to '記録を追加', new_bookshelf_record_path(bookshelf.id), class:'btn btn-info',remote:true
+            
             div#newmodal class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"
             = link_to 'レビュー', book_path(bookshelf.book.id), class:'btn btn-success'
           

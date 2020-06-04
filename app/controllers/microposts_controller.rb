@@ -28,7 +28,7 @@ class MicropostsController < ApplicationController
     @book = Book.find(params[:book_id])
 
     if @micropost.update(micropost_params)
-      flash[:success] = '編集が完了しました'
+      flash[:success] = '更新が完了しました'
       redirect_back(fallback_location: root_path)
     else
       respond_to :js
@@ -38,7 +38,7 @@ class MicropostsController < ApplicationController
   def destroy
     @micropost = Micropost.find(params[:id])
     @micropost.destroy
-    flash[:success] = '投稿を削除しました'
+    flash[:success] = '削除が完了しました'
     redirect_back(fallback_location: root_path)
   end
 

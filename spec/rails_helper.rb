@@ -70,7 +70,7 @@ Capybara.register_driver :remote_chrome do |app|
     "goog:chromeOptions" => {
       "args" => [
         "no-sandbox",
-        #"headless",
+        "headless",
         "disable-gpu",
         "window-size=1680,1050"
       ]
@@ -92,7 +92,7 @@ RSpec.configure do |config|
     Capybara.app_host = "http://#{Capybara.server_host}:#{Capybara.server_port}"
   end
   config.use_transactional_fixtures = true
-  config.include SigninSupport, type: :system
+  config.include Common, type: :system
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
   config.infer_spec_type_from_file_location!
 # ~~~

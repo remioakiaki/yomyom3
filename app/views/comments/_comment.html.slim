@@ -8,7 +8,7 @@
           = link_to user_path(comment.user) do
             =comment.user.name
         .pos-menu
-          -if logged_in? && current_user?(comment.user)
+          -if logged_in? && current_user?(comment.user.id)
               .btn-group role="group"
                 = link_to edit_comment_path(comment),class: "btn btn-default comment_edit_#{comment.id}",remote:true do
                   span.glyphicon.glyphicon-pencil aria-hidden="true"
