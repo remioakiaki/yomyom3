@@ -43,6 +43,15 @@ li{
   background:#8c2a2a;
   border: #8c2a2a;
 }
+.pagination {
+  li a{color:#8c2a2a;
+  }
+  .active a{
+    background:#8c2a2ae4;
+    border: #8c2a2a;
+  }
+  
+}
 /* typography */
 
 h1, h2, h3, h4, h5, h6 {
