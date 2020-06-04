@@ -9,7 +9,7 @@
             = micropost.user.name
         //編集フォーム、削除 
         .pos-menu
-          -if logged_in? && current_user?(micropost.user)
+          -if logged_in? && current_user?(micropost.user.id)
               .btn-group role="group"
                 = link_to edit_micropost_path(micropost),class: "btn btn-default micropost_edit_#{micropost.id}",remote:true do
                   span.glyphicon.glyphicon-pencil aria-hidden="true"
@@ -46,11 +46,12 @@
     .col-sm-10.col-sm-offset-2
       div class="comment comment_form_#{micropost.id}" id="comment" 
         div class="slide slide_#{micropost.id}" value="#{micropost.id}" style="height:#{comment_height(micropost.comments_count)}px"
-        div class="form form_#{micropost.id}"
+        -if logged_in? 
+          div class="form form_#{micropost.id}"
 
         //コメントフォームの表示、非表示、いいね
       .menu2
-        - if logged_in?
+      
           = link_to micropost_comments_path(micropost.id),id:"opnbtn",class:"btn btn-opn_#{micropost.id}",remote: true  do
             span.glyphicon.glyphicon-comment aria-hidden="true"
             = micropost.comments_count  

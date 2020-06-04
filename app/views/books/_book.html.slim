@@ -41,10 +41,9 @@
                   = hidden_field_tag :isbn, book['isbn']
                   = f.submit '本棚追加', class:'btn btn-primary'
           div class="add add_#{book.id}"
-            -if logged_in?
               -if book.persisted?
-                = link_to "レビューを投稿", book_path(book),class:'btn btn-success'
+                = link_to "レビュー一覧", book_path(book),class:'btn btn-success'
               -else    
                 = form_with(model:@book,local:true,url:books_path) do |f|
                   = hidden_field_tag :isbn, book['isbn']
-                  = f.submit 'レビューを投稿', class:'btn btn-success'
+                  = f.submit 'レビュー一覧', class:'btn btn-success'
