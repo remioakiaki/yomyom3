@@ -21,13 +21,11 @@ class Micropost < ApplicationRecord
   after_save :avgrate
 
   paginates_per 10
-   
+
   def avgrate
-    book = Book.find(self.book_id)
+    book = Book.find(book_id)
     book.avg_rate = book.microposts.average(:rate)
     book.save
-    
-    
   end
 
   private

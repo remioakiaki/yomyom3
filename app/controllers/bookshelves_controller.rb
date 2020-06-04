@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class BookshelvesController < ApplicationController
-  before_action :correct_user, only: %i[edit update destroy]  
+  before_action :correct_user, only: %i[edit update destroy]
   def create
     if params[:bookshelf][:book_id].empty?
       createbook(params[:isbn])
@@ -9,19 +11,16 @@ class BookshelvesController < ApplicationController
     else
       @bookshelf = current_user.bookshelves.build(bookshelf_params)
     end
-      
-      if @bookshelf.save 
-        flash[:success] = '本棚への追加が完了しました'
-        redirect_to user_path(current_user)
-      end
-    
-    
+
+    if @bookshelf.save
+      flash[:success] = '本棚への追加が完了しました'
+      redirect_to user_path(current_user)
+    end
   end
 
   def edit
     @bookshelf = Bookshelf.find(params[:id])
     @book = Book.find(@bookshelf.book_id)
-    
   end
 
   def update
@@ -43,9 +42,11 @@ class BookshelvesController < ApplicationController
   end
 
   private
+
   def bookshelf_params
     params.require(:bookshelf).permit(:user_id, :book_id, :status_id, :category_id)
   end
+
   def correct_user
     @bookshelf = Bookshelf.find(params[:id])
     redirect_to(current_user) unless @bookshelf.user_id == current_user.id

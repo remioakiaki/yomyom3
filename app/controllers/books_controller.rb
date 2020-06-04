@@ -5,11 +5,10 @@ class BooksController < ApplicationController
   RakutenWebService.configure do |c|
     c.application_id = ENV['RAKUTEN_APPID']
   end
-  
+
   def index
-    
     # @q = Book.ransack(params[:q])
-    # @books = @q.result.order(created_at: :desc).includes(:microposts,:likes).page(params[:page]).per(12)       
+    # @books = @q.result.order(created_at: :desc).includes(:microposts,:likes).page(params[:page]).per(12)
     # @bookshelf = Bookshelf.new
   end
 
@@ -113,8 +112,8 @@ class BooksController < ApplicationController
 
   def admin_user
     unless current_user.admin?
-      flash[:danger] = "こちらの操作はできません"  
-      redirect_to root_url 
+      flash[:danger] = 'こちらの操作はできません'
+      redirect_to root_url
     end
   end
 end

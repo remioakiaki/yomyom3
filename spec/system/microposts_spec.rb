@@ -1,12 +1,12 @@
 # frozen_string_literal: true
 
 require 'rails_helper'
-RSpec.describe 'Microposts', type: :system,js: true do
+RSpec.describe 'Microposts', type: :system, js: true do
   let!(:user) { FactoryBot.create(:user, name: '一般ユーザー') }
   let!(:other_user) { FactoryBot.create(:user, name: 'その他ユーザー') }
   let!(:book) { FactoryBot.create(:book, isbn: '1234567890') }
-  let!(:micropost1) { FactoryBot.create(:micropost,user:user,book:book) }
-  let!(:micropost2) { FactoryBot.create(:micropost,user:other_user,book:book) }
+  let!(:micropost1) { FactoryBot.create(:micropost, user: user, book: book) }
+  let!(:micropost2) { FactoryBot.create(:micropost, user: other_user, book: book) }
   describe '投稿機能' do
     before do
       sign_in_as user
@@ -18,7 +18,7 @@ RSpec.describe 'Microposts', type: :system,js: true do
         fill_in 'micropost[title]', with: 'テストタイトル'
         page.all('img')[8].click
         click_on 'レビューを投稿'
-      end.to change{ Micropost.count }.by(1)
+      end.to change { Micropost.count }.by(1)
     end
     it '作成不可' do
       fill_in 'micropost[content]', with: ''
@@ -49,10 +49,9 @@ RSpec.describe 'Microposts', type: :system,js: true do
       end
       context '他人の投稿' do
         it '編集不可' do
-           visit microposts_user_path(other_user)
-           expect(page).to have_no_selector ".micropost_edit_#{micropost2.id}"
-         end
-        
+          visit microposts_user_path(other_user)
+          expect(page).to have_no_selector ".micropost_edit_#{micropost2.id}"
+        end
       end
     end
   end
@@ -69,14 +68,14 @@ RSpec.describe 'Microposts', type: :system,js: true do
       end
       context '自分の投稿' do
         it '削除可' do
-          visit microposts_user_path(user) 
+          visit microposts_user_path(user)
           find(".micropost_delete_#{micropost1.id}").click
           expect(page).to have_content '削除が完了しました'
         end
       end
       context '他人の投稿' do
         it '削除不可' do
-          visit microposts_user_path(other_user) 
+          visit microposts_user_path(other_user)
           expect(page).to have_no_selector ".micropost_delete_#{micropost2.id}"
         end
       end

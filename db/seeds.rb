@@ -29,7 +29,7 @@ Book.create!(
   image_url: 'https://thumbnail.image.rakuten.co.jp/@0_mall/book/cabinet/3331/9784091793331.jpg?_ex=200x200',
   isbn: 'https://thumbnail.image.rakuten.co.jp/@0_mall/book/cabinet/3331/9784091793331.jpg?_ex=200x200',
   publishername: '小学館',
-  rakuten_url: 'https://books.rakuten.co.jp/rb/16283607/',
+  rakuten_url: 'https://books.rakuten.co.jp/rb/16283607/'
 )
 
 # 5.times do |n|
@@ -48,6 +48,6 @@ Book.create!(
 #   bookshelf_id: rand(2..7),
 #   hours: 1,
 #   minutes: 30,
-#   yyyymmdd:'2020-05-12' 
+#   yyyymmdd:'2020-05-12'
 #   )
-#end
+# end
