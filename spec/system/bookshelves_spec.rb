@@ -12,7 +12,11 @@ describe '本棚登録機能', type: :system, js: true do
       user_id: user.id, book_id: book.id
     )
 }
-
+let!(:other_bookshelf){ 
+  other_user.bookshelves.create(
+    user_id: other_user.id, book_id: book.id
+  )
+}
   
   describe '本棚新規登録' do
     describe 'ログイン前' do
@@ -73,7 +77,7 @@ describe '本棚登録機能', type: :system, js: true do
       context '他人のマイページ' do
         it '編集不可' do 
           visit user_path(other_user)
-          expect(page).to have_no_link edit_bookshelf_path(bookshelf)
+          expect(page).to have_no_link edit_bookshelf_path(bookshelf)  
         end
       end
     end

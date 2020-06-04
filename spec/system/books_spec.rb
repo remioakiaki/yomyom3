@@ -17,7 +17,7 @@ describe '書籍登録機能', type: :system do
       end
       it '非表示' do
         expect(page).to have_no_button '本棚追加'
-        expect(page).to have_no_button 'レビューを投稿'
+        expect(page).to have_button 'レビュー一覧'
       end
     end
     describe 'ログイン後' do
