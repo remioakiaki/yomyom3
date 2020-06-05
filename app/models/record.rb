@@ -5,6 +5,7 @@ class Record < ApplicationRecord
   validates :summinutes, presence: true, numericality: { greater_than: 0 }
 
   validates :minutes, numericality: { grater_than: 0 }
+  validates :page_amount, numericality: { grater_than: 0 }
   validates :memo, length: { maximum: 50 }
   default_scope -> { order(updated_at: :desc) }
 

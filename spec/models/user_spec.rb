@@ -5,7 +5,7 @@ require 'rails_helper'
 RSpec.describe User, type: :model do
   let(:user) { FactoryBot.create(:user) }
   let(:other_user) { FactoryBot.create(:other_user) }
-  let(:book) { FactoryBot.create(:book) }
+  let(:micropost) { FactoryBot.create(:micropost) }
 
   describe 'ユーザー登録できる場合' do
     it '新規登録できること' do
@@ -104,19 +104,19 @@ RSpec.describe User, type: :model do
   describe 'お気に入り' do
     context 'お気に入りしてない状態' do
       it '無効な状態' do
-        expect(user.likebook?(book)).to eq false
+        expect(user.likepost?(micropost)).to eq false
       end
     end
     context 'お気に入りした場合' do
       before do
-        user.like(book)
+        user.like(micropost)
       end
       it 'お気に入りがついた状態' do
-        expect(user.likebook?(book)).to eq true
+        expect(user.likepost?(micropost)).to eq true
       end
       it 'お気に入り解除' do
-        user.notlike(book)
-        expect(user.likebook?(book)).to eq false
+        user.notlike(micropost)
+        expect(user.likepost?(micropost)).to eq false
       end
     end
   end

@@ -1,8 +1,10 @@
 # frozen_string_literal: true
 
 FactoryBot.define do
-  factory :bookshelves do
-    user_id { 1 }
-    book_id { 1 }
+  factory :bookshelf, class: Bookshelf do
+    user
+    book 
+    status 
+    category 
   end
 end

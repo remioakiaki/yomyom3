@@ -40,6 +40,14 @@ ja:
       record:
         summinutes: 合計時間
         memo: メモ
+      status:
+        name: ステータス名
+      category:
+        name: カテゴリー名
+      bookshelf:
+        status: ステータス名
+        category: カテゴリー名
+
         
 
 
