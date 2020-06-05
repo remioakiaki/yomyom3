@@ -49,6 +49,6 @@ class BookshelvesController < ApplicationController
 
   def correct_user
     @bookshelf = Bookshelf.find(params[:id])
-    return redirect_to(current_user) if @bookshelf.user_id == current_user.id
+    redirect_to(current_user) unless @bookshelf.user_id == current_user.id
   end
 end

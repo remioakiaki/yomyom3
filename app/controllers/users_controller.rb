@@ -35,7 +35,8 @@ class UsersController < ApplicationController
     end
   end
 
-  def edit; end
+  def edit
+  end
 
   def update
     @user = User.find(params[:id])
@@ -114,7 +115,7 @@ class UsersController < ApplicationController
   end
 
   def admin_user
-    return redirect_to root_url if current_user.admin?
+    redirect_to root_url unless current_user.admin?
   end
 
   def test_user
@@ -125,13 +126,20 @@ class UsersController < ApplicationController
   end
 
   def createvar(user_id)
+    if test_user? && params[:yyyymmdd].nil?
+      yyyymmdd = Date.parse('2020-5-12')
+    elsif params[:yyyymmdd].nil?
+      yyyymmdd = Date.today
+    else
+      yyyymmdd = params[:yyyymmdd].to_date
+    end
     # 棒グラフのラベルを取得
-    @var_labels = [*6.days.ago.to_date..Time.zone.today]
-    hash = (6.days.ago.to_date..Time.zone.today).map { |day| [day, 0] }.to_h
+    @var_labels = (yyyymmdd -6..yyyymmdd).to_a
+    hash = (@var_labels).map { |day| [day, 0] }.to_h
     # カテゴリーの数だけ繰り返し実施
     @r1, @r2, @r3, @r4, @r5, @r6 = (1..6).map do |i|
       datahash = Record.reorder(nil).eager_load(bookshelf: :category)
-                       .where(yyyymmdd: (6.days.ago.to_date)..(Time.zone.today))
+                       .where(yyyymmdd: @var_labels)
                        .where("categories.id=#{i} and records.user_id = #{user_id}")
                        .group('records.yyyymmdd').order('categories.id')
                        .sum('round(records.summinutes,2)')
