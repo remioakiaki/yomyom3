@@ -7,19 +7,18 @@ class UsersController < ApplicationController
   before_action :test_user, only: :update
   def show
     @user = User.find(params[:id])
-    @bookshelves = Bookshelf.eager_load(:book,:status,:category)
+    @bookshelves = Bookshelf.eager_load(:book, :status, :category)
                             .where(user_id: @user.id)
                             .order('statuses.id ,categories.id')
                             .page(params[:page])
-    
   end
 
   def new
-    unless logged_in?
-      @user = User.new
-    else
-      flash[:danger] = "すでにログインしています"
+    if logged_in?
+      flash[:danger] = 'すでにログインしています'
       redirect_to user_path(current_user)
+    else
+      @user = User.new
     end
   end
 
@@ -37,7 +36,6 @@ class UsersController < ApplicationController
   end
 
   def edit
-
   end
 
   def update
@@ -62,7 +60,6 @@ class UsersController < ApplicationController
     render :show_microposts
   end
 
-
   def likes
     @user = User.find(params[:id])
     @microposts = @user.likeposts
@@ -74,15 +71,13 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @records = Record.eager_load(bookshelf: :user)
                      .eager_load(bookshelf: :book)
-                     .where(bookshelves:{user_id:@user.id}) 
+                     .where(bookshelves: { user_id: @user.id })
                      .page(params[:page])
     createvar(@user.id)
 
-    createpie('status',@user.id)
-    createpie('category',@user.id)
-    
-    
-    
+    createpie('status', @user.id)
+    createpie('category', @user.id)
+
     render :show_records
   end
 
@@ -113,10 +108,10 @@ class UsersController < ApplicationController
 
   def correct_user
     @user = User.find(params[:id])
-    unless @user == current_user
-      flash[:danger] = "他ユーザーの編集はできません" 
-      redirect_to(current_user) 
-    end
+    return if @user == current_user
+
+    flash[:danger] = '他ユーザーの編集はできません'
+    redirect_to(current_user)
   end
 
   def admin_user
@@ -131,38 +126,42 @@ class UsersController < ApplicationController
   end
 
   def createvar(user_id)
-    #棒グラフのラベルを取得
-    @var_labels = [*6.days.ago.to_date..Time.zone.today]
-    hash = (6.days.ago.to_date..Time.zone.today).map {|day| [day,0]}.to_h
-    #カテゴリーの数だけ繰り返し実施
+    if test_user? && params[:yyyymmdd].nil?
+      yyyymmdd = Date.parse('2020-5-12')
+    elsif params[:yyyymmdd].nil?
+      yyyymmdd = Date.today
+    else
+      yyyymmdd = params[:yyyymmdd].to_date
+    end
+    # 棒グラフのラベルを取得
+    @var_labels = (yyyymmdd -6..yyyymmdd).to_a
+    hash = (@var_labels).map { |day| [day, 0] }.to_h
+    # カテゴリーの数だけ繰り返し実施
     @r1, @r2, @r3, @r4, @r5, @r6 = (1..6).map do |i|
       datahash = Record.reorder(nil).eager_load(bookshelf: :category)
-                                    .where(yyyymmdd:(6.days.ago.to_date)..(Time.zone.today))
-                                    .where("categories.id=#{i} and records.user_id = #{user_id}")
-                                    .group("records.yyyymmdd").order("categories.id")
-                                    .sum('round(records.summinutes,2)')
-                                                          
-      hash.merge(datahash).values
-      
-    end
+                       .where(yyyymmdd: @var_labels)
+                       .where("categories.id=#{i} and records.user_id = #{user_id}")
+                       .group('records.yyyymmdd').order('categories.id')
+                       .sum('round(records.summinutes,2)')
 
-    
-  end
-  
-    def createpie(string,user_id)
-      strings = string.pluralize
-      
-      record = Bookshelf.eager_load(string)
-                        .where("bookshelves.user_id = #{user_id}")
-                        .group("#{strings}.id,#{strings}.name")
-                        .order("#{strings}_id").count
-      
-      if string == 'status'
-        @pie_st_labels = record.keys
-        @pie_st_values = record.values
-      else
-        @pie_cate_labels = record.keys
-        @pie_cate_values = record.values
-      end  
+      hash.merge(datahash).values
     end
+  end
+
+  def createpie(string, user_id)
+    strings = string.pluralize
+
+    record = Bookshelf.eager_load(string)
+                      .where("bookshelves.user_id = #{user_id}")
+                      .group("#{strings}.id,#{strings}.name")
+                      .order("#{strings}_id").count
+
+    if string == 'status'
+      @pie_st_labels = record.keys
+      @pie_st_values = record.values
+    else
+      @pie_cate_labels = record.keys
+      @pie_cate_values = record.values
+    end
+  end
 end

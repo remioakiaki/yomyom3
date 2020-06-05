@@ -39,7 +39,7 @@ RSpec.describe 'Users', type: :system do
           sign_in_as user
           visit signup_path
           expect(page).to have_content('すでにログインしています')
-          expect(page).to have_current_path user_path(user)         
+          expect(page).to have_current_path user_path(user)
         end
       end
     end
@@ -48,7 +48,7 @@ RSpec.describe 'Users', type: :system do
         it '他ユーザーにはアクセスできない' do
           visit edit_user_path(user)
           expect(page).to have_content('ログインしていない状態でその操作はできません')
-          expect(page).to have_current_path root_path 
+          expect(page).to have_current_path root_path
         end
       end
       describe 'ログイン後' do
@@ -63,7 +63,7 @@ RSpec.describe 'Users', type: :system do
               fill_in 'user[name]', with: 'テストユーザー'
               click_on '更新'
               expect(page).to have_content '更新完了'
-              expect(page).to have_current_path user_path(user)         
+              expect(page).to have_current_path user_path(user)
             end
           end
           context 'フォームの入力値が異常' do
@@ -71,15 +71,15 @@ RSpec.describe 'Users', type: :system do
               fill_in 'user[name]', with: 'テストユーザー'
               click_on '更新'
               expect(page).to have_content '更新完了'
-              expect(page).to have_current_path user_path(user)         
+              expect(page).to have_current_path user_path(user)
             end
           end
           context '他ユーザーの編集を行おうとする' do
             it '他ユーザーの編集画面は開けない' do
               visit edit_user_path(other_user)
-              expect(page).to have_content("他ユーザーの編集はできません")
+              expect(page).to have_content('他ユーザーの編集はできません')
               expect(page).to have_current_path user_path(user)
-            end          
+            end
           end
         end
       end
@@ -91,7 +91,7 @@ RSpec.describe 'Users', type: :system do
         it '更新ができずにリダイレクトされる' do
           click_on '更新'
           expect(page).to have_content 'テストユーザーでこの操作はできません'
-          expect(page).to have_current_path edit_user_path(test_user)         
+          expect(page).to have_current_path edit_user_path(test_user)
         end
       end
     end
@@ -100,10 +100,9 @@ RSpec.describe 'Users', type: :system do
         describe '他ユーザーを確認した時' do
           it '情報が適切に取得できる' do
             visit user_path(user)
-            expect(page).to have_current_path user_path(user)         
-          end          
+            expect(page).to have_current_path user_path(user)
+          end
         end
-
       end
       describe 'ログイン後' do
         before do
@@ -112,14 +111,14 @@ RSpec.describe 'Users', type: :system do
         describe '自ユーザーを確認した時' do
           it '情報が適切に取得できる' do
             visit user_path(user)
-            expect(page).to have_current_path user_path(user)         
-          end          
+            expect(page).to have_current_path user_path(user)
+          end
         end
         describe '他ユーザーを確認した時' do
           it '情報が適切に取得できる' do
             visit user_path(other_user)
-            expect(page).to have_current_path user_path(other_user)         
-          end          
+            expect(page).to have_current_path user_path(other_user)
+          end
         end
       end
     end
@@ -145,7 +144,7 @@ RSpec.describe 'Users', type: :system do
             expect(page).to have_content 'delete'
             click_on 'delete', match: :first
             expect(page).to have_content 'ユーザーは削除されました'
-            expect(page).to have_current_path users_path        
+            expect(page).to have_current_path users_path
           end
         end
       end

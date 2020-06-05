@@ -5,10 +5,12 @@ class ApplicationController < ActionController::Base
   include BooksHelper
 
   def logged_in_user
-    unless logged_in?
-      flash[:danger] = "ログインしていない状態でその操作はできません"
-      redirect_to root_path
-    end
+    return if logged_in?
 
+    flash[:danger] = 'ログインしていない状態でその操作はできません'
+    redirect_to root_path
+  end
+  def test_user?
+    current_user.email == "test@test.com"
   end
 end

@@ -12,9 +12,9 @@
 #  password_confirmation: 'administrator',
 #  admin: true)
 
-# Status.create!(name:'未読')
-# Status.create!(name:'読書中')
-# Status.create!(name:'読書済')
+Status.create!(name:'未読')
+Status.create!(name:'読書中')
+Status.create!(name:'読書済')
 
 # Category.create!(name: 'カテゴリなし')
 # Category.create!(name: '小説')
@@ -23,14 +23,14 @@
 # Category.create!(name: '資格')
 # Category.create!(name: 'IT')
 
-Book.create!(
-  title: '100年ドラえもん　50周年メモリアルエディション 『ドラえもん』全45巻・豪華愛蔵版セット',
-  author: '藤子・F・不二雄',
-  image_url: 'https://thumbnail.image.rakuten.co.jp/@0_mall/book/cabinet/3331/9784091793331.jpg?_ex=200x200',
-  isbn: 'https://thumbnail.image.rakuten.co.jp/@0_mall/book/cabinet/3331/9784091793331.jpg?_ex=200x200',
-  publishername: '小学館',
-  rakuten_url: 'https://books.rakuten.co.jp/rb/16283607/',
-)
+# Book.create!(
+#   title: '100年ドラえもん　50周年メモリアルエディション 『ドラえもん』全45巻・豪華愛蔵版セット',
+#   author: '藤子・F・不二雄',
+#   image_url: 'https://thumbnail.image.rakuten.co.jp/@0_mall/book/cabinet/3331/9784091793331.jpg?_ex=200x200',
+#   isbn: 'https://thumbnail.image.rakuten.co.jp/@0_mall/book/cabinet/3331/9784091793331.jpg?_ex=200x200',
+#   publishername: '小学館',
+#   rakuten_url: 'https://books.rakuten.co.jp/rb/16283607/'
+# )
 
 # 5.times do |n|
 #   User.create!(
@@ -48,6 +48,6 @@ Book.create!(
 #   bookshelf_id: rand(2..7),
 #   hours: 1,
 #   minutes: 30,
-#   yyyymmdd:'2020-05-12' 
+#   yyyymmdd:'2020-05-12'
 #   )
-#end
+# end

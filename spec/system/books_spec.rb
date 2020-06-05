@@ -7,7 +7,6 @@ describe '書籍登録機能', type: :system do
   let(:admin_user) { FactoryBot.create(:admin_user, name: '管理者ユーザー') }
   let!(:book) { FactoryBot.create(:book) }
 
-  
   describe '書籍新規登録' do
     describe 'ログイン前' do
       before do
@@ -30,14 +29,14 @@ describe '書籍登録機能', type: :system do
       describe '本棚追加時' do
         it '成功' do
           expect do
-            click_on '本棚追加', match: :first 
+            click_on '本棚追加', match: :first
           end.to change { Book.count }.by(1)
         end
       end
       describe 'レビュー投稿時' do
         it '成功' do
           expect do
-            click_on '本棚追加', match: :first 
+            click_on '本棚追加', match: :first
           end.to change { Book.count }.by(1)
         end
       end
@@ -63,15 +62,15 @@ describe '書籍登録機能', type: :system do
       end
     end
   end
-  
+
   describe '書籍削除' do
     describe '管理者ユーザー' do
       it '削除可' do
         sign_in_as admin_user
         visit new_book_path
         expect do
-          click_on 'delete', match: :first 
-        end.to change { Book.count }.by(-1)   
+          click_on 'delete', match: :first
+        end.to change { Book.count }.by(-1)
         expect(page).to have_content '書籍を削除しました'
       end
     end

@@ -32,7 +32,6 @@ gem 'carrierwave'
 gem 'mini_magick', '~> 4.8'
 gem 'fog-aws'
 
-
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
@@ -49,15 +48,15 @@ gem 'pry-byebug'
 gem 'rails-i18n', '~> 5.1'
 gem 'rakuten_web_service'
 gem 'ransack'
-gem "actionview", ">= 5.2.4.2"
+gem 'actionview', '>= 5.2.4.2'
 # gem 'chartkick'
 # gem 'groupdate'
 gem 'chart-js-rails', '~> 0.1.4'
 gem 'counter_culture', '~> 1.0'
 # gem 'gon'
-gem "activesupport", ">= 5.2.4.3"
-gem "actionpack", ">= 5.2.4.3"
-gem "activestorage", ">= 5.2.4.3"
+gem 'activesupport', '>= 5.2.4.3'
+gem 'actionpack', '>= 5.2.4.3'
+gem 'activestorage', '>= 5.2.4.3'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -84,7 +83,7 @@ group :test do
   gem 'webdrivers'
 end
 group :production, :staging do
-    gem 'unicorn'
+  gem 'unicorn'
 end
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]

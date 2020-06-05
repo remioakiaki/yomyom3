@@ -185,3 +185,15 @@
   text-align:center;
 }
 
+/*グラフの日付設定フォーム*/
+.graph_form{
+  width:60%;
+  
+  margin:10px auto;
+}
+@media screen and (max-width:476px){
+  .graph_form{
+    width:90%;
+    margin:10px auto;
+  }
+}

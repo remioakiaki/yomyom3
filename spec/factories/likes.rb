@@ -2,7 +2,7 @@
 
 FactoryBot.define do
   factory :like do
-    book
-    user { book.user }
+    micropost
+    user { micropost.user }
   end
 end

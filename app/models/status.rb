@@ -1,3 +1,6 @@
+# frozen_string_literal: true
+
 class Status < ApplicationRecord
-  has_one :bookshelves, foreign_key: "bookshelves_id"
+  has_one :bookshelves, foreign_key: 'bookshelves_id'
+  validates :name, uniqueness: true, presence: true
 end

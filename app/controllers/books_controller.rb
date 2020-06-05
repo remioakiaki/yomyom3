@@ -5,11 +5,10 @@ class BooksController < ApplicationController
   RakutenWebService.configure do |c|
     c.application_id = ENV['RAKUTEN_APPID']
   end
-  
+
   def index
-    
     # @q = Book.ransack(params[:q])
-    # @books = @q.result.order(created_at: :desc).includes(:microposts,:likes).page(params[:page]).per(12)       
+    # @books = @q.result.order(created_at: :desc).includes(:microposts,:likes).page(params[:page]).per(12)
     # @bookshelf = Bookshelf.new
   end
 
@@ -17,18 +16,11 @@ class BooksController < ApplicationController
     require 'rakuten_web_service'
 
     params[:page] = 1 if params[:page].nil?
+    if params[:title].present? || params[:author].present?
+      paramhash = makeparams(params)
+      books = RakutenWebService::Books::Book.search(paramhash)
+    end
 
-    books = if params[:title].present? && params[:author].present?
-              RakutenWebService::Books::Book.search(title: params[:title], hits: 12,
-                                                    author: params[:author])
-
-            elsif params[:title].present?
-              RakutenWebService::Books::Book.search(title: params[:title], hits: 12,
-                                                    page: params[:page])
-            elsif params[:author].present?
-              RakutenWebService::Books::Book.search(author: params[:author], hits: 12,
-                                                    page: params[:page])
-            end
     if books.present?
       makearray(books)
     else @books = Book.all.page(params[:page]).per(12)
@@ -112,9 +104,18 @@ class BooksController < ApplicationController
   end
 
   def admin_user
-    unless current_user.admin?
-      flash[:danger] = "こちらの操作はできません"  
-      redirect_to root_url 
+    return if current_user.admin?
+
+    flash[:danger] = 'こちらの操作はできません'
+    redirect_to root_url
+  end
+
+  def makeparams(params)
+    hash = params.permit!.to_hash.symbolize_keys.slice(:title, :author)
+    hash.map do |k, v|
+      hash.except!(k) if v.empty?
     end
+    hash.store(:hits, 12)
+    hash # ハッシュを返す
   end
 end

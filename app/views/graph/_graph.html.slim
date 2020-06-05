@@ -1,4 +1,9 @@
 .graph_all
+  .graph_form
+    =form_with url: records_user_path,method: :get ,local:true do |f|
+      =f.date_field :yyyymmdd,value: (Time.now.strftime("%Y-%m-%d")), class:'form-control'
+      .btn-parent
+        =f.submit "検索", class: "comu btn btn-primary"
   = render 'graph/var'
   .graph_st_cate
     = render 'graph/pie_st'

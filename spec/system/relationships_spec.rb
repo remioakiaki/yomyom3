@@ -41,7 +41,7 @@ RSpec.describe 'Relationships', type: :system, js: true do
               visit users_path
               expect(page).to_not have_selector ".relation-btn_#{user.id}"
             end
-          end        
+          end
         end
         describe '他ユーザーを確認' do
           describe 'ユーザー確認ページ' do
@@ -57,7 +57,7 @@ RSpec.describe 'Relationships', type: :system, js: true do
               expect(page).to have_selector ".relation-btn_#{other_user.id}"
               relation other_user
             end
-          end        
+          end
         end
       end
     end

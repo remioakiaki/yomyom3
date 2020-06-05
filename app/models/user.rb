@@ -29,8 +29,8 @@ class User < ApplicationRecord
   has_many :likeposts, through: :likes, source: :micropost
   # # コメント
   has_many :comments
-  
-  #本棚
+
+  # 本棚
   has_many :bookshelves, dependent: :destroy
   has_many :mybksh, through: :bookshelves, source: :book
 
@@ -38,11 +38,11 @@ class User < ApplicationRecord
 
   # #本棚追加
   # def addbksh(bookshelf)
-    
+
   #   mybksh << bookshelf
   # end
 
-  #本棚存在確認
+  # 本棚存在確認
   def chbksh?(book)
     mybksh.include?(book)
   end

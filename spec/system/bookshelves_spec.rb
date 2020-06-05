@@ -6,18 +6,18 @@ describe '本棚登録機能', type: :system, js: true do
   let(:user) { FactoryBot.create(:user, name: '一般ユーザー') }
   let!(:other_user) { FactoryBot.create(:user, name: 'その他ユーザー') }
   let!(:book) { FactoryBot.create(:book) }
-  
-  let!(:bookshelf){ 
+
+  let!(:bookshelf) do
     user.bookshelves.create(
       user_id: user.id, book_id: book.id
     )
-}
-let!(:other_bookshelf){ 
-  other_user.bookshelves.create(
-    user_id: other_user.id, book_id: book.id
-  )
-}
-  
+  end
+  let!(:other_bookshelf) do
+    other_user.bookshelves.create(
+      user_id: other_user.id, book_id: book.id
+    )
+  end
+
   describe '本棚新規登録' do
     describe 'ログイン前' do
       before do
@@ -43,7 +43,7 @@ let!(:other_bookshelf){
           end.to change { Bookshelf.count }.by(1)
         end
       end
-      context "本棚登録済み" do
+      context '本棚登録済み' do
         before do
           bookshelf
         end
@@ -67,7 +67,7 @@ let!(:other_bookshelf){
       end
       context '自分のマイページ' do
         it '編集可' do
-          click_link nil,href: edit_bookshelf_path(bookshelf)
+          click_link nil, href: edit_bookshelf_path(bookshelf)
           select '読書中', from: 'bookshelf_status_id'
           select '小説', from: 'bookshelf_category_id'
           click_button '更新'
@@ -75,9 +75,9 @@ let!(:other_bookshelf){
         end
       end
       context '他人のマイページ' do
-        it '編集不可' do 
+        it '編集不可' do
           visit user_path(other_user)
-          expect(page).to have_no_link edit_bookshelf_path(bookshelf)  
+          expect(page).to have_no_link edit_bookshelf_path(bookshelf)
         end
       end
     end
@@ -87,7 +87,7 @@ let!(:other_bookshelf){
     describe 'ログイン後' do
       it '削除可能' do
         sign_in_as user
-        click_link nil,href: edit_bookshelf_path(bookshelf)
+        click_link nil, href: edit_bookshelf_path(bookshelf)
         click_on '本棚から削除'
         page.driver.browser.switch_to.alert.accept
         expect(page).to have_content '本棚から削除されました'
@@ -98,7 +98,7 @@ let!(:other_bookshelf){
   describe '記録、レビューボタン' do
     describe 'ログイン前' do
       it '非表示' do
-        visit user_path(user) 
+        visit user_path(user)
         expect(page).to_not have_link '記録を追加'
       end
     end
@@ -120,4 +120,4 @@ let!(:other_bookshelf){
       end
     end
   end
-end  
+end

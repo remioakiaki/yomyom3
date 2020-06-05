@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require 'rails_helper'
-RSpec.describe 'Comments', type: :system,js: true do
+RSpec.describe 'Comments', type: :system, js: true do
   describe '投稿機能' do
     let!(:user) { FactoryBot.create(:user) }
     let!(:micropost) { FactoryBot.create(:micropost, user: user, book_id: book.id) }
@@ -37,7 +37,7 @@ RSpec.describe 'Comments', type: :system,js: true do
         end
         it '編集ができること' do
           visit book_path(book)
-          find(".btn-opn_#{micropost.id}").click  
+          find(".btn-opn_#{micropost.id}").click
           find(".comment_edit_#{comment.id}").click
           find('.edit-area').set('テスト編集')
           click_on '更新'

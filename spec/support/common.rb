@@ -9,6 +9,7 @@ module Common
     fill_in 'session[password]', with: user.password
     click_button 'ログイン'
   end
+
   def relation(user)
     expect do
       find(".relation-btn_#{user.id}").click_button 'フォローする'
