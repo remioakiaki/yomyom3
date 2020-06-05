@@ -59,10 +59,10 @@ class MicropostsController < ApplicationController
     redirect_to root_url if @micropost.nil?
   end
 
-  def logged_in_user
-    return if logged_in?
+  # def logged_in_user
+  #   return if logged_in?
 
-    flash[:danger] = 'ログインしてください'
-    redirect_to login_url
-  end
+  #   flash[:danger] = 'ログインしてください'
+  #   redirect_to login_url
+  # end
 end

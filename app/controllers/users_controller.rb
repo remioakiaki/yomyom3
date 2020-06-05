@@ -107,14 +107,14 @@ class UsersController < ApplicationController
 
   def correct_user
     @user = User.find(params[:id])
-    unless @user == current_user
-      flash[:danger] = '他ユーザーの編集はできません'
-      redirect_to(current_user)
-    end
+    return if @user == current_user
+
+    flash[:danger] = '他ユーザーの編集はできません'
+    redirect_to(current_user)
   end
 
   def admin_user
-    redirect_to root_url unless current_user.admin?
+    return redirect_to root_url if current_user.admin?
   end
 
   def test_user

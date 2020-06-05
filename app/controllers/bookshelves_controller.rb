@@ -12,10 +12,10 @@ class BookshelvesController < ApplicationController
       @bookshelf = current_user.bookshelves.build(bookshelf_params)
     end
 
-    if @bookshelf.save
-      flash[:success] = '本棚への追加が完了しました'
-      redirect_to user_path(current_user)
-    end
+    return unless @bookshelf.save
+
+    flash[:success] = '本棚への追加が完了しました'
+    redirect_to user_path(current_user)
   end
 
   def edit
@@ -49,6 +49,6 @@ class BookshelvesController < ApplicationController
 
   def correct_user
     @bookshelf = Bookshelf.find(params[:id])
-    redirect_to(current_user) unless @bookshelf.user_id == current_user.id
+    return redirect_to(current_user) if @bookshelf.user_id == current_user.id
   end
 end

@@ -51,7 +51,6 @@
 
         //コメントフォームの表示、非表示、いいね
       .menu2
-      
           = link_to micropost_comments_path(micropost.id),id:"opnbtn",class:"btn btn-opn_#{micropost.id}",remote: true  do
             span.glyphicon.glyphicon-comment aria-hidden="true"
             = micropost.comments_count  
