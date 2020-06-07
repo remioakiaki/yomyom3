@@ -126,7 +126,7 @@ class UsersController < ApplicationController
   end
 
   def createvar(user_id)
-    if test_user? && params[:yyyymmdd].nil?
+    if test_user?(user_id) && params[:yyyymmdd].nil?
       yyyymmdd = Date.parse('2020-5-12')
     elsif params[:yyyymmdd].nil?
       yyyymmdd = Date.today
