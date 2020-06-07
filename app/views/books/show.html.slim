@@ -33,8 +33,18 @@
     
     .chk.text-center
       =link_to '楽天で詳しく見る', @book.rakuten_url, class:'btn btn-danger' 
-      -if logged_in? && admin?
-        p= link_to 'edit',edit_book_path(@book)
+      -if logged_in? 
+        -unless current_user.chbksh?(@book)
+          = form_with(model:@bookshelf, local:true) do |f|
+            = f.hidden_field :book_id, value: @book.id
+            = hidden_field_tag :isbn, @book['isbn']
+            = f.submit '本棚追加', class:'btn btn-primary'
+      / -if logged_in? && admin?
+      /   p= link_to 'edit',edit_book_path(@book)
+
+
+
+
 
 .row
   -if logged_in?

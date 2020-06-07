@@ -55,6 +55,7 @@ class BooksController < ApplicationController
     @book = Book.find(params[:id])
     @micropost = Micropost.new
     @microposts = Micropost.where(book_id: @book.id).includes(:user, :book)
+    @bookshelf = Bookshelf.new
   end
 
   def destroy

@@ -28,7 +28,8 @@
 
     .col-sm-2.col-xs-7.pos-col
       .book-image
-        = image_tag micropost.book.image_url
+        = link_to book_path(micropost.book)
+          = image_tag micropost.book.image_url
     .col-sm-8.col-xs-12
       .content
         .balloon1-left
