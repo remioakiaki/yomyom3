@@ -15,7 +15,6 @@ class BooksController < ApplicationController
   def new
     require 'rakuten_web_service'
 
-    params[:page] = 1 if params[:page].nil?
     if params[:title].present? || params[:author].present?
       paramhash = makeparams(params)
       books = RakutenWebService::Books::Book.search(paramhash)
@@ -65,8 +64,7 @@ class BooksController < ApplicationController
   end
 
   def ranking
-    @ranking_counts = Bookshelf.ranking
-    @books = Book.find(@ranking_counts.keys)
+    @books = Book.all.order(bookshelves_count: :desc).limit(12)
   end
 
   private
@@ -94,8 +92,7 @@ class BooksController < ApplicationController
 
       @books = Kaminari.paginate_array(booksarray,
                                        total_count: books.response['count'])
-                       .page(books.response['page'])
-                       .per(12)
+                       .page(params[:page])
     end
   end
 
@@ -111,11 +108,13 @@ class BooksController < ApplicationController
   end
 
   def makeparams(params)
-    hash = params.permit!.to_hash.symbolize_keys.slice(:title, :author)
+    params[:page] = 1 if params[:page].nil?
+    params[:hits] = 12
+    
+    hash = params.permit!.to_hash.symbolize_keys.slice(:title, :author,:page,:hits)
     hash.map do |k, v|
-      hash.except!(k) if v.empty?
-    end
-    hash.store(:hits, 12)
+      hash.except!(k) if v.blank?
+    end    
     hash # ハッシュを返す
   end
 end
