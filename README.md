@@ -1,5 +1,7 @@
 書籍を登録し、読書時間を記録、レビューができるアプリです  
-http://yomyom2.work/
+http://yomyom2.work/  
+自分の本棚に登録した後は、書籍の読書状態がわかるステータス、  
+自分用に書籍のカテゴリを管理することが可能です。  
 ![yomyom_top](https://user-images.githubusercontent.com/41112416/83981213-d8ee5100-a956-11ea-8e7f-c3dbe8c9e8b1.png)
 ![record](https://user-images.githubusercontent.com/41112416/83981241-1e128300-a957-11ea-9779-a9a538cd6da9.png)
 ![bookshelf](https://user-images.githubusercontent.com/41112416/83981245-28348180-a957-11ea-9fb4-44a5f6a8d6c3.png)
