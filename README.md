@@ -1,4 +1,4 @@
-書籍を登録し、読書時間を記録、レビューができるアプリです
+書籍を登録し、読書時間を記録、レビューができるアプリです  
 http://yomyom2.work/
 ![yomyom_top](https://user-images.githubusercontent.com/41112416/83981213-d8ee5100-a956-11ea-8e7f-c3dbe8c9e8b1.png)
 ![record](https://user-images.githubusercontent.com/41112416/83981241-1e128300-a957-11ea-9779-a9a538cd6da9.png)
