@@ -15,6 +15,8 @@ http://yomyom2.work/
   S3  
   VPC  
   Route53
+  ALB
+  ACS
   <!-- 使用技術に追記があればこちらに記入 -->
 - 単体・統合テスト(RSpec, factory_bot, capybara)
 - データベース(MYSQL)
