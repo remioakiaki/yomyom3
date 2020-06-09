@@ -7,7 +7,7 @@ describe '本棚登録機能', type: :system, js: true do
   let!(:other_user) { FactoryBot.create(:user, name: 'その他ユーザー') }
   let!(:book) { FactoryBot.create(:book) }
 
-  let!(:bookshelf) { create(:bookshelf,user:user, book: book) }
+  let!(:bookshelf) { create(:bookshelf, user: user, book: book) }
   # let!(:bookshelf) do
   #   user.bookshelves.create(
   #     user_id: user.id, book_id: book.id

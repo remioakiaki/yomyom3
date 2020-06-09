@@ -2,18 +2,23 @@
 
 require 'rails_helper'
 RSpec.describe 'Records', type: :system, js: true do
-  
   let!(:user) { create(:user) }
   let!(:book) { create(:book) }
   let!(:status) { create(:status) }
   let!(:category) { create(:category) }
-  
+
   let!(:other_user) { create(:user, name: 'その他ユーザー') }
-  let!(:bookshelf) { create(:bookshelf,user_id: user.id,book_id: book.id,status_id:status.id,category_id:category.id ) }
-  let!(:other_bookshelf){create(:bookshelf,user_id: other_user.id,book_id: book.id,status_id:status.id,category_id:category.id ) }
+  let!(:bookshelf) do
+    create(:bookshelf, user_id: user.id, book_id: book.id,
+                       status_id: status.id, category_id: category.id)
+  end
+  let!(:other_bookshelf) do
+    create(:bookshelf, user_id: other_user.id, book_id: book.id,
+                       status_id: status.id, category_id: category.id)
+  end
   let!(:record) { create(:record, user: user, bookshelf: bookshelf) }
-  let!(:other_record) {create(:record, user: other_user, bookshelf: other_bookshelf) }
-  
+  let!(:other_record) { create(:record, user: other_user, bookshelf: other_bookshelf) }
+
   describe 'レコード登録機能' do
     it '登録可' do
       sign_in_as user
