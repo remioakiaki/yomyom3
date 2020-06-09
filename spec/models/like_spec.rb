@@ -5,7 +5,7 @@ require 'rails_helper'
 RSpec.describe Like, type: :model do
   let(:user) { FactoryBot.create(:user, name: '一般ユーザー') }
   let(:micropost) { FactoryBot.create(:micropost) }
-  let(:like) { FactoryBot.create(:like, user: user, micropost: micropost)}
+  let(:like) { FactoryBot.create(:like, user: user, micropost: micropost) }
 
   it 'お気に入り登録が有効である' do
     expect(like).to be_valid

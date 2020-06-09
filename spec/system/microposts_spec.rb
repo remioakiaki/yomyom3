@@ -13,12 +13,12 @@ RSpec.describe 'Microposts', type: :system, js: true do
       visit book_path(book)
     end
     it '作成可' do
-      expect do
         fill_in 'micropost[content]', with: 'テスト投稿'
         fill_in 'micropost[title]', with: 'テストタイトル'
+        sleep 3
         page.all('img')[8].click
-        click_on 'レビューを投稿'
-      end.to change { Micropost.count }.by(1)
+        click_button 'レビューを投稿'
+        expect(page).to have_content '投稿が完了しました'
     end
     it '作成不可' do
       fill_in 'micropost[content]', with: ''
@@ -42,7 +42,7 @@ RSpec.describe 'Microposts', type: :system, js: true do
           visit microposts_user_path(user)
           find(".micropost_edit_#{micropost1.id}").click
           sleep 3
-          page.all('img')[5].click
+          page.all('img')[9].click
           click_button '更新'
           expect(page).to have_content '更新が完了しました'
         end

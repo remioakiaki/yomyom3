@@ -5,7 +5,7 @@ FactoryBot.define do
     yyyymmdd { '2020-05-12' }
     hours { 1 }
     minutes { 30 }
-    page_amount {10}
+    page_amount { 10 }
     memo { 'テストメモ' }
     association :user
     association :bookshelf
