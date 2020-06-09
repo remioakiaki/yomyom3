@@ -46,6 +46,7 @@ class RecordsController < ApplicationController
   private
 
   def record_params
-    params.require(:record).permit(:hours, :minutes, :yyyymmdd, :page_amount, :memo, :user_id, :bookshelf_id)
+    params.require(:record).permit(:hours, :minutes, :yyyymmdd,
+                                   :page_amount, :memo, :user_id, :bookshelf_id)
   end
 end

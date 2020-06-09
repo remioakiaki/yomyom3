@@ -10,6 +10,7 @@ class ApplicationController < ActionController::Base
     flash[:danger] = 'ログインしていない状態でその操作はできません'
     redirect_to root_path
   end
+
   def test_user?(user_id)
     user_id == 1
   end
