@@ -2,5 +2,5 @@
 
 class Status < ApplicationRecord
   has_one :bookshelves, foreign_key: 'bookshelves_id'
-  validates :name, uniqueness: true, presence: true
+  validates :name, presence: true
 end

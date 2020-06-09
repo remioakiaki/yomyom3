@@ -2,21 +2,18 @@
 
 require 'rails_helper'
 RSpec.describe 'Records', type: :system, js: true do
-  let!(:user) { FactoryBot.create(:user) }
-  let!(:other_user) { FactoryBot.create(:user, name: 'その他ユーザー') }
-  let!(:book) { FactoryBot.create(:book, isbn: '1234567890') }
-  let!(:bookshelf) do
-    user.bookshelves.create(
-      user_id: user.id, book_id: book.id
-    )
-  end
-  let!(:other_bookshelf) do
-    other_user.bookshelves.create(
-      user_id: other_user.id, book_id: book.id
-    )
-  end
-  let!(:record) { FactoryBot.create(:record, user: user, bookshelf_id: bookshelf.id) }
-  let!(:other_record) { FactoryBot.create(:record, user: other_user, bookshelf_id: other_bookshelf.id) }
+  
+  let!(:user) { create(:user) }
+  let!(:book) { create(:book) }
+  let!(:status) { create(:status) }
+  let!(:category) { create(:category) }
+  
+  let!(:other_user) { create(:user, name: 'その他ユーザー') }
+  let!(:bookshelf) { create(:bookshelf,user_id: user.id,book_id: book.id,status_id:status.id,category_id:category.id ) }
+  let!(:other_bookshelf){create(:bookshelf,user_id: other_user.id,book_id: book.id,status_id:status.id,category_id:category.id ) }
+  let!(:record) { create(:record, user: user, bookshelf: bookshelf) }
+  let!(:other_record) {create(:record, user: other_user, bookshelf: other_bookshelf) }
+  
   describe 'レコード登録機能' do
     it '登録可' do
       sign_in_as user

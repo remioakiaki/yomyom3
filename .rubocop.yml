@@ -10,6 +10,7 @@ AllCops:
     - "db/migrate/*.rb"
     - "bin/*"
     - "config/unicorn.conf.rb"
+   
   DisplayCopNames: true
   TargetRubyVersion: 2.5.3
 

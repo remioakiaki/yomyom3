@@ -6,12 +6,6 @@ class BooksController < ApplicationController
     c.application_id = ENV['RAKUTEN_APPID']
   end
 
-  def index
-    # @q = Book.ransack(params[:q])
-    # @books = @q.result.order(created_at: :desc).includes(:microposts,:likes).page(params[:page]).per(12)
-    # @bookshelf = Bookshelf.new
-  end
-
   def new
     require 'rakuten_web_service'
 
@@ -111,11 +105,11 @@ class BooksController < ApplicationController
   def makeparams(params)
     params[:page] = 1 if params[:page].nil?
     params[:hits] = 12
-    
-    hash = params.permit!.to_hash.symbolize_keys.slice(:title, :author,:page,:hits)
+
+    hash = params.permit!.to_hash.symbolize_keys.slice(:title, :author, :page, :hits)
     hash.map do |k, v|
       hash.except!(k) if v.blank?
-    end    
+    end
     hash # ハッシュを返す
   end
 end

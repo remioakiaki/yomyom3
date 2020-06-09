@@ -2,9 +2,10 @@
 
 FactoryBot.define do
   factory :bookshelf, class: Bookshelf do
-    user
-    book 
-    status 
-    category 
+    association :user
+    association :book 
+    association :status 
+    association :category 
+    
   end
 end

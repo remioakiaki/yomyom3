@@ -29,7 +29,6 @@ class UsersController < ApplicationController
       log_in @user
       flash[:success] = '登録成功'
       redirect_to user_path(@user)
-      # redirect_to root_url
     else
       render :new
     end
@@ -126,16 +125,16 @@ class UsersController < ApplicationController
   end
 
   def createvar(user_id)
-    if test_user?(user_id) && params[:yyyymmdd].nil?
-      yyyymmdd = Date.parse('2020-5-12')
-    elsif params[:yyyymmdd].nil?
-      yyyymmdd = Date.today
-    else
-      yyyymmdd = params[:yyyymmdd].to_date
-    end
+    yyyymmdd = if test_user?(user_id) && params[:yyyymmdd].nil?
+                 Date.parse('2020-5-12')
+               elsif params[:yyyymmdd].nil?
+                 Date.today
+               else
+                 params[:yyyymmdd].to_date
+               end
     # 棒グラフのラベルを取得
-    @var_labels = (yyyymmdd -6..yyyymmdd).to_a
-    hash = (@var_labels).map { |day| [day, 0] }.to_h
+    @var_labels = (yyyymmdd - 6..yyyymmdd).to_a
+    hash = @var_labels.map { |day| [day, 0] }.to_h
     # カテゴリーの数だけ繰り返し実施
     @r1, @r2, @r3, @r4, @r5, @r6 = (1..6).map do |i|
       datahash = Record.reorder(nil).eager_load(bookshelf: :category)
