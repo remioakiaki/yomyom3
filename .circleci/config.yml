@@ -65,7 +65,5 @@ workflows:
   version: 2
   rubocop_rspec:
     jobs:
+      - rspec
       - rubocop
-      - rspec:
-          requires:
-            - rubocop
