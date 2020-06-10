@@ -9,6 +9,12 @@ jobs:
         environment:
           - MYSQL_ROOT_HOST: 127.0.0.1
           - MYSQL_ALLOW_EMPTY_PASSWORD: "true"
+      - image: circleci/node:latest
+      - image: selenium/standalone-chrome:latest
+        environment:
+          ports:
+            - 4444:4444
+            - 5900:5900
 
     working_directory: ~/repo
     steps:
