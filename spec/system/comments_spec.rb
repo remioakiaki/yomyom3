@@ -47,7 +47,8 @@ RSpec.describe 'Comments', type: :system, js: true do
           visit book_path(book)
           find(".btn-opn_#{micropost.id}").click
           find(".comment_edit_#{comment.id}").click
-          fill_in 'comment[content]', with: ''
+          sleep 5.0
+          fill_in 'comment[content]', with: '', match: :first
           click_button '更新'
           expect(page).to have_content 'コメントを入力してください'
         end

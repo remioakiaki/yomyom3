@@ -70,3 +70,4 @@ workflows:
       - rubocop
       - rspec:
           context: RAKUTEN_APPID
+            
