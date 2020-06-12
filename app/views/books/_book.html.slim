@@ -1,7 +1,7 @@
-.row
-  -@books.each do |book|
-    .book-list 
-      .row-eq-height
+
+  .row.row-0
+    -@books.each do |book|
+      .book-list         
         .col-sm-3
           .title
             p= book.title
@@ -11,9 +11,9 @@
             p= book.author
           .publisher
             p
-             = book.publishername
-             -if logged_in? && admin? && book.persisted?
-               = link_to "delete",  book_path(book),method: :delete
+            = book.publishername
+            -if logged_in? && admin? && book.persisted?
+              = link_to "delete",  book_path(book),method: :delete
 
           .star-average
             -if book.persisted?
