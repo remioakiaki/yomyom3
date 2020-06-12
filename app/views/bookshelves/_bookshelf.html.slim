@@ -1,29 +1,28 @@
-.row
+.row.row-0
   -@bookshelves.each do |bookshelf|
   
     .bookshelf-list 
-      .row-eq-height
-        .col-sm-3
-          .title
-            -if bookshelf.book.persisted? && logged_in? && current_user?(@user.id)
-              = link_to edit_bookshelf_path(bookshelf),remote:true do
-                p= bookshelf.book.title  
-              div#editmodal class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"
-            -else
-              p= bookshelf.book.title
-          .image.text-center
-            = image_tag bookshelf.book.image_url
+      .col-sm-3
+        .title
+          -if bookshelf.book.persisted? && logged_in? && current_user?(@user.id)
+            = link_to edit_bookshelf_path(bookshelf),remote:true do
+              p= bookshelf.book.title  
+            div#editmodal class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"
+          -else
+            p= bookshelf.book.title
+        .image.text-center
+          = image_tag bookshelf.book.image_url
 
-          .mark-parent.text-center
-            div class="mark status_#{bookshelf.status.id}"
-              = bookshelf.status.name
-            div class="mark category_#{bookshelf.category.id}"
-              = bookshelf.category.name
-          .record
+        .mark-parent.text-center
+          div class="mark status_#{bookshelf.status.id}"
+            = bookshelf.status.name
+          div class="mark category_#{bookshelf.category.id}"
+            = bookshelf.category.name
+        .record
+        
+          -if logged_in? && current_user?(bookshelf.user_id)
+            = link_to '記録を追加', new_bookshelf_record_path(bookshelf.id), class:'btn btn-info',remote:true
           
-            -if logged_in? && current_user?(bookshelf.user_id)
-              = link_to '記録を追加', new_bookshelf_record_path(bookshelf.id), class:'btn btn-info',remote:true
-            
-            div#newmodal class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"
-            = link_to 'レビュー', book_path(bookshelf.book.id), class:'btn btn-success'
+          div#newmodal class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"
+          = link_to 'レビュー', book_path(bookshelf.book.id), class:'btn btn-success'
           
