@@ -17,7 +17,7 @@ http://yomyom2.work/
   Route53  
   ALB  
   ACS  
-  <!-- 使用技術に追記があればこちらに記入 -->
+- CircleCIを導入した自動テスト
 - 単体・統合テスト(RSpec, factory_bot, capybara)
 - データベース(MYSQL)
 - 画像アップロード(Amason S3, carrierwave, mini_magick, fog)
