@@ -2,4 +2,8 @@
 
 = render 'users/profile', user:@user
 = render 'users/tab', user:@user
-= render @microposts
+
+- if @microposts.any?
+  = render @microposts
+- else
+  =render 'layouts/info', name: 'お気に入り登録' 

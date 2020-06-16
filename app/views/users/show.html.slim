@@ -1,5 +1,9 @@
 - provide(:title, '本棚一覧')
 = render 'users/profile', user:@user
 = render 'users/tab', user:@user
-= render 'bookshelves/bookshelf', bookshelves: @bookshelves, statuses: @statuses
-= paginate @bookshelves
+
+- if @bookshelves.any?
+  = render 'bookshelves/bookshelf', bookshelves: @bookshelves, statuses: @statuses
+  = paginate @bookshelves
+- else
+  =render 'layouts/info', name: '本棚登録' 
