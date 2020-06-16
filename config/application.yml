@@ -1,0 +1,13 @@
+defaults: &defaults
+  paginate:
+    book: 12
+      
+
+development:
+  <<: *defaults
+
+test:
+  <<: *defaults
+
+production:
+  <<: *defaults

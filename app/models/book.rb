@@ -8,5 +8,5 @@ class Book < ApplicationRecord
   has_many :bookshelves, dependent: :destroy
   # counter_culture :bookshelf
 
-  paginates_per 12
+  paginates_per Settings.paginate.book
 end

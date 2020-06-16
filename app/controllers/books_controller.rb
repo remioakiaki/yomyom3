@@ -16,7 +16,7 @@ class BooksController < ApplicationController
 
     if books.present?
       makearray(books)
-    else @books = Book.all.page(params[:page]).per(12)
+    else @books = Book.all.page(params[:page])
     end
     @bookshelf = Bookshelf.new
   end
@@ -104,7 +104,7 @@ class BooksController < ApplicationController
 
   def makeparams(params)
     params[:page] = 1 if params[:page].nil?
-    params[:hits] = 12
+    params[:hits] = Settings.paginate.book
 
     hash = params.permit!.to_hash.symbolize_keys.slice(:title, :author, :page, :hits)
     hash.map do |k, v|

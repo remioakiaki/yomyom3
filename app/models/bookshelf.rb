@@ -9,5 +9,5 @@ class Bookshelf < ApplicationRecord
 
   has_many :records, dependent: :destroy
 
-  paginates_per 12
+  paginates_per Settings.paginate.book
 end
