@@ -12,13 +12,17 @@
         span.glyphicon.glyphicon-heart-empty aria-hidden="true"
         = micropost.likes_count
 -elsif micropost.likes_count > 0
-  .heart-on
-    span.glyphicon.glyphicon-heart aria-hidden="true"
-    = micropost.likes_count
+    = form_with(url: login_path, remote: true, method: :get) do |f|
+      = hidden_field_tag :micropost_id, micropost.id
+      = button_tag type:'submit', class: 'btn heart-on' do
+        span.glyphicon.glyphicon-heart aria-hidden="true"
+        = micropost.likes_count
 -else
-  .heart-off
-    span.glyphicon.glyphicon-heart-empty aria-hidden="true"
-    = micropost.likes_count
+    = form_with(url: login_path, remote: true, method: :get) do |f|
+      = hidden_field_tag :micropost_id, micropost.id
+      = button_tag type:'submit', class: 'btn heart-off' do
+        span.glyphicon.glyphicon-heart-empty aria-hidden="true"
+        = micropost.likes_count
   
 
 

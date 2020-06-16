@@ -10,7 +10,14 @@ class SessionsController < ApplicationController
       remember user
       params[:session][:remember_me] == '1' ? remember(user) : forget(user)
       flash[:success] = 'ログイン成功'
-      redirect_to user_path(user)
+      
+     
+      
+      unless request.referer.include?('/login')
+        redirect_back(fallback_location:user_path(user))
+      else
+        redirect_to user_path(user)
+      end
     else
       flash.now[:danger] = 'emailまたはパスワードに誤りがあります'
       render 'sessions/new'
@@ -20,6 +27,12 @@ class SessionsController < ApplicationController
   def destroy
     logout if logged_in?
     flash[:success] = 'ログアウトしました'
-    redirect_to root_path
+    redirect_back(fallback_location:root_path)
   end
+
+  private
+    def checkurl?
+      url = request.url
+
+    end
 end

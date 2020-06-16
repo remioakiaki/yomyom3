@@ -3,10 +3,20 @@
     -@books.each do |book|
       .book-list         
         .col-sm-3
-          .title
-            p= book.title
-          .image.text-center
-            = image_tag book.image_url
+          -if book.persisted?
+            =link_to book_path(book) do
+              .title
+                p
+                  b = book.title
+                  
+              .image.text-center
+                = image_tag book.image_url
+          -else
+            =link_to books_path(isbn: book['isbn']),method: :post do 
+              .title
+                p= book.title
+              .image.text-center
+                = image_tag book.image_url
           .author
             p= book.author
           .publisher
@@ -33,13 +43,13 @@
             ="（本棚:#{book.bookshelves_count}件）"
             ="（レビュー#{book.microposts_count}件）"
               
-          div class="add add_bookshelf_#{book.id}"
+          div class="add add_bookshelf_#{book.isbn}"
             =render 'bookshelves/crbtn', book: book
-          div class="add add_#{book.id}"
-              -if book.persisted?
-                = link_to "レビュー一覧", book_path(book),class:'btn btn-success'
-              -else    
-                = form_with(model:@book,local:true,url:books_path) do |f|
-                  = hidden_field_tag :isbn, book['isbn']
-                  = f.submit 'レビュー一覧', class:'btn btn-success'
-          
+      
+          / div class="add add_#{book.id}"
+          /     -if book.persisted?
+          /       = link_to "レビュー一覧", book_path(book),class:'btn btn-success'
+          /     -else    
+          /       = form_with(model:@book,local:true,url:books_path) do |f|
+          /         = hidden_field_tag :isbn, book['isbn']
+          /         = f.submit 'レビュー一覧', class:'btn btn-success'

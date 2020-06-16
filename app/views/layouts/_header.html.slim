@@ -43,6 +43,11 @@ nav.navbar
                           
 
           - else
+            li.nav-item   
+              =form_with( scope: :session, url: login_path,local: :true) do |f|
+                = f.hidden_field :email, value: "test@test.com"
+                = f.hidden_field :password, value: "password"
+                = f.submit "テストユーザーでログイン", class:"btn btn-success btn-new-user"
             li.nav-item = link_to "新規登録", signup_path 
             li.nav-item = link_to "ログイン", login_path
             li.nav-item = link_to new_book_path do

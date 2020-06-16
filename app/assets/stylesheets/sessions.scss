@@ -1,3 +1,17 @@
 // Place all the styles related to the Sessions controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+li.nav-item{
+  input.btn-new-user{
+    margin-top: 7px;
+    margin-bottom: 0px;
+  }
+}
+
+@media screen and (max-width:768px){
+  li.nav-item{
+    input.btn-new-user{
+      width: 55%;
+    }
+  }
+}

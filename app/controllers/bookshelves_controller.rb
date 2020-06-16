@@ -8,12 +8,12 @@ class BookshelvesController < ApplicationController
       @book.save
       @bookshelf = current_user.bookshelves.build(bookshelf_params)
       @bookshelf.book_id = @book.id
+      @bookshelf.save  
     else
       @bookshelf = current_user.bookshelves.build(bookshelf_params)
+      @bookshelf.save
+      @book = Book.find(params[:bookshelf][:book_id])
     end
-
-    @bookshelf.save
-    @book = Book.find(params[:bookshelf][:book_id])
   end
 
   def edit

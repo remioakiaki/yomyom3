@@ -1,8 +1,13 @@
-
--if current_user.following?(user)
-  = form_with(model:current_user.active_relationships.find_by(followed_id: user.id),remote:true,class:"edit_relationship_#{user.id}", html: { method: :delete }) do |f|
-    = f.submit "フォロー解除", class: "btn btn-danger"
+- if logged_in? 
+  -if !current_user?(user.id) 
+    div class="relation-btn_#{user.id} text-right"
+      -if current_user.following?(user)
+        = form_with(model:current_user.active_relationships.find_by(followed_id: user.id),remote:true,class:"edit_relationship_#{user.id}", html: { method: :delete }) do |f|
+          = f.submit "フォロー解除", class: "btn btn-danger"
+      -else
+        = form_with(model:current_user.active_relationships.build,remote:true) do |f|
+          = hidden_field_tag :followed_id, user.id
+          = f.submit "フォローする", class: "btn btn-primary"
 -else
-  = form_with(model:current_user.active_relationships.build,remote:true) do |f|
-    = hidden_field_tag :followed_id, user.id
+  = form_with(url: login_path, remote: true, method: :get) do |f|
     = f.submit "フォローする", class: "btn btn-primary"
