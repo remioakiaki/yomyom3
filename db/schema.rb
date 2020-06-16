@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_29_013008) do
+ActiveRecord::Schema.define(version: 2020_06_16_134925) do
 
   create_table "books", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "title"
@@ -19,11 +19,12 @@ ActiveRecord::Schema.define(version: 2020_05_29_013008) do
     t.string "isbn"
     t.string "publishername"
     t.string "rakuten_url"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
     t.integer "bookshelves_count", default: 0, null: false
     t.integer "microposts_count", default: 0, null: false
     t.float "avg_rate", default: 0.0, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["isbn"], name: "index_books_on_isbn"
   end
 
   create_table "bookshelves", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -115,13 +116,13 @@ ActiveRecord::Schema.define(version: 2020_05_29_013008) do
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name"
     t.string "email"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
     t.string "password_digest"
     t.string "remember_digest"
     t.string "picture"
     t.text "introduce"
     t.boolean "admin"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   add_foreign_key "bookshelves", "books"
