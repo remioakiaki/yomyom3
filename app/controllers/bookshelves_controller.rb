@@ -12,10 +12,8 @@ class BookshelvesController < ApplicationController
       @bookshelf = current_user.bookshelves.build(bookshelf_params)
     end
 
-    return unless @bookshelf.save
-
-    flash[:success] = '本棚への追加が完了しました'
-    redirect_to user_path(current_user)
+    @bookshelf.save
+    @book = Book.find(params[:bookshelf][:book_id])
   end
 
   def edit
@@ -37,8 +35,7 @@ class BookshelvesController < ApplicationController
   def destroy
     @bookshelf = Bookshelf.find(params[:id])
     @bookshelf.destroy
-    flash[:success] = '本棚から削除されました'
-    redirect_to user_path(current_user)
+    @book = Book.find(params[:bookshelf][:book_id])
   end
 
   private

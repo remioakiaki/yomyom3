@@ -1,0 +1,11 @@
+-if logged_in? 
+  -unless book.persisted? && current_user.chbksh?(book)
+    = form_with(model:@bookshelf, remote: true) do |f|
+      = f.hidden_field :book_id, value: book.id
+      = hidden_field_tag :isbn, book['isbn']
+      = f.submit '本棚追加', class:'btn btn-primary'
+  -else
+    = form_with(model:Bookshelf.find_by(book_id: book.id,user_id: current_user.id),remote:true,class:"hogehoge", html: { method: :delete }) do |f|
+      = f.submit "本棚から削除", class: "btn btn-danger"
+      = f.hidden_field :book_id, value: book.id
+

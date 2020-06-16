@@ -33,13 +33,8 @@
             ="（本棚:#{book.bookshelves_count}件）"
             ="（レビュー#{book.microposts_count}件）"
               
-          .add_bookshelf
-            -if logged_in? 
-              -unless book.persisted? && current_user.chbksh?(book)
-                = form_with(model:@bookshelf, local:true) do |f|
-                  = f.hidden_field :book_id, value: book.id
-                  = hidden_field_tag :isbn, book['isbn']
-                  = f.submit '本棚追加', class:'btn btn-primary'
+          div class="add add_bookshelf_#{book.id}"
+            =render 'bookshelves/crbtn', book: book
           div class="add add_#{book.id}"
               -if book.persisted?
                 = link_to "レビュー一覧", book_path(book),class:'btn btn-success'
@@ -47,3 +42,4 @@
                 = form_with(model:@book,local:true,url:books_path) do |f|
                   = hidden_field_tag :isbn, book['isbn']
                   = f.submit 'レビュー一覧', class:'btn btn-success'
+          
