@@ -35,7 +35,12 @@ class BookshelvesController < ApplicationController
   def destroy
     @bookshelf = Bookshelf.find(params[:id])
     @bookshelf.destroy
-    @book = Book.find(params[:bookshelf][:book_id])
+    unless params[:bookshelf].nil?
+      @book = Book.find(params[:bookshelf][:book_id])
+    else 
+      flash[:success] = '本棚への追加が完了しました'
+      redirect_to user_path(current_user)
+    end
   end
 
   private
