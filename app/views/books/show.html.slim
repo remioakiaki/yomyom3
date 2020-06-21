@@ -32,37 +32,6 @@
             =render 'bookshelves/crbtn', book: @book
           -if logged_in? && admin?
             p= link_to 'edit',edit_book_path(@book)  
-    / table.text-center
-    /   tr
-    /     td.text-center
-    /       b 作者
-    /     td
-    /       = @book.author
-    /   tr
-    /     td.text-center
-    /       b 出版社
-    /     td
-    /       = @book.publishername
-    /   tr
-    /     td.text-center
-    /       b 評価
-    /     td
-    /       .star-average
-    /           div id="star-rate_#{@book.id}"
-    /             javascript:
-    /               $("#star-rate_#{@book.id}").raty({
-    /                 path: '/assets/',
-    /                 half: true,
-    /                 readOnly: true,
-    /                 score: #{@book.microposts.average(:rate).to_f.round(1)}
-    /               });
-    
-
-
-
-
-
-
 .row
   -if logged_in?
     .col-sm-8.col-sm-offset-2.form
