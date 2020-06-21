@@ -2,7 +2,6 @@
 
 class BookshelvesController < ApplicationController
   before_action :correct_user, only: %i[edit update destroy]
-  before_action :test_user, only: %i[destroy]
   def create
     @bookshelf = current_user.bookshelves.build(bookshelf_params)
     if params[:bookshelf][:book_id].empty?
