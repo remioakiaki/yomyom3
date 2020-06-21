@@ -2,9 +2,6 @@
 
 class BooksController < ApplicationController
   before_action :admin_user, only: %i[destroy edit]
-  RakutenWebService.configure do |c|
-    c.application_id = ENV['RAKUTEN_APPID']
-  end
 
   def new
     require 'rakuten_web_service'
@@ -36,8 +33,8 @@ class BooksController < ApplicationController
   end
 
   def create
-    createbook(params[:isbn])
-    if @book.save
+    @book = Book.by_isbn(params[:isbn])
+    if @book.persisted?
       redirect_to book_url(@book)
     else
       flash[:danger] = '書籍の登録に失敗しました'
