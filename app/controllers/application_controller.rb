@@ -2,7 +2,6 @@
 
 class ApplicationController < ActionController::Base
   include SessionsHelper
-  include BooksHelper
 
   def logged_in_user
     return if logged_in?
@@ -14,4 +13,11 @@ class ApplicationController < ActionController::Base
   def test_user?(user_id)
     user_id == 1
   end
+end
+
+def test_user
+  return unless current_user.email == 'test@test.com'
+
+  flash[:danger] = 'テストユーザーでこの操作はできません'
+  redirect_back(fallback_location: root_path)
 end

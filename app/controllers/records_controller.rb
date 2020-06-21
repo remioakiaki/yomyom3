@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class RecordsController < ApplicationController
+  before_action :test_user, only: %i[destroy]
   def create
     @record = current_user.records.build(record_params)
     @bookshelf = Bookshelf.find(params[:bookshelf_id])
