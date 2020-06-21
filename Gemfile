@@ -57,6 +57,7 @@ gem 'counter_culture', '~> 1.0'
 gem 'activesupport', '>= 5.2.4.3'
 gem 'actionpack', '>= 5.2.4.3'
 gem 'activestorage', '>= 5.2.4.3'
+gem 'settingslogic'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -74,7 +75,6 @@ group :development do
   gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'bullet'
   gem 'faker'
-  gem 'settingslogic'
 end
 
 group :test do
