@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe '書籍登録機能', type: :system do
+describe '書籍登録機能', type: :system, js: true do
   let(:user) { FactoryBot.create(:user, name: '一般ユーザー') }
   let(:admin_user) { FactoryBot.create(:admin_user, name: '管理者ユーザー') }
   let!(:book) { FactoryBot.create(:book) }
@@ -14,9 +14,8 @@ describe '書籍登録機能', type: :system do
         fill_in 'title', with: 'docker'
         click_on '書籍を検索'
       end
-      it '非表示' do
-        expect(page).to have_no_button '本棚追加'
-        expect(page).to have_button 'レビュー一覧'
+      it '本棚追加のみ表示' do
+        expect(page).to have_button '本棚追加'
       end
     end
     describe 'ログイン後' do
@@ -30,6 +29,7 @@ describe '書籍登録機能', type: :system do
         it '成功' do
           expect do
             click_on '本棚追加', match: :first
+            sleep 5.0
           end.to change { Book.count }.by(1)
         end
       end
@@ -37,6 +37,7 @@ describe '書籍登録機能', type: :system do
         it '成功' do
           expect do
             click_on '本棚追加', match: :first
+            sleep 5.0
           end.to change { Book.count }.by(1)
         end
       end

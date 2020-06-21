@@ -10,8 +10,7 @@ class CommentsController < ApplicationController
 
     @comments = Comment.where(micropost_id: params[:micropost_id]).includes(:user)
 
-    @comment.save
-    @comment = Comment.new
+    @comment = Comment.new if @comment.save
     respond_to :js
   end
 
