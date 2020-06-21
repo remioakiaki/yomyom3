@@ -52,7 +52,6 @@ li{
   }
   
 }
-/* typography */
 
 h1, h2, h3, h4, h5, h6 {
   line-height: 1;
@@ -169,6 +168,11 @@ input, textarea, select, .uneditable-input {
   width: 70%;
   margin: 0 auto;
 }
+
+.login{
+  width:50%;
+}
+
 @media screen and (max-width:480px){
   .edit-form{
     width: 100%;
@@ -176,4 +180,7 @@ input, textarea, select, .uneditable-input {
   }
 }
 
-
+//layouts/info
+.alert.alert-info{
+  margin-top: 10px;;
+}

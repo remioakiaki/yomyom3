@@ -9,6 +9,8 @@
           = render 'shared/micropost_form', btnname: "更新"
         -elsif title == 'コメントを編集'
           = render 'shared/comment_form', object: @comment, btnname: "更新"
+        -else
+          = render 'shared/login_form'
       .modal-footer
         button type="button" class="btn btn-default" data-dismiss="modal"
           |閉じる 

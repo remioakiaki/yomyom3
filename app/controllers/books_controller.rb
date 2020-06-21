@@ -2,9 +2,6 @@
 
 class BooksController < ApplicationController
   before_action :admin_user, only: %i[destroy edit]
-  RakutenWebService.configure do |c|
-    c.application_id = ENV['RAKUTEN_APPID']
-  end
 
   def new
     require 'rakuten_web_service'
@@ -16,7 +13,7 @@ class BooksController < ApplicationController
 
     if books.present?
       makearray(books)
-    else @books = Book.all.page(params[:page]).per(12)
+    else @books = Book.all.page(params[:page])
     end
     @bookshelf = Bookshelf.new
   end
@@ -36,8 +33,8 @@ class BooksController < ApplicationController
   end
 
   def create
-    createbook(params[:isbn])
-    if @book.save
+    @book = Book.by_isbn(params[:isbn])
+    if @book.persisted?
       redirect_to book_url(@book)
     else
       flash[:danger] = '書籍の登録に失敗しました'
@@ -104,7 +101,7 @@ class BooksController < ApplicationController
 
   def makeparams(params)
     params[:page] = 1 if params[:page].nil?
-    params[:hits] = 12
+    params[:hits] = Settings.paginate.book
 
     hash = params.permit!.to_hash.symbolize_keys.slice(:title, :author, :page, :hits)
     hash.map do |k, v|

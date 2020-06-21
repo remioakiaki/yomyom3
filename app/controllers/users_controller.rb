@@ -116,13 +116,6 @@ class UsersController < ApplicationController
     redirect_to root_url unless current_user.admin?
   end
 
-  def test_user
-    return unless current_user.email == 'test@test.com'
-
-    flash[:danger] = 'テストユーザーでこの操作はできません'
-    redirect_back(fallback_location: root_path)
-  end
-
   def createvar(user_id)
     yyyymmdd = if test_user?(user_id) && params[:yyyymmdd].nil?
                  Date.parse('2020-5-12')

@@ -2,20 +2,16 @@
 
 class BookshelvesController < ApplicationController
   before_action :correct_user, only: %i[edit update destroy]
+  before_action :test_user, only: %i[destroy]
   def create
+    @bookshelf = current_user.bookshelves.build(bookshelf_params)
     if params[:bookshelf][:book_id].empty?
-      createbook(params[:isbn])
-      @book.save
-      @bookshelf = current_user.bookshelves.build(bookshelf_params)
+      @book = Book.by_isbn(params[:isbn])
       @bookshelf.book_id = @book.id
     else
-      @bookshelf = current_user.bookshelves.build(bookshelf_params)
+      @book = Book.find(params[:bookshelf][:book_id])
     end
-
-    return unless @bookshelf.save
-
-    flash[:success] = '本棚への追加が完了しました'
-    redirect_to user_path(current_user)
+    @bookshelf.save
   end
 
   def edit
@@ -37,8 +33,12 @@ class BookshelvesController < ApplicationController
   def destroy
     @bookshelf = Bookshelf.find(params[:id])
     @bookshelf.destroy
-    flash[:success] = '本棚から削除されました'
-    redirect_to user_path(current_user)
+    if params[:bookshelf].nil?
+      flash[:success] = '本棚から削除されました'
+      redirect_to user_path(current_user)
+    else
+      @book = Book.find(params[:bookshelf][:book_id])
+    end
   end
 
   private

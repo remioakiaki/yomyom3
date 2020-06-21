@@ -3,5 +3,9 @@
 = render 'users/profile', user:@user
 = render 'users/tab', user:@user
 = render 'graph/graph'
-= render 'records/record', records: @records
-= paginate @records
+
+- if @records.any?
+  = render @records
+  = paginate @records
+- else
+  =render 'layouts/info', name: '記録' 

@@ -57,6 +57,7 @@ gem 'counter_culture', '~> 1.0'
 gem 'activesupport', '>= 5.2.4.3'
 gem 'actionpack', '>= 5.2.4.3'
 gem 'activestorage', '>= 5.2.4.3'
+gem 'settingslogic'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

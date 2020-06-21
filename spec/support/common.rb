@@ -12,11 +12,11 @@ module Common
 
   def relation(user)
     expect do
-      find(".relation-btn_#{user.id}").click_button 'フォローする'
+      find(".relation-btn_#{user.id}").click_button 'フォローする', match: :first
       sleep 0.5
     end.to change(Relationship, :count).by(1)
     expect do
-      find(".relation-btn_#{user.id}").click_button 'フォロー解除'
+      find(".relation-btn_#{user.id}").click_button 'フォロー解除', match: :first
       sleep 0.5
     end.to change(Relationship, :count).by(-1)
   end

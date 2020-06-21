@@ -4,3 +4,5 @@
 - if @user.microposts.any?
   = render @microposts
   = paginate @microposts
+- else
+  =render 'layouts/info', name: '投稿' 

@@ -1,4 +1,7 @@
  - provide(:title, 'フォロー・フォロワー一覧')
  = render 'users/profile', user:@user
  = render 'users/tab', user:@user
- = render @users
+ - if @users.any?
+  = render @users
+ - else
+   =render 'layouts/info', name: 'フォロー・フォロワー登録' 

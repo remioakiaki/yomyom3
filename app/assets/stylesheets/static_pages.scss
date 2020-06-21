@@ -49,6 +49,7 @@
   border: 1px solid #CCC;
   position: relative;
   margin-bottom: 15px;
+  top: -20px;
   img{
     width:100%;
   }
@@ -113,4 +114,10 @@
   background-size: contain;
   height: 40px;
   width: 200px;
+}
+
+.btn-home{
+  font-size: 18px;
+  padding: 15px 0px;
+  width: 100%;
 }

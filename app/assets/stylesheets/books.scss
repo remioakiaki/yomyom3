@@ -7,11 +7,13 @@
     padding: 5px 5px;
     background-color: #ffffff;
     border: 1px solid #ddd;
-    height: 460px;
+    margin-left: -1px;
+    margin-top: -1px;
+    height: 450px;
   }
   .title{
     height:52px;
-    
+
     p{
       display: -webkit-box;
       -webkit-box-orient: vertical;
@@ -34,7 +36,9 @@
     height:200px;
   }
   .add{
-    height:50px;
+    height:40px;
+    text-align: center;
+    margin: 15px 0px;
 
   }
   .good{
@@ -44,26 +48,56 @@
     }
   }
   .btn{
-    width:100%;
+    width:80%;
     margin-bottom: 10px;
   }
   .add_bookshelf{
     height:42px;
   }
-}
-
-table{
-  td{
-    width:300px;
-    padding:10px;
+  .review{
+    margin-top: 10px;
   }
 }
+
+.book-img{
+  
+  padding: 15px 0px;
+  background-color: white;
+  border: 1px solid #ddd;
+}
+.col-sm-6{
+  .star{
+    display: inline-block;
+  }
+  h4{
+    line-height: 1.5em;;
+  }
+  .book-info-top{
+    margin-top: -1px;
+    margin-bottom: 15px;
+    padding:5px 10px;
+    
+    background-color: white;
+    border: 1px solid #ddd;
+  }
+  .book-info-sub{
+    margin: 0 auto;
+    width:315px
+  }
+}
+
 .chk{
   padding-top:10px;
   display: flex;
-  justify-content:  space-evenly;
+  align-items: center;
+  justify-content:start;
   input{
     width:150px;
+  }
+  .btn{
+    margin-right: 5px;
+    margin-bottom: 10px;
+
   }
 }
 

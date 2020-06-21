@@ -41,6 +41,7 @@ describe '本棚登録機能', type: :system, js: true do
           click_on '書籍を検索'
           expect do
             click_on '本棚追加', match: :first
+            sleep 5.0
           end.to change { Bookshelf.count }.by(1)
         end
       end

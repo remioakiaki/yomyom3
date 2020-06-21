@@ -1,0 +1,15 @@
+defaults: &defaults
+  paginate:
+    book: 12
+    user: 10
+    record: 5
+      
+
+development:
+  <<: *defaults
+
+test:
+  <<: *defaults
+
+production:
+  <<: *defaults

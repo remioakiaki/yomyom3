@@ -13,7 +13,7 @@ class Record < ApplicationRecord
   belongs_to :user
   belongs_to :bookshelf
 
-  paginates_per 5
+  paginates_per Settings.paginate.record
   def changehours
     self.summinutes = hours * 60 + minutes
     self.summinutes /= 60

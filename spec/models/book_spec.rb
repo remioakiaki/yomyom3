@@ -16,10 +16,10 @@ RSpec.describe Book, type: :model do
       book.valid?
       expect(book.errors[:title]).to include('を入力してください')
     end
-    it '作者が無いとエラー' do
+    it '作者が無くても有効' do
       book.author = nil
       book.valid?
-      expect(book.errors[:author]).to include('を入力してください')
+      expect(book.errors[:author]).to_not include('を入力してください')
     end
     it 'isbnがないとエラー' do
       book.isbn = nil
