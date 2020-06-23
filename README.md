@@ -16,7 +16,7 @@ https://yomyom2.work/
   VPC  
   Route53  
   ALB  
-  ACS  
+  ACM  
 - CircleCIを導入した自動テスト
 - 単体・統合テスト(RSpec, factory_bot, capybara)
 - データベース(MYSQL)
